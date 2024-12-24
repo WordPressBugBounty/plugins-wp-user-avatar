@@ -48,7 +48,9 @@ if ( ! class_exists('\ProperP_Shogun')) {
             }
 
             if ($plugin_info = get_transient('yolo-plugin-info-' . $plugin_slug)) {
-                array_unshift($res->plugins, $plugin_info);
+                if (is_array($res->plugins)) {
+                    array_unshift($res->plugins, $plugin_info);
+                }
             } else {
                 $plugin_info = plugins_api('plugin_information', array(
                     'slug'   => $plugin_slug,
@@ -62,7 +64,7 @@ if ( ! class_exists('\ProperP_Shogun')) {
                         'short_description' => true,
                     )
                 ));
-                if ( ! is_wp_error($plugin_info)) {
+                if ( ! is_wp_error($plugin_info) && isset($res->plugins) && is_array($res->plugins)) {
                     $res->plugins[] = $plugin_info;
                     set_transient('yolo-plugin-info-' . $plugin_slug, $plugin_info, DAY_IN_SECONDS * 7);
                 }
