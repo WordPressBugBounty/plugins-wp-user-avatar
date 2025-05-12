@@ -5,7 +5,7 @@ Tags: membership, ecommerce, user registration, user profile, memberships
 Requires at least: 5.3
 Requires PHP: 7.4
 Tested up to: 6.8
-Stable tag: 4.15.23
+Stable tag: 4.15.24
 License: GPLv2 or later
 
 Setup paid membership, accept payment, sell subscription & digital product, paywall, create login & registration form, user profile & member directory
@@ -183,6 +183,20 @@ Any file type can be sold using ProfilePress ecommerce and membership plugin, in
 
 == Changelog ==
 
+= Paid Membership, Ecommerce & User Registration 4.15.24 =
+* Added ppress_payment_processing_message filter.
+* Added ppress_md_profile_bio filter.
+* Added ppress_registration_should_send_welcome_email filter.
+* Added additional params to ppress_welcome_message_raw_content filter.
+* Added translation support for checkout fields label.
+* Added userID placeholder to welcome email.
+* Added Threads and Bluesky social icons.
+* Added Copy button for shortcodes to plans, groups and form pages.
+* Added support for file upload field when custom fields are added in emails.
+* Fixed bug where slash could appear in membership plan name.
+* Fixed bug where recaptcha didn’t work on plan upgrade checkout.
+* Fixed bug with profile image cropping not working.
+
 = Paid Membership, Ecommerce & User Registration 4.15.23 =
 * Added ppress_subscription_after_expired_reminder_email_enabled filter
 * Added ppress_membership_subscription_expired_email_enabled filter
@@ -202,15 +216,5 @@ Any file type can be sold using ProfilePress ecommerce and membership plugin, in
 * Disabled buffer on expiration cron job when a subscription is cancelled.
 * Redirect to My Account page if previous url after login is the password reset page.
 * Added double-check to ensure subscription is expired before sending subscriptionExpired email.
-
-= Paid Membership, Ecommerce & User Registration 4.15.21 =
-* Added shortcode support to Restricted Page template in content protection.
-* Added ppress_checkout_is_registration_checked_enabled filter.
-* Added ppress_frontend_profile_url filter.
-* Disable processing page when on bank transfer payment method.
-* Disable checking if registration is enabled during checkout if user is logged in.
-* Fixed bug where textarea data in user profile lack newlines.
-* Fixed broken html on agreeable field.
-* Fixed bug where stripe amount could be negative integer.
 
 See the [changelog file](https://plugins.svn.wordpress.org/wp-user-avatar/trunk/changelog.txt) for full change log information.
