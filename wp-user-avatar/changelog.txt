@@ -1,5 +1,8 @@
 ﻿== Changelog ==
 
+= 4.15.25 =
+* Fixed bug with frontend JS script loading.
+
 = 4.15.24 =
 * Added ppress_payment_processing_message filter.
 * Added ppress_md_profile_bio filter.
