@@ -31,6 +31,7 @@ class ExtensionManager
     const METERED_PAYWALL = 'metered_paywall';
     const LEARNDASH = 'learndash';
     const TUTORLMS = 'tutorlms';
+    const ACADEMYLMS = 'academylms';
     const SENSEI_LMS = 'sensei_lms';
     const LIFTERLMS = 'lifterlms';
     const INVITATION_CODES = 'invitation_codes';
@@ -67,6 +68,7 @@ class ExtensionManager
             self::METERED_PAYWALL        => 'ProfilePress\Libsodium\MeteredPaywall\Init',
             self::LEARNDASH              => 'ProfilePress\Libsodium\Learndash\Init',
             self::TUTORLMS               => 'ProfilePress\Core\Integrations\TutorLMS\Init',
+            self::ACADEMYLMS             => 'ProfilePress\Core\Integrations\AcademyLMS\Init',
             self::SENSEI_LMS             => 'ProfilePress\Libsodium\SenseiLMS\Init',
             self::LIFTERLMS              => 'ProfilePress\Libsodium\LifterLMS',
             self::INVITATION_CODES       => 'ProfilePress\Libsodium\InvitationCodes\Init'
@@ -215,6 +217,16 @@ class ExtensionManager
                 'icon'         => '<span class="dashicons dashicons-welcome-learn-more"></span>',
                 'is_available' => function () {
                     return class_exists('\TUTOR\TUTOR') ? true : esc_html__('Tutor LMS is not active', 'wp-user-avatar');
+                }
+            ],
+            self::ACADEMYLMS               => [
+                'title'        => esc_html__('Academy LMS', 'wp-user-avatar'),
+                'setting_url'  => PPRESS_SETTINGS_SETTING_GENERAL_PAGE . '#pp_academylms_settings',
+                'url'          => 'https://profilepress.com/addons/academy-lms/?utm_source=liteplugin&utm_medium=extension-page&utm_campaign=learn-more',
+                'description'  => esc_html__('Sell access to Academy LMS courses, and enroll users after registration to specific courses.', 'wp-user-avatar'),
+                'icon'         => '<span class="dashicons dashicons-welcome-learn-more"></span>',
+                'is_available' => function () {
+                    return class_exists('\Academy') ? true : esc_html__('Academy LMS is not active', 'wp-user-avatar');
                 }
             ],
             self::LEARNDASH              => [

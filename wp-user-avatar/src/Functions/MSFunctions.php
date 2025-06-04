@@ -25,7 +25,9 @@ use ProfilePress\Core\Membership\Services\SubscriptionService;
  */
 function ppress_get_plan($plan_id)
 {
-    return PlanFactory::fromId($plan_id);
+    return ppress_cache_transform('ppress_get_plan_' . $plan_id, function () use ($plan_id) {
+        return PlanFactory::fromId($plan_id);
+    });
 }
 
 /**

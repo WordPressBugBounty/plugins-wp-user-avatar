@@ -264,15 +264,6 @@ class OrderEntity extends AbstractModel implements ModelInterface
         return $response;
     }
 
-    public function set_status($status)
-    {
-        $valid_statuses = (new \ReflectionClass(OrderStatus::class))->getConstants();
-
-        if (in_array($status, $valid_statuses)) {
-            $this->status = $status;
-        }
-    }
-
     public function set_mode($mode)
     {
         $valid_modes = (new \ReflectionClass(OrderMode::class))->getConstants();

@@ -3,7 +3,6 @@
 namespace ProfilePress\Core\Membership\Models\Subscription;
 
 use ProfilePress\Core\Base;
-use ProfilePress\Core\Classes\PROFILEPRESS_sql;
 use ProfilePress\Core\Membership\Models\AbstractModel;
 use ProfilePress\Core\Membership\Models\Customer\CustomerFactory;
 use ProfilePress\Core\Membership\Models\ModelInterface;
@@ -349,27 +348,9 @@ class SubscriptionEntity extends AbstractModel implements ModelInterface
         ], true);
     }
 
-    public function set_trial_period($period)
-    {
-        $valid_periods = (new \ReflectionClass(SubscriptionTrialPeriod::class))->getConstants();
-
-        if (in_array($period, $valid_periods)) {
-            $this->trial_period = $period;
-        }
-    }
-
     public function get_profile_id()
     {
         return apply_filters('ppress_subscription_profile_id', $this->profile_id, $this->get_id(), $this);
-    }
-
-    protected function set_status($status)
-    {
-        $valid_statuses = (new \ReflectionClass(SubscriptionStatus::class))->getConstants();
-
-        if (in_array($status, $valid_statuses)) {
-            $this->status = $status;
-        }
     }
 
     public function get_status()
@@ -609,30 +590,12 @@ class SubscriptionEntity extends AbstractModel implements ModelInterface
         return apply_filters('ppress_subscription_can_cancel', false, $this);
     }
 
-    public function has_cancellation_requested()
-    {
-        $val = PROFILEPRESS_sql::get_meta_data_by_key('subscription_cancellation_requested_' . $this->id);
-
-        return is_array($val) && isset($val[0]['meta_value']) && 'true' == $val[0]['meta_value'];
-    }
-
-    public function add_cancellation_requested()
-    {
-        $this->delete_cancellation_requested(); // cleanup first
-        PROFILEPRESS_sql::add_meta_data('subscription_cancellation_requested_' . $this->id, 'true');
-    }
-
-    public function delete_cancellation_requested()
-    {
-        PROFILEPRESS_sql::delete_meta_data_by_meta_key('subscription_cancellation_requested_' . $this->id);
-    }
-
     /**
      * @param bool $gateway_cancel set to true to cancel sub in gateway too.
      *
      * @return false|void
      */
-    public function cancel($gateway_cancel = false, $cancel_immediately = false)
+    public function cancel($gateway_cancel = false)
     {
         if ($this->is_cancelled()) return false;
 
@@ -640,21 +603,17 @@ class SubscriptionEntity extends AbstractModel implements ModelInterface
 
         $old_status = $this->status;
 
-        $this->update_status(SubscriptionStatus::CANCELLED);
+        if ($old_status != SubscriptionStatus::EXPIRED) {
+            $this->update_status(SubscriptionStatus::CANCELLED);
+        }
 
         if ($gateway_cancel === true && $sub->can_cancel()) {
-            if ($cancel_immediately === true) {
-                PaymentMethods::get_instance()->get_by_id($this->get_payment_method())->cancel_immediately($sub);
-            } else {
-                PaymentMethods::get_instance()->get_by_id($this->get_payment_method())->cancel($sub);
-            }
+            PaymentMethods::get_instance()->get_by_id($this->get_payment_method())->cancel($sub);
         }
 
         if ($this->is_lifetime()) {
             $this->remove_plan_role_from_customer();
         }
-
-        $this->add_cancellation_requested();
 
         do_action('ppress_subscription_cancelled', $this, $old_status);
     }

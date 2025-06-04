@@ -5,7 +5,7 @@ Tags: membership, ecommerce, user registration, user profile, memberships
 Requires at least: 5.3
 Requires PHP: 7.4
 Tested up to: 6.8
-Stable tag: 4.15.25
+Stable tag: 4.16.0
 License: GPLv2 or later
 
 Setup paid membership, accept payment, sell subscription & digital product, paywall, create login & registration form, user profile & member directory
@@ -84,9 +84,11 @@ Do you want to redirect WordPress users after login to a specific page or URL? T
 
 Customize the email templates for each email that can be sent to users and administrators.
 
-= Tutor LMS Integration =
+= Tutor LMS & Academy LMS Integrations =
 
-Our [Tutor LMS integration](https://profilepress.com/addons/tutor-lms/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) lets you sell access to Tutor LMS courses, enroll users after registration to specific courses and create custom student and instructor WordPress registration forms.
+The [Tutor LMS integration](https://profilepress.com/addons/tutor-lms/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) lets you sell access to Tutor LMS courses, enroll users after registration to specific courses and create custom student and instructor WordPress registration forms.
+
+The [Academy LMS integration](https://profilepress.com/addons/academy-lms/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) lets you sell your courses in Academy LMS plugin, enroll users to courses after registration and create custom registration forms for students and instructors.
 
 = Other Payment & Membership Plugin Features =
 
@@ -183,6 +185,18 @@ Any file type can be sold using ProfilePress ecommerce and membership plugin, in
 
 == Changelog ==
 
+= Paid Membership, Ecommerce & User Registration 4.16.0 =
+* Added [Academy LMS](https://profilepress.com/addons/academy-lms/?ref=changelog) integration.
+* Option to Disable Redirect from (/wp-admin/profile.php) for administrators.
+* Fixed bug where no address fields could break non-card stripe payments.
+* Fixed bug with failure to switch to change_plan checkout when group checkout is accessed by active sub users.
+* Fixed bug with failing trigger hooks when sub is manually set to active and trial.
+* Fixed bug where SubscriptionExpiredNotification could be sent on sub upgrade/downgrade.
+* Fixed bug where sub could be set to cancelled when it has expired.
+* Simplified cancellation flow by removing cancellation at end of period in Stripe
+* Added a Copy Shortcode Button to form listing and builder pages.
+* Added more bulk-actions to Content Protection listing page.
+
 = Paid Membership, Ecommerce & User Registration 4.15.25 =
 * Fixed bug with frontend JS script loading.
 
@@ -199,25 +213,5 @@ Any file type can be sold using ProfilePress ecommerce and membership plugin, in
 * Fixed bug where slash could appear in membership plan name.
 * Fixed bug where recaptcha didn’t work on plan upgrade checkout.
 * Fixed bug with profile image cropping not working.
-
-= Paid Membership, Ecommerce & User Registration 4.15.23 =
-* Added ppress_subscription_after_expired_reminder_email_enabled filter
-* Added ppress_membership_subscription_expired_email_enabled filter
-* Added a filter to modify user roles in search filter.
-* Fixed bug where content protection excerpt generation can fail
-* Fixed bug where restricted template didn’t display global restricted message.
-* Fixed bug where marking a checkout field as not required didn’t work.
-
-= Paid Membership, Ecommerce & User Registration 4.15.22 =
-* Added a filter for specifying payment method based on plan ID.
-* Added ppress_subscription_buffer_seconds filter.
-* Added filtering by user role to Member Directory.
-* Inverted the logic of content protection.
-* Fixed: Function _load_textdomain_just_in_time was called incorrectly.
-* Fixed email placeholder not working for welcome email
-* Switch to using home_url() from site_url() for login redirect.
-* Disabled buffer on expiration cron job when a subscription is cancelled.
-* Redirect to My Account page if previous url after login is the password reset page.
-* Added double-check to ensure subscription is expired before sending subscriptionExpired email.
 
 See the [changelog file](https://plugins.svn.wordpress.org/wp-user-avatar/trunk/changelog.txt) for full change log information.

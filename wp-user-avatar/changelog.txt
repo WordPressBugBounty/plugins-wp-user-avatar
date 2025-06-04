@@ -1,5 +1,17 @@
 ﻿== Changelog ==
 
+= 4.16.0 =
+* Added [Academy LMS](https://profilepress.com/addons/academy-lms/?ref=changelog) integration.
+* Option to Disable Redirect from (/wp-admin/profile.php) for administrators.
+* Fixed bug where no address fields could break non-card stripe payments.
+* Fixed bug with failure to switch to change_plan checkout when group checkout is accessed by active sub users.
+* Fixed bug with failing trigger hooks when sub is manually set to active and trial.
+* Fixed bug where SubscriptionExpiredNotification could be sent on sub upgrade/downgrade.
+* Fixed bug where sub could be set to cancelled when it has expired.
+* Simplified cancellation flow by removing cancellation at end of period in Stripe
+* Added a Copy Shortcode Button to form listing and builder pages.
+* Added more bulk-actions to Content Protection listing page.
+
 = 4.15.25 =
 * Fixed bug with frontend JS script loading.
 

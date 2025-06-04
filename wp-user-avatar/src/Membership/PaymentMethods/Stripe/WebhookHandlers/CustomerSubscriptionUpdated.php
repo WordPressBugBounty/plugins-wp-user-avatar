@@ -34,8 +34,6 @@ class CustomerSubscriptionUpdated implements WebhookHandlerInterface
 
             // cancelling early so subscription can be set back to active down below if this isn't an immediate cancellation
             $subscription->cancel();
-        } else {
-            $subscription->delete_cancellation_requested();
         }
 
         switch ($event_data['status']) {

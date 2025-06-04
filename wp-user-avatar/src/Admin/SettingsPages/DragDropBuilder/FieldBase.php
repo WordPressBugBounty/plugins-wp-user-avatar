@@ -38,7 +38,7 @@ abstract class FieldBase implements FieldInterface
         $this->form_type  = sanitize_text_field($_GET['form-type']);
         $this->form_class = FormRepository::get_form_meta($this->form_id, $this->form_type, FormRepository::FORM_CLASS);
 
-        $this->register_field();
+        add_action('init', [$this, 'register_field']);
 
         $this->tag_name = $this->form_type == FormRepository::REGISTRATION_TYPE ? 'reg' : 'edit-profile';
 
