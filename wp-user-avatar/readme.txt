@@ -5,7 +5,7 @@ Tags: membership, ecommerce, user registration, user profile, memberships
 Requires at least: 5.3
 Requires PHP: 7.4
 Tested up to: 6.8
-Stable tag: 4.16.0
+Stable tag: 4.16.1
 License: GPLv2 or later
 
 Setup paid membership, accept payment, sell subscription & digital product, paywall, create login & registration form, user profile & member directory
@@ -185,6 +185,9 @@ Any file type can be sold using ProfilePress ecommerce and membership plugin, in
 
 == Changelog ==
 
+= Paid Membership, Ecommerce & User Registration 4.16.1 =
+* Fixed fatal error on new installation.
+
 = Paid Membership, Ecommerce & User Registration 4.16.0 =
 * Added [Academy LMS](https://profilepress.com/addons/academy-lms/?ref=changelog) integration.
 * Option to Disable Redirect from (/wp-admin/profile.php) for administrators.
@@ -196,22 +199,5 @@ Any file type can be sold using ProfilePress ecommerce and membership plugin, in
 * Simplified cancellation flow by removing cancellation at end of period in Stripe
 * Added a Copy Shortcode Button to form listing and builder pages.
 * Added more bulk-actions to Content Protection listing page.
-
-= Paid Membership, Ecommerce & User Registration 4.15.25 =
-* Fixed bug with frontend JS script loading.
-
-= Paid Membership, Ecommerce & User Registration 4.15.24 =
-* Added ppress_payment_processing_message filter.
-* Added ppress_md_profile_bio filter.
-* Added ppress_registration_should_send_welcome_email filter.
-* Added additional params to ppress_welcome_message_raw_content filter.
-* Added translation support for checkout fields label.
-* Added userID placeholder to welcome email.
-* Added Threads and Bluesky social icons.
-* Added Copy button for shortcodes to plans, groups and form pages.
-* Added support for file upload field when custom fields are added in emails.
-* Fixed bug where slash could appear in membership plan name.
-* Fixed bug where recaptcha didn’t work on plan upgrade checkout.
-* Fixed bug with profile image cropping not working.
 
 See the [changelog file](https://plugins.svn.wordpress.org/wp-user-avatar/trunk/changelog.txt) for full change log information.

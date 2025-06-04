@@ -1,5 +1,8 @@
 ﻿== Changelog ==
 
+= 4.16.1 =
+* Fixed fatal error on new installation.
+
 = 4.16.0 =
 * Added [Academy LMS](https://profilepress.com/addons/academy-lms/?ref=changelog) integration.
 * Option to Disable Redirect from (/wp-admin/profile.php) for administrators.
