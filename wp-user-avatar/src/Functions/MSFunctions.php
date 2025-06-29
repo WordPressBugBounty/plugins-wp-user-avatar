@@ -588,11 +588,9 @@ function ppress_get_payment_mode()
 function ppress_local_datetime_to_utc($date, $format = 'Y-m-d H:i:s')
 {
     try {
-        $a = new DateTime($date, wp_timezone());
-        $a->setTimezone(new DateTimeZone('UTC'));
-
-        return $a->format($format);
-
+        return (new DateTimeImmutable($date, wp_timezone()))
+            ->setTimezone(new DateTimeZone('UTC'))
+            ->format($format);
     } catch (\Exception $e) {
         return false;
     }

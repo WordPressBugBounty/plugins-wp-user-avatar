@@ -5,7 +5,7 @@ Tags: membership, ecommerce, user registration, user profile, memberships
 Requires at least: 5.3
 Requires PHP: 7.4
 Tested up to: 6.8
-Stable tag: 4.16.1
+Stable tag: 4.16.2
 License: GPLv2 or later
 
 Setup paid membership, accept payment, sell subscription & digital product, paywall, create login & registration form, user profile & member directory
@@ -104,6 +104,7 @@ The [Academy LMS integration](https://profilepress.com/addons/academy-lms/?utm_s
 
 Extend the capabilities of ProfilePress with our powerful addons and remove the additional 2% Stripe processing fee.
 
+* [Fixed Subscription Expiration](https://profilepress.com/addons/fixed-subscription-expiration/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) – Allows subscriptions of non-recurring plans to end at a specific date or after a specified duration of time.
 * [PayPal Checkout](https://profilepress.com/addons/paypal/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) – Accept Visa, Mastercard, Venmo, Discover, iDEAL, American Express, Bancontact, BLIK, giropay, MyBank and Przelewy24 payments via PayPal.
 * [RazorPay Checkout](https://profilepress.com/addons/razorPay/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) – Accept Credit/Debit cards, Netbanking, UPI, Wallets and more from Indian customers via RazorPay.
 * [Mollie Checkout](https://profilepress.com/addons/mollie/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) – Accept payments via Credit Card, iDEAL, SEPA Direct Debit, Apple Pay, PayPal, Klarna, Bancontact, Bank transfer & Gift Card with Mollie.
@@ -125,6 +126,7 @@ Extend the capabilities of ProfilePress with our powerful addons and remove the 
 * [Site Creation](https://profilepress.com/addons/site-creation/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) – Allow users to create new sites on a multisite network via a user registration form powered by ProfilePress.
 * [Mailchimp](https://profilepress.com/addons/mailchimp/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) – Subscribe members to your Mailchimp audiences after they register, made a purchase and payment, subscribe to membership plans and automatically sync profile changes with Mailchimp.
 * [Campaign Monitor](https://profilepress.com/addons/campaign-monitor/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) – Subscribe members to your Campaign Monitor lists when they register, subscribe to membership plans via checkout form, and automatically sync profile changes with Campaign Monitor.
+* [MailerLite](https://profilepress.com/addons/mailerlite/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) – Add WordPress users to MailerLite groups when they register, subscribe to membership plans via checkout form, and automatically sync profile changes with MailerLite.
 * [BuddyBoss/BuddyPress Profile Sync](https://profilepress.com/addons/buddypress-profile-sync/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) –  This addon provides 2-way synchronization between WordPress profile fields and BuddyBoss/BuddyPress extended profile.
 * [Join BuddyPress Groups](https://profilepress.com/addons/join-buddypress-groups/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) –  Let users select the BuddyBoss/BuddyPress groups to join during registration.
 * [Akismet](https://profilepress.com/addons/akismet/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) –  Block spam and bot user registrations with Akismet and keep your membership site safe and secured.
@@ -184,6 +186,14 @@ Any file type can be sold using ProfilePress ecommerce and membership plugin, in
 11. Content Protection
 
 == Changelog ==
+
+= Paid Membership, Ecommerce & User Registration 4.16.2 =
+* Pro: [MailerLite Integration addon](https://profilepress.com/addons/mailerlite/?ref=changelog).
+* Pro: [Fixed Subscription Expiration addon](https://profilepress.com/addons/fixed-subscription-expiration/?ref=changelog).
+* Fixed bug where welcome email was not sent when users are added by admin.
+* Fixed bug where password strength-meter didn't work in myaccount page if ajaxmode is disabled.
+* Added checkout user moderation behind ppress_checkout_registration_user_moderation_support filter.
+* Added ppress_is_search_and_api_exclude_posts filter.
 
 = Paid Membership, Ecommerce & User Registration 4.16.1 =
 * Fixed fatal error on new installation.

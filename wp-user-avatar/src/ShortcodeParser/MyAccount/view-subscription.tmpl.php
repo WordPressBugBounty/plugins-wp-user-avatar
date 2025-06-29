@@ -83,7 +83,7 @@ $payment_method = PaymentMethods::get_instance()->get_by_id($sub->get_payment_me
                             <td><?= ppress_format_date($sub->created_date) ?></td>
                         </tr>
                         <tr>
-                            <td><?php echo ($sub->is_cancelled()) ? esc_html__('Expiration Date', 'wp-user-avatar') : esc_html__('Renewal Date', 'wp-user-avatar'); ?></td>
+                            <td><?php echo $sub->get_renewal_expiration_date_label() ?></td>
                             <td><?= $sub->get_formatted_expiration_date() ?></td>
                         </tr>
                         <tr>

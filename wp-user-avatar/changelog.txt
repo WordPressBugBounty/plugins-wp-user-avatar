@@ -1,5 +1,13 @@
 ﻿== Changelog ==
 
+= 4.16.2 =
+* Pro: [MailerLite Integration addon](https://profilepress.com/addons/mailerlite/?ref=changelog).
+* Pro: [Fixed Subscription Expiration addon](https://profilepress.com/addons/fixed-subscription-expiration/?ref=changelog).
+* Fixed bug where welcome email was not sent when users are added by admin.
+* Fixed bug where password strength-meter didn't work in myaccount page if ajaxmode is disabled.
+* Added checkout user moderation behind ppress_checkout_registration_user_moderation_support filter.
+* Added ppress_is_search_and_api_exclude_posts filter.
+
 = 4.16.1 =
 * Fixed fatal error on new installation.
 
