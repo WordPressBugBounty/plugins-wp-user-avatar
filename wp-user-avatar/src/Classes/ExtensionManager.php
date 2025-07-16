@@ -25,6 +25,7 @@ class ExtensionManager
     const PASSWORDLESS_LOGIN = 'passwordless_login';
     const USER_MODERATION = 'user_moderation';
     const RECAPTCHA = 'recaptcha';
+    const TURNSTILE = 'turnstile';
     const SOCIAL_LOGIN = 'social_login';
     const CUSTOM_FIELDS = 'custom_fields';
     const TWOFA = 'TWOFA';
@@ -65,6 +66,7 @@ class ExtensionManager
             self::PASSWORDLESS_LOGIN            => 'ProfilePress\Libsodium\PasswordlessLogin',
             self::USER_MODERATION               => 'ProfilePress\Libsodium\UserModeration\UserModeration',
             self::RECAPTCHA                     => 'ProfilePress\Libsodium\Recaptcha\Init',
+            self::TURNSTILE                     => 'ProfilePress\Libsodium\Turnstile\Init',
             self::SOCIAL_LOGIN                  => 'ProfilePress\Libsodium\SocialLogin\Init',
             self::CUSTOM_FIELDS                 => 'ProfilePress\Libsodium\CustomProfileFields\Init',
             self::TWOFA                         => 'ProfilePress\Libsodium\TWOFA\Init',
@@ -75,7 +77,7 @@ class ExtensionManager
             self::SENSEI_LMS                    => 'ProfilePress\Libsodium\SenseiLMS\Init',
             self::LIFTERLMS                     => 'ProfilePress\Libsodium\LifterLMS',
             self::INVITATION_CODES              => 'ProfilePress\Libsodium\InvitationCodes\Init',
-            self::FIXED_SUBSCRIPTION_EXPIRATION => 'ProfilePress\Libsodium\FixedSubscriptionExpiration',
+            self::FIXED_SUBSCRIPTION_EXPIRATION => 'ProfilePress\Libsodium\FixedSubscriptionExpiration'
         ];
     }
 
@@ -108,7 +110,7 @@ class ExtensionManager
                 'url'         => 'https://profilepress.com/addons/paystack/?utm_source=liteplugin&utm_medium=extension-page&utm_campaign=learn-more',
                 'setting_url' => AbstractPaymentMethod::get_payment_method_admin_page_url(self::PAYSTACK),
                 'description' => esc_html__('Accept payments and sell subscriptions via Paystack.', 'wp-user-avatar'),
-                'icon'        => '<svg viewBox="0 0 576 512" xmlns="http://www.w3.org/2000/svg"><path d="m64 32c-35.3 0-64 28.7-64 64v32h576v-32c0-35.3-28.7-64-64-64zm512 192h-576v192c0 35.3 28.7 64 64 64h448c35.3 0 64-28.7 64-64zm-464 128h64c8.8 0 16 7.2 16 16s-7.2 16-16 16h-64c-8.8 0-16-7.2-16-16s7.2-16 16-16zm112 16c0-8.8 7.2-16 16-16h128c8.8 0 16 7.2 16 16s-7.2 16-16 16h-128c-8.8 0-16-7.2-16-16z"/></svg>'
+                'icon'        => '<svg viewBox="0 0 576 512" xmlns="http://www.w3.org/2000/svg"><path d="m64 32c-35.3 0-64 28.7-64 64v32h576v-32c0-35.3-28.7-64-64-64zm512 192h-576v192c0 35.3 28.7 64 64 64h448c35.3 0 64-28.7 64-64zm-464 128h64c8.8 0 16 7.2 16 16s-7.2 16-16 16h-64c-8.8 0-16-7.2-16-16s7.2-16 16-16zm112 16c0-8.8 7.2-16 16-16h128c8.8 0 16 7.2 16 16s-7.2 16-16 16h-128c-8.8 0-16-7.2-16-16s7.2-16 16-16z"/></svg>'
             ],
             self::FIXED_SUBSCRIPTION_EXPIRATION => [
                 'title'       => esc_html__('Fixed Subscription Expiration', 'wp-user-avatar'),
@@ -119,7 +121,9 @@ class ExtensionManager
             self::RECEIPT                       => [
                 'title'       => esc_html__('Receipt', 'wp-user-avatar'),
                 'url'         => 'https://profilepress.com/addons/receipt/?utm_source=liteplugin&utm_medium=extension-page&utm_campaign=learn-more',
-                'setting_url' => add_query_arg(['view' => 'payments', 'section' => 'settings'], PPRESS_SETTINGS_SETTING_PAGE) . '#receipt_disable_free_order_row',
+                'setting_url' => add_query_arg(['view'    => 'payments',
+                                                'section' => 'settings'
+                    ], PPRESS_SETTINGS_SETTING_PAGE) . '#receipt_disable_free_order_row',
                 'description' => esc_html__('Allow customers to view, print and download as PDF, the receipt of their orders.', 'wp-user-avatar'),
                 'icon'        => '<svg viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="m14 2.2c8.5-3.9 18.5-2.5 25.6 3.6l40.4 34.6 40.4-34.6c9-7.7 22.3-7.7 31.2 0l40.4 34.6 40.4-34.6c9-7.7 22.2-7.7 31.2 0l40.4 34.6 40.4-34.6c7.1-6.1 17.1-7.5 25.6-3.6s14 12.4 14 21.8v464c0 9.4-5.5 17.9-14 21.8s-18.5 2.5-25.6-3.6l-40.4-34.6-40.4 34.6c-9 7.7-22.2 7.7-31.2 0l-40.4-34.6-40.4 34.6c-9 7.7-22.3 7.7-31.2 0l-40.4-34.6-40.4 34.6c-7.1 6.1-17.1 7.5-25.6 3.6s-14-12.4-14-21.8v-464c0-9.4 5.5-17.9 14-21.8zm82 141.8c-8.8 0-16 7.2-16 16s7.2 16 16 16h192c8.8 0 16-7.2 16-16s-7.2-16-16-16zm-16 208c0 8.8 7.2 16 16 16h192c8.8 0 16-7.2 16-16s-7.2-16-16-16h-192c-8.8 0-16 7.2-16 16zm16-112c-8.8 0-16 7.2-16 16s7.2 16 16 16h192c8.8 0 16-7.2 16-16s-7.2-16-16-16z"/></svg>'
             ],
@@ -172,6 +176,13 @@ class ExtensionManager
                 'description' => esc_html__('Protect your forms against spam and bot attacks.', 'wp-user-avatar'),
                 'icon'        => '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M224,192a16,16,0,1,0,16,16A16,16,0,0,0,224,192ZM466.5,83.68l-192-80A57.4,57.4,0,0,0,256.05,0a57.4,57.4,0,0,0-18.46,3.67l-192,80A47.93,47.93,0,0,0,16,128C16,326.5,130.5,463.72,237.5,508.32a48.09,48.09,0,0,0,36.91,0C360.09,472.61,496,349.3,496,128A48,48,0,0,0,466.5,83.68ZM384,256H371.88c-28.51,0-42.79,34.47-22.63,54.63l8.58,8.57a16,16,0,1,1-22.63,22.63l-8.57-8.58C306.47,313.09,272,327.37,272,355.88V368a16,16,0,0,1-32,0V355.88c0-28.51-34.47-42.79-54.63-22.63l-8.57,8.58a16,16,0,0,1-22.63-22.63l8.58-8.57c20.16-20.16,5.88-54.63-22.63-54.63H128a16,16,0,0,1,0-32h12.12c28.51,0,42.79-34.47,22.63-54.63l-8.58-8.57a16,16,0,0,1,22.63-22.63l8.57,8.58c20.16,20.16,54.63,5.88,54.63-22.63V112a16,16,0,0,1,32,0v12.12c0,28.51,34.47,42.79,54.63,22.63l8.57-8.58a16,16,0,0,1,22.63,22.63l-8.58,8.57C329.09,189.53,343.37,224,371.88,224H384a16,16,0,0,1,0,32Zm-96,0a16,16,0,1,0,16,16A16,16,0,0,0,288,256Z"></path></svg>'
             ],
+            self::TURNSTILE                     => [
+                'title'       => esc_html__('Cloudflare Turnstile', 'wp-user-avatar'),
+                'url'         => 'https://profilepress.com/addons/turnstile/?utm_source=liteplugin&utm_medium=extension-page&utm_campaign=learn-more',
+                'setting_url' => PPRESS_SETTINGS_SETTING_GENERAL_PAGE . '#turnstile',
+                'description' => esc_html__('Protect forms from bot submissions and automated attacks by verifying that form submissions come from real human users rather than malicious scripts or bots.', 'wp-user-avatar'),
+                'icon'        => '<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="m466.5 83.7-192-80a48.2 48.2 0 0 0 -36.9 0l-192 80c-17.9 7.4-29.6 24.9-29.6 44.3 0 198.5 114.5 335.7 221.5 380.3 11.8 4.9 25.1 4.9 36.9 0 85.7-35.7 221.6-159 221.6-380.3 0-19.4-11.7-36.9-29.5-44.3zm-210.4 362.6-.1-381 175.9 73.3c-3.3 151.4-82.1 261.1-175.8 307.7z"/></svg>'
+            ],
             self::METERED_PAYWALL               => [
                 'title'       => esc_html__('Metered Paywall', 'wp-user-avatar'),
                 'url'         => 'https://profilepress.com/addons/metered-paywall/?utm_source=liteplugin&utm_medium=extension-page&utm_campaign=learn-more',
@@ -198,7 +209,9 @@ class ExtensionManager
             self::MAILCHIMP                     => [
                 'title'       => esc_html__('Mailchimp', 'wp-user-avatar'),
                 'url'         => 'https://profilepress.com/addons/mailchimp/?utm_source=liteplugin&utm_medium=extension-page&utm_campaign=learn-more',
-                'setting_url' => add_query_arg(['view'    => 'integrations', 'section' => 'mailchimp'], PPRESS_SETTINGS_SETTING_PAGE),
+                'setting_url' => add_query_arg(['view'    => 'integrations',
+                                                'section' => 'mailchimp'
+                ], PPRESS_SETTINGS_SETTING_PAGE),
                 'description' => esc_html__('Subscribe members to your Mailchimp audiences when they register or subscribe to a membership plan. It can also automatically sync membership and profile changes with Mailchimp.', 'wp-user-avatar'),
                 'icon'        => '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M330.61 243.52a36.15 36.15 0 0 1 9.3 0c1.66-3.83 1.95-10.43.45-17.61-2.23-10.67-5.25-17.14-11.48-16.13s-6.47 8.74-4.24 19.42c1.26 6 3.49 11.14 6 14.32zM277.05 252c4.47 2 7.2 3.26 8.28 2.13 1.89-1.94-3.48-9.39-12.12-13.09a31.44 31.44 0 0 0-30.61 3.68c-3 2.18-5.81 5.22-5.41 7.06.85 3.74 10-2.71 22.6-3.48 7-.44 12.8 1.75 17.26 3.71zm-9 5.13c-9.07 1.42-15 6.53-13.47 10.1.9.34 1.17.81 5.21-.81a37 37 0 0 1 18.72-1.95c2.92.34 4.31.52 4.94-.49 1.46-2.22-5.71-8-15.39-6.85zm54.17 17.1c3.38-6.87-10.9-13.93-14.3-7s10.92 13.88 14.32 6.97zm15.66-20.47c-7.66-.13-7.95 15.8-.26 15.93s7.98-15.81.28-15.96zm-218.79 78.9c-1.32.31-6 1.45-8.47-2.35-5.2-8 11.11-20.38 3-35.77-9.1-17.47-27.82-13.54-35.05-5.54-8.71 9.6-8.72 23.54-5 24.08 4.27.57 4.08-6.47 7.38-11.63a12.83 12.83 0 0 1 17.85-3.72c11.59 7.59 1.37 17.76 2.28 28.62 1.39 16.68 18.42 16.37 21.58 9a2.08 2.08 0 0 0-.2-2.33c.03.89.68-1.3-3.35-.39zm299.72-17.07c-3.35-11.73-2.57-9.22-6.78-20.52 2.45-3.67 15.29-24-3.07-43.25-10.4-10.92-33.9-16.54-41.1-18.54-1.5-11.39 4.65-58.7-21.52-83 20.79-21.55 33.76-45.29 33.73-65.65-.06-39.16-48.15-51-107.42-26.47l-12.55 5.33c-.06-.05-22.71-22.27-23.05-22.57C169.5-18-41.77 216.81 25.78 273.85l14.76 12.51a72.49 72.49 0 0 0-4.1 33.5c3.36 33.4 36 60.42 67.53 60.38 57.73 133.06 267.9 133.28 322.29 3 1.74-4.47 9.11-24.61 9.11-42.38s-10.09-25.27-16.53-25.27zm-316 48.16c-22.82-.61-47.46-21.15-49.91-45.51-6.17-61.31 74.26-75.27 84-12.33 4.54 29.64-4.67 58.49-34.12 57.81zM84.3 249.55C69.14 252.5 55.78 261.09 47.6 273c-4.88-4.07-14-12-15.59-15-13.01-24.85 14.24-73 33.3-100.21C112.42 90.56 186.19 39.68 220.36 48.91c5.55 1.57 23.94 22.89 23.94 22.89s-34.15 18.94-65.8 45.35c-42.66 32.85-74.89 80.59-94.2 132.4zM323.18 350.7s-35.74 5.3-69.51-7.07c6.21-20.16 27 6.1 96.4-13.81 15.29-4.38 35.37-13 51-25.35a102.85 102.85 0 0 1 7.12 24.28c3.66-.66 14.25-.52 11.44 18.1-3.29 19.87-11.73 36-25.93 50.84A106.86 106.86 0 0 1 362.55 421a132.45 132.45 0 0 1-20.34 8.58c-53.51 17.48-108.3-1.74-126-43a66.33 66.33 0 0 1-3.55-9.74c-7.53-27.2-1.14-59.83 18.84-80.37 1.23-1.31 2.48-2.85 2.48-4.79a8.45 8.45 0 0 0-1.92-4.54c-7-10.13-31.19-27.4-26.33-60.83 3.5-24 24.49-40.91 44.07-39.91l5 .29c8.48.5 15.89 1.59 22.88 1.88 11.69.5 22.2-1.19 34.64-11.56 4.2-3.5 7.57-6.54 13.26-7.51a17.45 17.45 0 0 1 13.6 2.24c10 6.64 11.4 22.73 11.92 34.49.29 6.72 1.1 23 1.38 27.63.63 10.67 3.43 12.17 9.11 14 3.19 1.05 6.15 1.83 10.51 3.06 13.21 3.71 21 7.48 26 12.31a16.38 16.38 0 0 1 4.74 9.29c1.56 11.37-8.82 25.4-36.31 38.16-46.71 21.68-93.68 14.45-100.48 13.68-20.15-2.71-31.63 23.32-19.55 41.15 22.64 33.41 122.4 20 151.37-21.35.69-1 .12-1.59-.73-1-41.77 28.58-97.06 38.21-128.46 26-4.77-1.85-14.73-6.44-15.94-16.67 43.6 13.49 71 .74 71 .74s2.03-2.79-.56-2.53zm-68.47-5.7zm-83.4-187.5c16.74-19.35 37.36-36.18 55.83-45.63a.73.73 0 0 1 1 1c-1.46 2.66-4.29 8.34-5.19 12.65a.75.75 0 0 0 1.16.79c11.49-7.83 31.48-16.22 49-17.3a.77.77 0 0 1 .52 1.38 41.86 41.86 0 0 0-7.71 7.74.75.75 0 0 0 .59 1.19c12.31.09 29.66 4.4 41 10.74.76.43.22 1.91-.64 1.72-69.55-15.94-123.08 18.53-134.5 26.83a.76.76 0 0 1-1-1.12z"></path></svg>'
             ],
@@ -215,7 +228,9 @@ class ExtensionManager
             self::MAILERLITE                    => [
                 'title'       => esc_html__('MailerLite', 'wp-user-avatar'),
                 'url'         => 'https://profilepress.com/addons/mailerlite/?utm_source=liteplugin&utm_medium=extension-page&utm_campaign=learn-more',
-                'setting_url' => add_query_arg(['view'    => 'integrations', 'section' => 'mailerlite'], PPRESS_SETTINGS_SETTING_PAGE),
+                'setting_url' => add_query_arg(['view'    => 'integrations',
+                                                'section' => 'mailerlite'
+                ], PPRESS_SETTINGS_SETTING_PAGE),
                 'description' => esc_html__('Subscribe members to your MailerLite groups when they register or subscribe to a membership plan. It can also automatically sync membership and profile changes with MailerLite.', 'wp-user-avatar'),
                 'icon'        => '<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 62.8 50.2"><path d="M-81.2 0h-48.9c-3.8 0-6.9 3.1-6.9 6.8v43.5l9.5-9.3h46.4c3.8 0 6.9-3.1 6.9-6.8V6.8c-.1-3.7-3.2-6.8-7-6.8z" style="fill:currentColor" transform="translate(137)"/><path d="M-90.2 15.8c5.2 0 7.6 4.1 7.6 8 0 1-.8 1.8-1.8 1.8H-94c.5 2.3 2.1 3.6 4.7 3.6 1.9 0 2.9-.4 3.9-.9.2-.1.5-.2.7-.2.9 0 1.7.7 1.7 1.6 0 .6-.4 1.1-1 1.5-1.3.7-2.7 1.4-5.5 1.4-5.2 0-8.3-3.1-8.3-8.4-.1-6.1 4.1-8.4 7.6-8.4zm-15.3-2.6c.6 0 1 .5 1 1v1.9h2.9c.9 0 1.7.7 1.7 1.6 0 .9-.7 1.6-1.7 1.6h-2.9V28c0 1.2.6 1.3 1.5 1.3.5 0 .8-.1 1.1-.1.2 0 .5-.1.7-.1.7 0 1.6.6 1.6 1.5 0 .6-.4 1.1-1 1.4-.9.4-1.7.6-2.7.6-3.2 0-4.9-1.5-4.9-4.4v-8.8h-1.7c-.6 0-1-.5-1-1 0-.3.1-.6.4-.9l4-4c.2 0 .5-.3 1-.3zm-18.7-3.8c1 0 1.8.8 1.8 1.8v19.4c0 1-.8 1.8-1.8 1.8s-1.8-.8-1.8-1.8V11.2c0-1 .8-1.8 1.8-1.8zm8.6 6.6c1 0 1.8.8 1.8 1.8v12.8c0 1-.8 1.8-1.8 1.8s-1.8-.8-1.8-1.8V17.8c0-1 .8-1.8 1.8-1.8zm25.5 3.1c-1.7 0-3.6 1-3.9 3.5h7.9c-.5-2.5-2.3-3.5-4-3.5zm-25.4-9.2c1.1 0 2 .9 2 2v.1c0 1.1-.9 2-2 2h-.2c-1.1 0-2-.9-2-2v-.1c0-1.1.9-2 2-2h.2z" style="fill:#fff" transform="translate(137)"/></svg>'
             ],
@@ -223,7 +238,7 @@ class ExtensionManager
                 'title'        => esc_html__('WooCommerce', 'wp-user-avatar'),
                 'url'          => 'https://profilepress.com/addons/woocommerce/?utm_source=liteplugin&utm_medium=extension-page&utm_campaign=learn-more',
                 'setting_url'  => PPRESS_SETTINGS_SETTING_GENERAL_PAGE . '#pp_wi_settings',
-                'description'  => esc_html__('Create WooCommerce membership sites, members-only discounts and stores, manage WooCommerce billing and shipping fields, replaces WooCommerce login and edit account forms in checkout and “My Account” pages with that of ProfilePress.', 'wp-user-avatar'),
+                'description'  => esc_html__('Create WooCommerce membership sites, members-only discounts and stores, manage WooCommerce billing and shipping fields, replaces WooCommerce login and edit account forms in checkout and "My Account" pages with that of ProfilePress.', 'wp-user-avatar'),
                 'icon'         => '<span class="dashicons dashicons-cart"></span>',
                 'is_available' => function () {
                     return class_exists('WooCommerce') ? true : esc_html__('WooCommerce is not active', 'wp-user-avatar');

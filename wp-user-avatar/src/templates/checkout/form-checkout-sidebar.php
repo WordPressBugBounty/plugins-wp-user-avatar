@@ -149,7 +149,7 @@ $billing_frequency = $plan->is_recurring() ? ' ' . SubscriptionBillingFrequency:
                 }
                 ?>
             </div>
-        <?php elseif (ppress_strtotime_utc($cart_vars->expiration_date) > 0) : ?>
+        <?php elseif ( ! empty($cart_vars->expiration_date) && ppress_strtotime_utc($cart_vars->expiration_date) > 0) : ?>
             <div class="ppress-checkout_charge_details">
                 <?php printf(
                     esc_html__('After payment, your subscription will expire on %1$s', 'wp-user-avatar'),

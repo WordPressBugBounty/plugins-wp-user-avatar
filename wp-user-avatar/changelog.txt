@@ -1,5 +1,11 @@
 ﻿== Changelog ==
 
+= 4.16.3 =
+* Pro: [Cloudflare Turnstile addon](https://profilepress.com/addons/cloudflare-turnstile/?ref=changelog).
+* Fixed membership plan description in checkout and backend.
+* Added ppress_data_export_writer_use_alternative filter for alternate data export.
+* Added Size atts to User Avatar URL Shortcode.
+
 = 4.16.2 =
 * Pro: [MailerLite Integration addon](https://profilepress.com/addons/mailerlite/?ref=changelog).
 * Pro: [Fixed Subscription Expiration addon](https://profilepress.com/addons/fixed-subscription-expiration/?ref=changelog).

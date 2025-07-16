@@ -2,10 +2,10 @@
 Contributors: properfraction, collizo4sky
 Donate link: https://profilepress.com/pricing/
 Tags: membership, ecommerce, user registration, user profile, memberships
-Requires at least: 5.3
+Requires at least: 6.0
 Requires PHP: 7.4
 Tested up to: 6.8
-Stable tag: 4.16.2
+Stable tag: 4.16.3
 License: GPLv2 or later
 
 Setup paid membership, accept payment, sell subscription & digital product, paywall, create login & registration form, user profile & member directory
@@ -122,7 +122,8 @@ Extend the capabilities of ProfilePress with our powerful addons and remove the 
 * [LearnDash](https://profilepress.com/addons/learndash/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) – Sell access to LearnDash courses and groups, enroll users after signup via a custom LearnDash registration form, and let users view their enrolled courses on the My Account page.
 * [LifterLMS](https://profilepress.com/addons/lifterlms/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) – Sell access to LifterLMS courses and memberships, enroll users after signup via a custom LifterLMS registration form, and let users view their enrolled courses on the My Account page.
 * [Sensei LMS](https://profilepress.com/addons/sensei-lms/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) – Sell access to Sensei LMS courses and groups, enroll users after registration, and let users view their enrolled courses on the My Account page.
-* [Google reCAPTCHA](https://profilepress.com/addons/recaptcha/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) – Protect your user registration, login, checkout and password reset forms against spam and bot attacks.
+* [Google reCAPTCHA](https://profilepress.com/addons/recaptcha/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) – Protect your user registration, login, checkout and password reset forms against spam and bot attacks using Google reCAPTCHA.
+* [Cloudflare Turnstile](https://profilepress.com/addons/cloudflare-turnstile/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) – Stop spam registrations and bot attacks on your WordPress login, registration, and checkout forms by implementing Cloudflare Turnstile.
 * [Site Creation](https://profilepress.com/addons/site-creation/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) – Allow users to create new sites on a multisite network via a user registration form powered by ProfilePress.
 * [Mailchimp](https://profilepress.com/addons/mailchimp/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) – Subscribe members to your Mailchimp audiences after they register, made a purchase and payment, subscribe to membership plans and automatically sync profile changes with Mailchimp.
 * [Campaign Monitor](https://profilepress.com/addons/campaign-monitor/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) – Subscribe members to your Campaign Monitor lists when they register, subscribe to membership plans via checkout form, and automatically sync profile changes with Campaign Monitor.
@@ -186,6 +187,12 @@ Any file type can be sold using ProfilePress ecommerce and membership plugin, in
 11. Content Protection
 
 == Changelog ==
+
+= Paid Membership, Ecommerce & User Registration 4.16.3 =
+* Pro: [Cloudflare Turnstile addon](https://profilepress.com/addons/cloudflare-turnstile/?ref=changelog).
+* Fixed membership plan description in checkout and backend.
+* Added ppress_data_export_writer_use_alternative filter for alternate data export.
+* Added Size attribute to User Avatar URL Shortcode.
 
 = Paid Membership, Ecommerce & User Registration 4.16.2 =
 * Pro: [MailerLite Integration addon](https://profilepress.com/addons/mailerlite/?ref=changelog).

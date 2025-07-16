@@ -314,8 +314,6 @@ class SettingsPage extends AbstractSettingsPage
             <# } else if (data.subscription_expiration_type == 'relative_date' && data.subscription_expiration_value && data.subscription_expiration_unit) { #>
             <# var unit_label = subscription_expiration_unit_map[data.subscription_expiration_unit]; #>
             <# subscription_length_desc = '<?= esc_html__('Expires after', 'wp-user-avatar') ?> ' + data.subscription_expiration_value + ' ' + unit_label; #>
-            <# } else if (data.subscription_length != 'fixed') { #>
-            <# subscription_length_desc = '<?= esc_html__('Renews indefinitely', 'wp-user-avatar') ?>'; #>
             <# } #>
 
             <# var free_trial_desc = data.free_trial != 'disabled' ? '<?= sprintf(esc_html__('Includes a %s free trial', 'wp-user-avatar'), "'+data.free_trial+'") ?>' : ''; #>
