@@ -5,7 +5,7 @@ Tags: membership, ecommerce, user registration, user profile, memberships
 Requires at least: 6.0
 Requires PHP: 7.4
 Tested up to: 6.8
-Stable tag: 4.16.3
+Stable tag: 4.16.4
 License: GPLv2 or later
 
 Setup paid membership, accept payment, sell subscription & digital product, paywall, create login & registration form, user profile & member directory
@@ -128,6 +128,8 @@ Extend the capabilities of ProfilePress with our powerful addons and remove the 
 * [Mailchimp](https://profilepress.com/addons/mailchimp/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) – Subscribe members to your Mailchimp audiences after they register, made a purchase and payment, subscribe to membership plans and automatically sync profile changes with Mailchimp.
 * [Campaign Monitor](https://profilepress.com/addons/campaign-monitor/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) – Subscribe members to your Campaign Monitor lists when they register, subscribe to membership plans via checkout form, and automatically sync profile changes with Campaign Monitor.
 * [MailerLite](https://profilepress.com/addons/mailerlite/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) – Add WordPress users to MailerLite groups when they register, subscribe to membership plans via checkout form, and automatically sync profile changes with MailerLite.
+* [AffiliateWP](https://profilepress.com/addons/affiliatewp/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) – Launch an affiliate program for your WordPress membership website using AffiliateWP plugin.
+* [SliceWP](https://profilepress.com/addons/slicewp/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) – Use SliceWP affiliate plugin to add an affiliate program to your WordPress membership website.
 * [BuddyBoss/BuddyPress Profile Sync](https://profilepress.com/addons/buddypress-profile-sync/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) –  This addon provides 2-way synchronization between WordPress profile fields and BuddyBoss/BuddyPress extended profile.
 * [Join BuddyPress Groups](https://profilepress.com/addons/join-buddypress-groups/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) –  Let users select the BuddyBoss/BuddyPress groups to join during registration.
 * [Akismet](https://profilepress.com/addons/akismet/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) –  Block spam and bot user registrations with Akismet and keep your membership site safe and secured.
@@ -188,6 +190,16 @@ Any file type can be sold using ProfilePress ecommerce and membership plugin, in
 
 == Changelog ==
 
+= Paid Membership, Ecommerce & User Registration 4.16.4 =
+* Pro: [AffiliateWP](https://profilepress.com/addons/affiliatewp/?ref=changelog) and [SliceWP](https://profilepress.com/addons/slicewp/?ref=changelog) addons.
+* Fixed bug where subscription remained active after last order refund.
+* Fixed bug with missing date_completed data for manual order creation.
+* Added ppress_checkout_before_account_info_fields action hook.
+* Added filter ppress_stripe_subscription_set_cancelled_action_as_expired.
+* Added ppress_membership_plan_price filter.
+* Added ppress_checkout_group_selector_plans filter.
+* Fixed a couple of PHP notices.
+
 = Paid Membership, Ecommerce & User Registration 4.16.3 =
 * Pro: [Cloudflare Turnstile addon](https://profilepress.com/addons/cloudflare-turnstile/?ref=changelog).
 * Fixed membership plan description in checkout and backend.
@@ -201,20 +213,5 @@ Any file type can be sold using ProfilePress ecommerce and membership plugin, in
 * Fixed bug where password strength-meter didn't work in myaccount page if ajaxmode is disabled.
 * Added checkout user moderation behind ppress_checkout_registration_user_moderation_support filter.
 * Added ppress_is_search_and_api_exclude_posts filter.
-
-= Paid Membership, Ecommerce & User Registration 4.16.1 =
-* Fixed fatal error on new installation.
-
-= Paid Membership, Ecommerce & User Registration 4.16.0 =
-* Added [Academy LMS](https://profilepress.com/addons/academy-lms/?ref=changelog) integration.
-* Option to Disable Redirect from (/wp-admin/profile.php) for administrators.
-* Fixed bug where no address fields could break non-card stripe payments.
-* Fixed bug with failure to switch to change_plan checkout when group checkout is accessed by active sub users.
-* Fixed bug with failing trigger hooks when sub is manually set to active and trial.
-* Fixed bug where SubscriptionExpiredNotification could be sent on sub upgrade/downgrade.
-* Fixed bug where sub could be set to cancelled when it has expired.
-* Simplified cancellation flow by removing cancellation at end of period in Stripe
-* Added a Copy Shortcode Button to form listing and builder pages.
-* Added more bulk-actions to Content Protection listing page.
 
 See the [changelog file](https://plugins.svn.wordpress.org/wp-user-avatar/trunk/changelog.txt) for full change log information.

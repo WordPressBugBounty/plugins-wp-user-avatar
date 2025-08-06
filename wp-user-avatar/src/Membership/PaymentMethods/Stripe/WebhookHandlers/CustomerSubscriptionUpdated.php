@@ -59,7 +59,11 @@ class CustomerSubscriptionUpdated implements WebhookHandlerInterface
                 $subscription->expire();
                 break;
             case 'canceled':
-                $subscription->cancel();
+                if ($event_data['cancel_at_period_end'] !== true && apply_filters('ppress_stripe_subscription_set_cancelled_action_as_expired', false, $subscription)) {
+                    $subscription->expire();
+                } else {
+                    $subscription->cancel();
+                }
                 break;
             case 'past_due':
                 $subscription->add_note(

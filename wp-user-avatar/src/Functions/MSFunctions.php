@@ -970,9 +970,11 @@ function ppress_subscribe_user_to_plan($plan_id, $customer_id, $order_data = [],
 
     $order->id              = $order_id;
     $order->subscription_id = $subscription_id;
+
     if ($order->is_completed()) {
-        $order->date_completed = current_time('mysql', true);
+        $order->date_completed = $order_data['date_created'];
     }
+
     $order->save();
 
     if ($send_receipt && $order->is_completed()) {

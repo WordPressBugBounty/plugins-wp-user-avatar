@@ -141,7 +141,7 @@ class PlanEntity extends AbstractModel implements ModelInterface
      */
     public function get_price()
     {
-        return ppress_sanitize_amount($this->price);
+        return apply_filters('ppress_membership_plan_price', ppress_sanitize_amount($this->price), $this);
     }
 
     public function get_billing_frequency()

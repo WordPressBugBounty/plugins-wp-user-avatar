@@ -1,5 +1,15 @@
 ﻿== Changelog ==
 
+= 4.16.4 =
+* Pro: [AffiliateWP](https://profilepress.com/addons/affiliatewp/?ref=changelog) and [SliceWP](https://profilepress.com/addons/slicewp/?ref=changelog) addons.
+* Fixed bug where subscription remained active after last order refund.
+* Fixed bug with missing date_completed data for manual order creation.
+* Added ppress_checkout_before_account_info_fields action hook.
+* Added filter ppress_stripe_subscription_set_cancelled_action_as_expired.
+* Added ppress_membership_plan_price filter.
+* Added ppress_checkout_group_selector_plans filter.
+* Fixed a couple of PHP notices.
+
 = 4.16.3 =
 * Pro: [Cloudflare Turnstile addon](https://profilepress.com/addons/cloudflare-turnstile/?ref=changelog).
 * Fixed membership plan description in checkout and backend.

@@ -186,7 +186,10 @@ class OrderEntity extends AbstractModel implements ModelInterface
     {
         $this->status = OrderStatus::COMPLETED;
 
-        $this->date_completed = current_time('mysql', true);
+        // ensures completion date is not 0000-00-00 00:00:00 or empty
+        $this->date_completed = ! empty($this->date_completed) && ppress_strtotime_utc($this->date_completed) > 0 ?
+            $this->date_completed :
+            current_time('mysql', true);
 
         if ( ! empty($transaction_id)) {
             $this->transaction_id = $transaction_id;
@@ -502,7 +505,10 @@ class OrderEntity extends AbstractModel implements ModelInterface
      */
     public function get_refund_url()
     {
-        $url = esc_url(wp_nonce_url(add_query_arg(array('ppress_order_action' => 'refund_order', 'id' => $this->id)), 'ppress-cancel-order'));
+        $url = esc_url(wp_nonce_url(add_query_arg(array(
+            'ppress_order_action' => 'refund_order',
+            'id'                  => $this->id
+        )), 'ppress-cancel-order'));
 
         return apply_filters('ppress_cancel_order_url', $url, $this);
     }
