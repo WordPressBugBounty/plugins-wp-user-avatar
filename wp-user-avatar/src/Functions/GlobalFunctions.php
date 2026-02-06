@@ -795,6 +795,7 @@ function ppress_wp_new_user_notification($user_id, $deprecated = null, $notify =
                 $user
             );
 
+            $title = ppress_custom_profile_field_search_replace($title, $user);
             $message = ppress_custom_profile_field_search_replace($message, $user);
 
             $admin_email = apply_filters('ppress_signup_notification_admin_email', ppress_get_admin_notification_emails());

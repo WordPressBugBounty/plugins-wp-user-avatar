@@ -86,7 +86,7 @@ class FileUploader
             return ! empty($value);
         });
 
-        if ( ! is_array($allowed_extensions) || empty($allowed_extensions)) $allowed_extensions = [];
+        if (empty($allowed_extensions)) $allowed_extensions = [];
 
         $filename = $file['name'];
 

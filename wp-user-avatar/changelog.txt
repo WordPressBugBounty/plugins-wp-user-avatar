@@ -1,5 +1,22 @@
 ﻿== Changelog ==
 
+= 4.16.9 =
+* Added billing address data to customer export.
+* Added ppress_is_third_party_2fa_active filter.
+* Fixed a likely fatal error on form preview.
+* Fixed bug where account info data got lost on group checkout refresh.
+* Fixed bug where checkout overrides previously uploaded files.
+* Fixed bug where download link requiring logged in users worked for other logged in users.
+* Add custom field placeholder support to admin new user email notification.
+
+= 4.16.8 =
+* Fixed security issue with arbitrary shortcode execution on form preview.
+* Fixed couple of PHP notices.
+
+= 4.16.7 =
+* Fixed bug where label is shown for empty data in member directory.
+* Added user roles as classes to member directory item wrapper.
+
 = 4.16.6 =
 * Pro: [FluentCommunity addon](https://profilepress.com/addons/fluentcommunity/?ref=changelog).
 * Pro: [MasterStudy LMS addon](https://profilepress.com/addons/masterstudy-lms/?ref=changelog).

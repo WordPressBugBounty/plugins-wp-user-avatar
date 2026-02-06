@@ -398,9 +398,33 @@ trait CheckoutTrait
 
         // --------START ---------   register custom field ----------------------//
 
-        // if we get to this point, it means the files pass validation defined above.
-        // array of files uploaded. Array key is the "custom field key" and the filename as the array value.
-        $custom_usermeta['pp_uploaded_files'] = $uploads;
+        if (is_user_logged_in()) {
+
+            $current_user_id = get_current_user_id();
+
+            // we get the old array of stored file for the user
+            $old = get_user_meta($current_user_id, 'pp_uploaded_files', true);
+            $old = ! empty($old) ? $old : [];
+            // we loop through the array of newly uploaded files and remove any file (un-setting the file array key)
+            // that isn't be updated i.e if the field is left empty, un-setting it prevent update_user_meta
+            // fom overriding it.
+            // we then merge the old and new uploads before saving the data to user meta table.
+            foreach ($uploads as $key => $value) {
+                if (empty($value)) {
+                    unset($uploads[$key]);
+                }
+            }
+
+            $merged_data = array_merge($old, $uploads);
+
+            update_user_meta($current_user_id, 'pp_uploaded_files', $merged_data);
+            do_action('ppress_after_custom_field_update', 'pp_uploaded_files', $merged_data, $user_id, 'checkout');
+
+        } else {
+            // if we get to this point, it means the files pass validation defined above.
+            // array of files uploaded. Array key is the "custom field key" and the filename as the array value.
+            $custom_usermeta['pp_uploaded_files'] = $uploads;
+        }
 
         if (is_array($custom_usermeta)) {
 
