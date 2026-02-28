@@ -5,7 +5,7 @@ Tags: membership, ecommerce, user registration, user profile, memberships
 Requires at least: 6.0
 Requires PHP: 7.4
 Tested up to: 6.9
-Stable tag: 4.16.9
+Stable tag: 4.16.10
 License: GPLv2 or later
 
 Setup paid membership, accept payment, sell subscription & digital product, paywall, create login & registration form, user profile & member directory
@@ -191,13 +191,17 @@ Any file type can be sold using ProfilePress ecommerce and membership plugin, in
 
 == Changelog ==
 
-= Paid Membership, Ecommerce & User Registration 4.16.9 =
+= Paid Membership, Ecommerce & User Registration 4.16.10 =
+* Improvement: Cancel subscription in gateway before deletion.
+* Security Fix: Arbitrary Shortcode Execution via Checkout Billing Fields.
+
+= Paid Membership, Ecommerce & User Registration 4.16.10 =
 * Added billing address data to customer export.
 * Added ppress_is_third_party_2fa_active filter.
 * Fixed a likely fatal error on form preview.
 * Fixed bug where account info data got lost on group checkout refresh.
 * Fixed bug where checkout overrides previously uploaded files.
-* Fixed bug where download link requiring logged in users worked for other logged in users.
+* Fixed bug where download link requiring logged in users worked for other logged-in users.
 * Add custom field placeholder support to admin new user email notification.
 
 = Paid Membership, Ecommerce & User Registration 4.16.8 =

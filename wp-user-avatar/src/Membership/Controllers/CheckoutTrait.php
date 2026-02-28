@@ -165,7 +165,7 @@ trait CheckoutTrait
 
                     $key = str_replace('ppress_', '', $field_key);
 
-                    $order->$key = ppress_clean($_POST[$posted_field]);
+                    $order->$key = ppress_strip_shortcodes_clean($_POST[$posted_field]);
                 }
             }
         }
@@ -358,7 +358,7 @@ trait CheckoutTrait
 
             if ( ! in_array($key, array_keys(ppress_custom_fields_key_value_pair(true)))) continue;
 
-            $custom_usermeta[$key] = is_array($value) ? array_map('sanitize_textarea_field', $value) : sanitize_textarea_field($value);
+            $custom_usermeta[$key] = ppress_strip_shortcodes_clean($value);
         }
 
         // merge real data(for use by wp_insert_user()) and custom fields data

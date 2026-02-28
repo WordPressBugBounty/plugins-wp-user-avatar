@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the ProfilePress plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: ProfilePress 4.16.9\n"
+"Project-Id-Version: ProfilePress 4.16.10\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-user-avatar\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-01-26T16:31:32+00:00\n"
+"POT-Creation-Date: 2026-02-28T13:33:20+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: wp-user-avatar\n"
@@ -428,9 +428,9 @@ msgstr ""
 #: src/Admin/SettingsPages/GeneralSettings.php:450
 #: src/Admin/SettingsPages/Membership/CheckoutFieldsManager.php:90
 #: src/Admin/SettingsPages/Membership/PlanIntegrationsMetabox.php:178
-#: src/Functions/GlobalFunctions.php:1457
-#: src/Functions/GlobalFunctions.php:1489
-#: src/Functions/GlobalFunctions.php:1511
+#: src/Functions/GlobalFunctions.php:1455
+#: src/Functions/GlobalFunctions.php:1487
+#: src/Functions/GlobalFunctions.php:1509
 #: src/LoginRedirect.php:180
 msgid "Select..."
 msgstr ""
@@ -514,7 +514,7 @@ msgstr ""
 
 #: src/Admin/SettingsPages/DragDropBuilder/DragDropBuilder.php:1247
 #: src/Admin/SettingsPages/Membership/CheckoutFieldsManager.php:93
-#: src/Functions/GlobalFunctions.php:1514
+#: src/Functions/GlobalFunctions.php:1512
 #: src/Themes/DragDrop/AbstractMemberDirectoryTheme.php:222
 msgid "Standard Fields"
 msgstr ""
@@ -527,7 +527,7 @@ msgstr ""
 #: src/Admin/SettingsPages/LicenseUpgrader.php:176
 #: src/Admin/SettingsPages/Membership/CheckoutFieldsManager.php:101
 #: src/Classes/ExtensionManager.php:135
-#: src/Functions/GlobalFunctions.php:1517
+#: src/Functions/GlobalFunctions.php:1515
 #: src/Themes/DragDrop/AbstractMemberDirectoryTheme.php:236
 msgid "Custom Fields"
 msgstr ""
@@ -552,7 +552,7 @@ msgstr ""
 #: src/AdminBarDashboardAccess/include.settings-page.php:109
 #: src/Functions/custom-settings-api.php:1123
 #: src/LoginRedirect.php:159
-#: src/ShortcodeParser/Builder/FieldsShortcodeCallback.php:1137
+#: src/ShortcodeParser/Builder/FieldsShortcodeCallback.php:1135
 msgid "Save Changes"
 msgstr ""
 
@@ -737,7 +737,7 @@ msgstr ""
 
 #: src/Admin/SettingsPages/DragDropBuilder/Fields/Bio.php:22
 #: src/Admin/SettingsPages/DragDropBuilder/Fields/UserProfile/Bio.php:22
-#: src/Functions/GlobalFunctions.php:1501
+#: src/Functions/GlobalFunctions.php:1499
 #: src/Themes/DragDrop/AbstractMemberDirectoryTheme.php:231
 #: src/Themes/DragDrop/AbstractTheme.php:205
 msgid "Biography"
@@ -1008,7 +1008,7 @@ msgstr ""
 
 #: src/Admin/SettingsPages/DragDropBuilder/Fields/DisplayName.php:22
 #: src/Admin/SettingsPages/DragDropBuilder/Fields/UserProfile/DisplayName.php:22
-#: src/Functions/GlobalFunctions.php:1499
+#: src/Functions/GlobalFunctions.php:1497
 #: src/Membership/CheckoutFields.php:114
 #: src/ShortcodeParser/Builder/FieldsShortcodeCallback.php:365
 #: src/Themes/DragDrop/AbstractMemberDirectoryTheme.php:228
@@ -1034,7 +1034,7 @@ msgstr ""
 #: src/Admin/SettingsPages/DragDropBuilder/Fields/Email.php:22
 #: src/Admin/SettingsPages/DragDropBuilder/Fields/UserProfile/Email.php:22
 #: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:316
-#: src/Functions/GlobalFunctions.php:1500
+#: src/Functions/GlobalFunctions.php:1498
 #: src/Membership/CheckoutFields.php:51
 #: src/ShortcodeParser/Builder/FieldsShortcodeCallback.php:257
 #: src/Themes/DragDrop/AbstractMemberDirectoryTheme.php:226
@@ -1047,7 +1047,7 @@ msgstr ""
 #: src/Admin/SettingsPages/DragDropBuilder/Fields/FirstName.php:22
 #: src/Admin/SettingsPages/DragDropBuilder/Fields/UserProfile/FirstName.php:22
 #: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:308
-#: src/Functions/GlobalFunctions.php:1496
+#: src/Functions/GlobalFunctions.php:1494
 #: src/Membership/CheckoutFields.php:65
 #: src/ShortcodeParser/Builder/FieldsShortcodeCallback.php:397
 #: src/Themes/DragDrop/AbstractMemberDirectoryTheme.php:229
@@ -1069,7 +1069,7 @@ msgstr ""
 #: src/Admin/SettingsPages/DragDropBuilder/Fields/LastName.php:22
 #: src/Admin/SettingsPages/DragDropBuilder/Fields/UserProfile/LastName.php:22
 #: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:312
-#: src/Functions/GlobalFunctions.php:1497
+#: src/Functions/GlobalFunctions.php:1495
 #: src/Membership/CheckoutFields.php:72
 #: src/ShortcodeParser/Builder/FieldsShortcodeCallback.php:430
 #: src/Themes/DragDrop/AbstractMemberDirectoryTheme.php:230
@@ -1105,7 +1105,7 @@ msgstr ""
 
 #: src/Admin/SettingsPages/DragDropBuilder/Fields/Nickname.php:22
 #: src/Admin/SettingsPages/DragDropBuilder/Fields/UserProfile/Nickname.php:22
-#: src/Functions/GlobalFunctions.php:1498
+#: src/Functions/GlobalFunctions.php:1496
 #: src/Membership/CheckoutFields.php:107
 #: src/ShortcodeParser/Builder/FieldsShortcodeCallback.php:333
 #: src/ShortcodeParser/Builder/FieldsShortcodeCallback.php:347
@@ -1204,7 +1204,7 @@ msgstr ""
 #: src/Admin/SettingsPages/DragDropBuilder/Fields/Username.php:22
 #: src/Admin/SettingsPages/DragDropBuilder/Fields/UserProfile/Username.php:22
 #: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:320
-#: src/Functions/GlobalFunctions.php:1495
+#: src/Functions/GlobalFunctions.php:1493
 #: src/Membership/CheckoutFields.php:79
 #: src/ShortcodeParser/Builder/FieldsShortcodeCallback.php:182
 #: src/Themes/DragDrop/AbstractMemberDirectoryTheme.php:379
@@ -15288,46 +15288,46 @@ msgstr ""
 msgid "Dismiss this notice"
 msgstr ""
 
-#: src/Functions/GlobalFunctions.php:1304
+#: src/Functions/GlobalFunctions.php:1302
 msgid "It must be unique for each field, not a reserve text, in lowercase letters only with an underscore ( _ ) separating words e.g job_title"
 msgstr ""
 
-#: src/Functions/GlobalFunctions.php:1441
+#: src/Functions/GlobalFunctions.php:1439
 #, php-format
 msgid "%s (WooCommerce Billing Address)"
 msgstr ""
 
-#: src/Functions/GlobalFunctions.php:1445
+#: src/Functions/GlobalFunctions.php:1443
 #, php-format
 msgid "%s (WooCommerce Shipping Address)"
 msgstr ""
 
-#: src/Functions/GlobalFunctions.php:1493
+#: src/Functions/GlobalFunctions.php:1491
 msgid "First and Last Names"
 msgstr ""
 
-#: src/Functions/GlobalFunctions.php:1494
+#: src/Functions/GlobalFunctions.php:1492
 msgid "Last and First Names"
 msgstr ""
 
-#: src/Functions/GlobalFunctions.php:1502
+#: src/Functions/GlobalFunctions.php:1500
 msgid "Registration Date"
 msgstr ""
 
-#: src/Functions/GlobalFunctions.php:1641
+#: src/Functions/GlobalFunctions.php:1639
 msgid "There was an problem while verifying your file."
 msgstr ""
 
-#: src/Functions/GlobalFunctions.php:1646
+#: src/Functions/GlobalFunctions.php:1644
 msgid "Sorry, this file extension is not permitted for security reasons."
 msgstr ""
 
-#: src/Functions/GlobalFunctions.php:1650
+#: src/Functions/GlobalFunctions.php:1648
 msgid "Sorry, this file type is not permitted for security reasons."
 msgstr ""
 
-#: src/Functions/GlobalFunctions.php:1654
-#: src/Functions/GlobalFunctions.php:1658
+#: src/Functions/GlobalFunctions.php:1652
+#: src/Functions/GlobalFunctions.php:1656
 msgid "Error: The file you uploaded is not accepted on our website."
 msgstr ""
 
@@ -16892,7 +16892,7 @@ msgid "Log In"
 msgstr ""
 
 #: src/RegisterActivation/Base.php:186
-#: src/ShortcodeParser/Builder/FieldsShortcodeCallback.php:1134
+#: src/ShortcodeParser/Builder/FieldsShortcodeCallback.php:1132
 #: src/ShortcodeParser/Builder/GlobalShortcodes.php:184
 #: src/Widgets/TabbedWidget.php:89
 msgid "Sign Up"
@@ -17025,15 +17025,15 @@ msgstr ""
 msgid "No checkbox choice found."
 msgstr ""
 
-#: src/ShortcodeParser/Builder/FieldsShortcodeCallback.php:1048
+#: src/ShortcodeParser/Builder/FieldsShortcodeCallback.php:1046
 msgid "custom field not defined"
 msgstr ""
 
-#: src/ShortcodeParser/Builder/FieldsShortcodeCallback.php:1202
+#: src/ShortcodeParser/Builder/FieldsShortcodeCallback.php:1200
 msgid "Delete Avatar"
 msgstr ""
 
-#: src/ShortcodeParser/Builder/FieldsShortcodeCallback.php:1238
+#: src/ShortcodeParser/Builder/FieldsShortcodeCallback.php:1236
 msgid "Delete Cover Photo"
 msgstr ""
 

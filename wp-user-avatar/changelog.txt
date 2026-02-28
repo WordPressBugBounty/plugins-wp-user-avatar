@@ -1,5 +1,9 @@
 ﻿== Changelog ==
 
+= 4.16.10 =
+* Improvement: Cancel subscription in gateway before deletion.
+* Security Fix: Arbitrary Shortcode Execution via Checkout Billing Fields.
+
 = 4.16.9 =
 * Added billing address data to customer export.
 * Added ppress_is_third_party_2fa_active filter.
