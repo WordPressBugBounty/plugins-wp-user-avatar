@@ -333,7 +333,7 @@ class CheckoutController extends BaseController
 
                 $sub = SubscriptionFactory::fromId($change_plan_sub_id);
 
-                if ($sub->exists()) {
+                if ($sub->exists() && $sub->get_customer_id() == $customer_id) {
 
                     // do not send subscription cancelled email
                     remove_action('ppress_subscription_cancelled', [SubscriptionCancelledNotification::init(), 'dispatch_email'], 10);
