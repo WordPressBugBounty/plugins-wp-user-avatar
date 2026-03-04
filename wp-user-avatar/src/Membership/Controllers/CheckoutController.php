@@ -300,6 +300,17 @@ class CheckoutController extends BaseController
                 throw new \Exception(json_encode($customer_id->get_error_messages()));
             }
 
+            $changePlanSub = SubscriptionFactory::fromId($change_plan_sub_id);
+
+            if (
+                $changePlanSub->exists() &&
+                ! empty($customer_id) &&
+                $customer_id !== $changePlanSub->get_customer_id()) {
+                throw new \Exception(
+                    esc_html__('You are not allowed to switch from this plan.', 'wp-user-avatar')
+                );
+            }
+
             $order_id = $this->create_order($customer_id, $cart_vars);
 
             if (is_wp_error($order_id)) {
@@ -331,19 +342,17 @@ class CheckoutController extends BaseController
 
             } else {
 
-                $sub = SubscriptionFactory::fromId($change_plan_sub_id);
-
-                if ($sub->exists() && $sub->get_customer_id() == $customer_id) {
+                if ($changePlanSub->exists() && $changePlanSub->get_customer_id() == $customer_id) {
 
                     // do not send subscription cancelled email
                     remove_action('ppress_subscription_cancelled', [SubscriptionCancelledNotification::init(), 'dispatch_email'], 10);
                     remove_action('ppress_subscription_expired', [SubscriptionExpiredNotification::init(), 'dispatch_email'], 10);
 
-                    $sub->cancel(true);
-                    $sub->expire();
+                    $changePlanSub->cancel(true);
+                    $changePlanSub->expire();
 
-                    SubscriptionFactory::fromId($subscription_id)->update_meta('_upgraded_from_sub_id', $sub->get_id());
-                    $sub->update_meta('_upgraded_to_sub_id', $subscription_id);
+                    SubscriptionFactory::fromId($subscription_id)->update_meta('_upgraded_from_sub_id', $changePlanSub->get_id());
+                    $changePlanSub->update_meta('_upgraded_to_sub_id', $subscription_id);
                 }
 
                 /** @var CheckoutResponse $process_payment */

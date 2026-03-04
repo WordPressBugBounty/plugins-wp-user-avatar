@@ -5,7 +5,7 @@ Tags: membership, ecommerce, user registration, user profile, memberships
 Requires at least: 6.0
 Requires PHP: 7.4
 Tested up to: 6.9
-Stable tag: 4.16.11
+Stable tag: 4.16.12
 License: GPLv2 or later
 
 Setup paid membership, accept payment, sell subscription & digital product, paywall, create login & registration form, user profile & member directory
@@ -190,6 +190,10 @@ Any file type can be sold using ProfilePress ecommerce and membership plugin, in
 11. Content Protection
 
 == Changelog ==
+
+= Paid Membership, Ecommerce & User Registration 4.16.12 =
+* Fixed issue with plan upgrade by wrong user.
+* Fixed bug where empty subscription records could be created.
 
 = Paid Membership, Ecommerce & User Registration 4.16.11 =
 * Added filter ppressmd_member_directory_filters_expanded.
