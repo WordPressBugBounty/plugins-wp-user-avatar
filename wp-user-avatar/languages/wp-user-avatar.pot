@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the ProfilePress plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: ProfilePress 4.16.12\n"
+"Project-Id-Version: ProfilePress 4.16.13\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-user-avatar\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-03-04T12:04:16+00:00\n"
+"POT-Creation-Date: 2026-04-02T10:53:21+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: wp-user-avatar\n"
@@ -62,7 +62,7 @@ msgid "%s[avatar_upload]%s adds a standalone avatar uploader visible only to log
 msgstr ""
 
 #: deprecated/wp-user-avatar/includes/class-wp-user-avatar-admin.php:106
-#: src/Classes/AdminNotices.php:188
+#: src/Classes/AdminNotices.php:194
 msgid "Learn more"
 msgstr ""
 
@@ -677,7 +677,7 @@ msgid "Style"
 msgstr ""
 
 #: src/Admin/SettingsPages/DragDropBuilder/FieldBase.php:89
-#: src/Admin/SettingsPages/DragDropBuilder/FieldBase.php:232
+#: src/Admin/SettingsPages/DragDropBuilder/FieldBase.php:236
 #: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:98
 #: src/Admin/SettingsPages/ExtensionsSettingsPage.php:153
 #: src/Admin/SettingsPages/GeneralSettings.php:44
@@ -701,7 +701,7 @@ msgstr ""
 msgid "Apply Changes"
 msgstr ""
 
-#: src/Admin/SettingsPages/DragDropBuilder/FieldBase.php:235
+#: src/Admin/SettingsPages/DragDropBuilder/FieldBase.php:239
 #: src/Admin/SettingsPages/FormList.php:241
 #: src/Admin/SettingsPages/FormList.php:332
 #: src/Admin/SettingsPages/GeneralSettings.php:175
@@ -715,8 +715,8 @@ msgstr ""
 #: src/Admin/SettingsPages/Membership/OrdersPage/OrderWPListTable.php:265
 #: src/Admin/SettingsPages/Membership/PlansPage/PlanWPListTable.php:77
 #: src/Admin/SettingsPages/Membership/PlansPage/PlanWPListTable.php:183
-#: src/Admin/SettingsPages/Membership/SubscriptionsPage/SubscriptionWPListTable.php:117
-#: src/Admin/SettingsPages/Membership/SubscriptionsPage/SubscriptionWPListTable.php:270
+#: src/Admin/SettingsPages/Membership/SubscriptionsPage/SubscriptionWPListTable.php:122
+#: src/Admin/SettingsPages/Membership/SubscriptionsPage/SubscriptionWPListTable.php:289
 #: src/Admin/SettingsPages/Membership/views/checkout-field-item.php:45
 #: src/Admin/SettingsPages/Membership/views/coupons-page-sidebar.php:12
 #: src/Admin/SettingsPages/Membership/views/customers/submit-sidebar.php:15
@@ -731,7 +731,7 @@ msgstr ""
 msgid "Delete"
 msgstr ""
 
-#: src/Admin/SettingsPages/DragDropBuilder/FieldBase.php:238
+#: src/Admin/SettingsPages/DragDropBuilder/FieldBase.php:242
 msgid "Clone"
 msgstr ""
 
@@ -1673,7 +1673,7 @@ msgid "Upcoming Renewal Reminder"
 msgstr ""
 
 #: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:241
-#: src/Membership/Emails/SubscriptionRenewalReminder.php:47
+#: src/Membership/Emails/SubscriptionRenewalReminder.php:48
 msgid "Your subscription is renewing soon."
 msgstr ""
 
@@ -1686,7 +1686,7 @@ msgid "Upcoming Expiration Reminder"
 msgstr ""
 
 #: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:252
-#: src/Membership/Emails/SubscriptionExpirationReminder.php:47
+#: src/Membership/Emails/SubscriptionExpirationReminder.php:63
 msgid "Your subscription is expiring soon."
 msgstr ""
 
@@ -1867,7 +1867,7 @@ msgid "Upgrade Plan"
 msgstr ""
 
 #: src/Admin/SettingsPages/ExtensionsSettingsPage.php:136
-#: src/Classes/AdminNotices.php:295
+#: src/Classes/AdminNotices.php:304
 msgid "Learn More"
 msgstr ""
 
@@ -1923,8 +1923,8 @@ msgstr ""
 #: src/Admin/SettingsPages/Membership/GroupsPage/GroupWPListTable.php:58
 #: src/Admin/SettingsPages/Membership/OrdersPage/OrderWPListTable.php:108
 #: src/Admin/SettingsPages/Membership/PlansPage/PlanWPListTable.php:65
-#: src/Admin/SettingsPages/Membership/SubscriptionsPage/SubscriptionWPListTable.php:114
-#: src/Admin/SettingsPages/Membership/views/customers/data-metabox.php:84
+#: src/Admin/SettingsPages/Membership/SubscriptionsPage/SubscriptionWPListTable.php:119
+#: src/Admin/SettingsPages/Membership/views/customers/data-metabox.php:86
 #: src/Admin/SettingsPages/Membership/views/orders/order-data-metabox.php:120
 #: src/ContentProtection/WPListTable.php:100
 msgid "Edit"
@@ -3183,14 +3183,14 @@ msgstr ""
 
 #: src/Admin/SettingsPages/Membership/CustomersPage/CustomerWPListTable.php:157
 #: src/Admin/SettingsPages/Membership/OrdersPage/OrderWPListTable.php:68
-#: src/Admin/SettingsPages/Membership/SubscriptionsPage/SubscriptionWPListTable.php:68
+#: src/Admin/SettingsPages/Membership/SubscriptionsPage/SubscriptionWPListTable.php:73
 msgid "All"
 msgstr ""
 
 #: src/Admin/SettingsPages/Membership/CustomersPage/CustomerWPListTable.php:312
 #: src/Admin/SettingsPages/Membership/DashboardPage/SettingsPage.php:280
 #: src/Admin/SettingsPages/Membership/OrdersPage/OrderWPListTable.php:354
-#: src/Admin/SettingsPages/Membership/SubscriptionsPage/SubscriptionWPListTable.php:325
+#: src/Admin/SettingsPages/Membership/SubscriptionsPage/SubscriptionWPListTable.php:344
 msgctxt "date filter"
 msgid "From"
 msgstr ""
@@ -3198,7 +3198,7 @@ msgstr ""
 #: src/Admin/SettingsPages/Membership/CustomersPage/CustomerWPListTable.php:315
 #: src/Admin/SettingsPages/Membership/DashboardPage/SettingsPage.php:283
 #: src/Admin/SettingsPages/Membership/OrdersPage/OrderWPListTable.php:357
-#: src/Admin/SettingsPages/Membership/SubscriptionsPage/SubscriptionWPListTable.php:328
+#: src/Admin/SettingsPages/Membership/SubscriptionsPage/SubscriptionWPListTable.php:347
 msgctxt "date filter"
 msgid "To"
 msgstr ""
@@ -3206,14 +3206,14 @@ msgstr ""
 #: src/Admin/SettingsPages/Membership/CustomersPage/CustomerWPListTable.php:320
 #: src/Admin/SettingsPages/Membership/DashboardPage/SettingsPage.php:299
 #: src/Admin/SettingsPages/Membership/OrdersPage/OrderWPListTable.php:383
-#: src/Admin/SettingsPages/Membership/SubscriptionsPage/SubscriptionWPListTable.php:351
+#: src/Admin/SettingsPages/Membership/SubscriptionsPage/SubscriptionWPListTable.php:370
 msgid "Filter"
 msgstr ""
 
 #: src/Admin/SettingsPages/Membership/CustomersPage/CustomerWPListTable.php:324
 #: src/Admin/SettingsPages/Membership/DashboardPage/SettingsPage.php:303
 #: src/Admin/SettingsPages/Membership/OrdersPage/OrderWPListTable.php:387
-#: src/Admin/SettingsPages/Membership/SubscriptionsPage/SubscriptionWPListTable.php:355
+#: src/Admin/SettingsPages/Membership/SubscriptionsPage/SubscriptionWPListTable.php:374
 msgid "Clear"
 msgstr ""
 
@@ -3506,7 +3506,7 @@ msgid "Private Note"
 msgstr ""
 
 #: src/Admin/SettingsPages/Membership/ExportPage/CustomersExport.php:18
-#: src/Admin/SettingsPages/Membership/views/customers/data-metabox.php:244
+#: src/Admin/SettingsPages/Membership/views/customers/data-metabox.php:246
 msgid "Total Spend"
 msgstr ""
 
@@ -3592,7 +3592,7 @@ msgstr ""
 
 #: src/Admin/SettingsPages/Membership/ExportPage/OrdersExport.php:21
 #: src/Admin/SettingsPages/Membership/views/checkout-fields.php:32
-#: src/Admin/SettingsPages/Membership/views/customers/data-metabox.php:83
+#: src/Admin/SettingsPages/Membership/views/customers/data-metabox.php:85
 #: src/Admin/SettingsPages/Membership/views/orders/order-data-metabox.php:119
 #: src/ShortcodeParser/MyAccount/billing-details.tmpl.php:17
 #: src/ShortcodeParser/MyAccount/MyAccountTag.php:85
@@ -3869,7 +3869,7 @@ msgstr ""
 #: src/Admin/SettingsPages/Membership/ExportPage/views/product-sales.php:20
 #: src/Admin/SettingsPages/Membership/ExportPage/views/sales-earnings.php:20
 #: src/Admin/SettingsPages/Membership/ExportPage/views/subscriptions.php:19
-#: src/Admin/SettingsPages/Membership/SubscriptionsPage/SubscriptionWPListTable.php:343
+#: src/Admin/SettingsPages/Membership/SubscriptionsPage/SubscriptionWPListTable.php:362
 msgid "All Membership Plans"
 msgstr ""
 
@@ -3887,7 +3887,7 @@ msgstr ""
 
 #: src/Admin/SettingsPages/Membership/ExportPage/views/sales-earnings.php:28
 #: src/Admin/SettingsPages/Membership/OrdersPage/OrderWPListTable.php:375
-#: src/Admin/SettingsPages/Membership/SubscriptionsPage/SubscriptionWPListTable.php:334
+#: src/Admin/SettingsPages/Membership/SubscriptionsPage/SubscriptionWPListTable.php:353
 msgid "All Customers"
 msgstr ""
 
@@ -4043,13 +4043,13 @@ msgid "View Customer"
 msgstr ""
 
 #: src/Admin/SettingsPages/Membership/OrdersPage/OrderWPListTable.php:117
-#: src/Admin/SettingsPages/Membership/SubscriptionsPage/SubscriptionWPListTable.php:122
+#: src/Admin/SettingsPages/Membership/SubscriptionsPage/SubscriptionWPListTable.php:127
 #, php-format
 msgid "#%1$s - %2$s"
 msgstr ""
 
 #: src/Admin/SettingsPages/Membership/OrdersPage/OrderWPListTable.php:119
-#: src/Admin/SettingsPages/Membership/SubscriptionsPage/SubscriptionWPListTable.php:124
+#: src/Admin/SettingsPages/Membership/SubscriptionsPage/SubscriptionWPListTable.php:129
 #, php-format
 msgid "#%1$s - No Customer Assigned"
 msgstr ""
@@ -4436,7 +4436,7 @@ msgstr ""
 msgid "Renewal Date"
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/SubscriptionsPage/SubscriptionWPListTable.php:364
+#: src/Admin/SettingsPages/Membership/SubscriptionsPage/SubscriptionWPListTable.php:383
 msgid "Search Subscriptions"
 msgstr ""
 
@@ -4881,11 +4881,11 @@ msgstr ""
 msgid "%1$s (%2$s)"
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/views/customers/data-metabox.php:110
+#: src/Admin/SettingsPages/Membership/views/customers/data-metabox.php:112
 msgid "No billing address set."
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/views/customers/data-metabox.php:239
+#: src/Admin/SettingsPages/Membership/views/customers/data-metabox.php:241
 msgid "Completed Sales"
 msgstr ""
 
@@ -5153,11 +5153,11 @@ msgid "Terms:"
 msgstr ""
 
 #: src/Admin/SettingsPages/Membership/views/subscriptions/data-metabox.php:74
-msgid "Upgraded from"
+msgid "Changed from"
 msgstr ""
 
 #: src/Admin/SettingsPages/Membership/views/subscriptions/data-metabox.php:85
-msgid "Upgraded to"
+msgid "Changed to"
 msgstr ""
 
 #: src/Admin/SettingsPages/Membership/views/subscriptions/data-metabox.php:94
@@ -5302,58 +5302,58 @@ msgstr ""
 msgid "Admin Bar & Dashboard Access"
 msgstr ""
 
-#: src/Classes/AdminNotices.php:88
+#: src/Classes/AdminNotices.php:94
 #, php-format
 msgid "<strong>Important:</strong> No real payment is being processed because ProfilePress is in test mode. Go to <a href=\"%s\">Payment method settings</a> to disable test mode."
 msgstr ""
 
-#: src/Classes/AdminNotices.php:121
+#: src/Classes/AdminNotices.php:127
 #, php-format
 msgid "Hey, I noticed you have been using ProfilePress for at least 7 days now - that's awesome! Could you please do us a BIG favor and give it a %1$s5-star rating on WordPress?%2$s This will help us spread the word and boost our motivation - thanks!"
 msgstr ""
 
-#: src/Classes/AdminNotices.php:125
+#: src/Classes/AdminNotices.php:131
 msgid "Sure! I'd love to give a review"
 msgstr ""
 
-#: src/Classes/AdminNotices.php:127
+#: src/Classes/AdminNotices.php:133
 msgid "Dismiss Forever"
 msgstr ""
 
-#: src/Classes/AdminNotices.php:146
+#: src/Classes/AdminNotices.php:152
 msgid "Change Permalink Structure"
 msgstr ""
 
-#: src/Classes/AdminNotices.php:150
+#: src/Classes/AdminNotices.php:156
 #, php-format
 msgid "Your site permalink structure is currently set to <code>Plain</code>. This setting is not compatible with ProfilePress. Change your permalink structure to any other setting to avoid issues. We recommend <code>Post name</code>.</p><p>%s"
 msgstr ""
 
-#: src/Classes/AdminNotices.php:164
+#: src/Classes/AdminNotices.php:170
 msgid "Did you know that you can sell access to LearnDash courses and groups and enroll users after registration?"
 msgstr ""
 
-#: src/Classes/AdminNotices.php:169
+#: src/Classes/AdminNotices.php:175
 msgid "Did you know that you can sell access to Sensei LMS courses and groups and enroll users after registration?"
 msgstr ""
 
-#: src/Classes/AdminNotices.php:204
+#: src/Classes/AdminNotices.php:213
 msgid "ProfilePress needs to create several pages (Checkout, Order Confirmation, User Profile, My Account, Registration, Login, Member Directory) to function correctly."
 msgstr ""
 
-#: src/Classes/AdminNotices.php:207
+#: src/Classes/AdminNotices.php:216
 msgid "Create Pages"
 msgstr ""
 
-#: src/Classes/AdminNotices.php:207
+#: src/Classes/AdminNotices.php:216
 msgid "No Thanks"
 msgstr ""
 
-#: src/Classes/AdminNotices.php:229
+#: src/Classes/AdminNotices.php:238
 msgid "You enabled Stripe payment method in ProfilePress but did not connect your Stripe account. Connect now to start accepting payments instantly."
 msgstr ""
 
-#: src/Classes/AdminNotices.php:257
+#: src/Classes/AdminNotices.php:266
 #, php-format
 msgid "User registration currently disabled. To enable, Go to <a href=\"%1$s\">Settings -> General</a>, and under Membership, check \"Anyone can register\""
 msgstr ""
@@ -16158,7 +16158,7 @@ msgstr ""
 
 #: src/Membership/Controllers/CheckoutController.php:150
 #: src/Membership/Controllers/CheckoutController.php:201
-#: src/Membership/Controllers/CheckoutController.php:475
+#: src/Membership/Controllers/CheckoutController.php:478
 msgid "Please enter a plan ID."
 msgstr ""
 
@@ -16175,7 +16175,7 @@ msgstr ""
 msgid "Error processing checkout. Nonce failed"
 msgstr ""
 
-#: src/Membership/Controllers/CheckoutController.php:243
+#: src/Membership/Controllers/CheckoutController.php:251
 #: src/ShortcodeParser/MembershipShortcodes.php:153
 msgid "Invalid membership plan."
 msgstr ""
@@ -16184,11 +16184,15 @@ msgstr ""
 msgid "Please read and accept the terms and conditions to proceed with your order."
 msgstr ""
 
-#: src/Membership/Controllers/CheckoutController.php:282
+#: src/Membership/Controllers/CheckoutController.php:271
+msgid "Invalid subscription ID provided for plan change."
+msgstr ""
+
+#: src/Membership/Controllers/CheckoutController.php:288
 msgid "No payment method selected. Please try again."
 msgstr ""
 
-#: src/Membership/Controllers/CheckoutController.php:310
+#: src/Membership/Controllers/CheckoutController.php:313
 msgid "You are not allowed to switch from this plan."
 msgstr ""
 

@@ -75,6 +75,8 @@ echo '<div class="ppress-membership-customer-details">';
                     </div>
                 </div>
 
+				<?php do_action('ppress_admin_customer_data_after_customer_info', $customer_id, $customer_data); ?>
+
             </div>
         </div>
 

@@ -232,6 +232,14 @@ class CheckoutController extends BaseController
 
             $_POST = $this->cleanup_posted_data($_POST);
 
+            if ( ! isset($_POST['_ppress_timestamp']) || intval($_POST['_ppress_timestamp']) > (time() - 2)) {
+                throw new \Exception('spam');
+            }
+
+            if ( ! isset($_POST['_ppress_honeypot']) || ! empty($_POST['_ppress_honeypot'])) {
+                throw new \Exception('spam');
+            }
+
             $plan_id = (int)$_POST['plan_id'];
 
             $change_plan_sub_id = (int)$_POST['change_plan_sub_id'];
@@ -245,14 +253,6 @@ class CheckoutController extends BaseController
                 }
             }
 
-            if ( ! isset($_POST['_ppress_timestamp']) || intval($_POST['_ppress_timestamp']) > (time() - 2)) {
-                throw new \Exception('spam');
-            }
-
-            if ( ! isset($_POST['_ppress_honeypot']) || ! empty($_POST['_ppress_honeypot'])) {
-                throw new \Exception('spam');
-            }
-
             $checkout_errors = apply_filters('ppress_checkout_validation', new \WP_Error(), $plan_id, $_POST);
 
             if (is_wp_error($checkout_errors) && $checkout_errors->get_error_code() != '') {
@@ -263,6 +263,12 @@ class CheckoutController extends BaseController
                 throw new \Exception(
                     esc_html__('Please read and accept the terms and conditions to proceed with your order.', 'wp-user-avatar')
                 );
+            }
+
+            $changePlanSub = SubscriptionFactory::fromId($change_plan_sub_id);
+
+            if ( ! empty($change_plan_sub_id) && ! $changePlanSub->exists()) {
+                throw new \Exception(esc_html__('Invalid subscription ID provided for plan change.', 'wp-user-avatar'));
             }
 
             $cart_vars = OrderService::init()->checkout_order_calculation([
@@ -300,11 +306,8 @@ class CheckoutController extends BaseController
                 throw new \Exception(json_encode($customer_id->get_error_messages()));
             }
 
-            $changePlanSub = SubscriptionFactory::fromId($change_plan_sub_id);
-
             if (
                 $changePlanSub->exists() &&
-                ! empty($customer_id) &&
                 $customer_id !== $changePlanSub->get_customer_id()) {
                 throw new \Exception(
                     esc_html__('You are not allowed to switch from this plan.', 'wp-user-avatar')

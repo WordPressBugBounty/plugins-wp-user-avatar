@@ -4,8 +4,8 @@ Donate link: https://profilepress.com/pricing/
 Tags: membership, ecommerce, user registration, user profile, memberships
 Requires at least: 6.0
 Requires PHP: 7.4
-Tested up to: 6.9
-Stable tag: 4.16.12
+Tested up to: 7.0
+Stable tag: 4.16.13
 License: GPLv2 or later
 
 Setup paid membership, accept payment, sell subscription & digital product, paywall, create login & registration form, user profile & member directory
@@ -190,6 +190,18 @@ Any file type can be sold using ProfilePress ecommerce and membership plugin, in
 11. Content Protection
 
 == Changelog ==
+
+= Paid Membership, Ecommerce & User Registration 4.16.13 =
+* Improved admin UI for WP7
+* Fixed bug where users can upgrade/downgrade to a plan not authorized for them.
+* Fixed bug where subscription renewal email is sent when autorenewal is disabled.
+* Ensure expiration email is sent when active/trialling subscriptions are not auto-renewable.
+* Added support for specifying subscription status in content protection shortcode
+* Added ppress_restriction_shortcode_rule_latest_only filter.
+* Added filter for overriding Stripe billing intervals.
+* Added a filter to allow per-field filename customization.
+* Added filter for adding custom columns to the subscriptions list table.
+* Added action hook and filter for customer details metaboxes.
 
 = Paid Membership, Ecommerce & User Registration 4.16.12 =
 * Fixed issue with plan upgrade by wrong user.
