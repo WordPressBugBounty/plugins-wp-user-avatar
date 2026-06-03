@@ -1,7 +1,12 @@
 ﻿== Changelog ==
 
+= 4.16.16 =
+* Pro: [Paddle addon](https://profilepress.com/addons/paddle/?ref=changelog).
+* Added password visibility icons to the password reset handler form fields
+
 = 4.16.15 =
 * Pro: [Brevo addon](https://profilepress.com/addons/brevo/?ref=changelog).
+* Pro: [Auto-Renewal Checkbox addon](https://profilepress.com/addons/auto-renewal-checkbox/?ref=changelog).
 * Added filters to the test mode notice and checkout username.
 * Added membership conditions to Elementor display rules.
 

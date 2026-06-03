@@ -502,6 +502,7 @@
 .ppress-checkout__form .ppress-checkout-form__payment_method__icons img,
 .ppress-checkout__form .ppress-checkout-form__payment_method__icons svg {
     max-height: 22px;
+    min-width: 25px;
 }
 
 .ppress-checkout__form .ppress-checkout-form__payment_method .ppress-checkout-form__payment_method__content_wrap p {

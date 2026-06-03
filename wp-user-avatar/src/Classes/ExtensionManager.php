@@ -13,6 +13,7 @@ class ExtensionManager
     const MOLLIE = 'mollie';
     const RAZORPAY = 'razorpay';
     const PAYSTACK = 'paystack';
+    const PADDLE = 'paddle';
     const RECEIPT = 'receipt';
     const BUDDYPRESS = 'buddypress';
     const MULTISITE = 'multisite';
@@ -58,6 +59,7 @@ class ExtensionManager
             self::MOLLIE                        => 'ProfilePress\Libsodium\Mollie\Init',
             self::RAZORPAY                      => 'ProfilePress\Libsodium\Razorpay\Init',
             self::PAYSTACK                      => 'ProfilePress\Libsodium\Paystack\Init',
+            self::PADDLE                        => 'ProfilePress\Libsodium\Paddle\Init',
             self::RECEIPT                       => 'ProfilePress\Libsodium\Receipt\Init',
             self::BUDDYPRESS                    => 'ProfilePress\Libsodium\BuddyPress\Init',
             self::MULTISITE                     => 'ProfilePress\Libsodium\MultisiteIntegration\Init',
@@ -121,6 +123,13 @@ class ExtensionManager
                 'setting_url' => AbstractPaymentMethod::get_payment_method_admin_page_url(self::PAYSTACK),
                 'description' => esc_html__('Accept payments and sell subscriptions via Paystack.', 'wp-user-avatar'),
                 'icon'        => '<svg viewBox="0 0 576 512" xmlns="http://www.w3.org/2000/svg"><path d="m64 32c-35.3 0-64 28.7-64 64v32h576v-32c0-35.3-28.7-64-64-64zm512 192h-576v192c0 35.3 28.7 64 64 64h448c35.3 0 64-28.7 64-64zm-464 128h64c8.8 0 16 7.2 16 16s-7.2 16-16 16h-64c-8.8 0-16-7.2-16-16s7.2-16 16-16zm112 16c0-8.8 7.2-16 16-16h128c8.8 0 16 7.2 16 16s-7.2 16-16 16h-128c-8.8 0-16-7.2-16-16s7.2-16 16-16z"/></svg>'
+            ],
+            self::PADDLE                        => [
+                'title'       => 'Paddle',
+                'url'         => 'https://profilepress.com/addons/paddle/?utm_source=liteplugin&utm_medium=extension-page&utm_campaign=learn-more',
+                'setting_url' => AbstractPaymentMethod::get_payment_method_admin_page_url(self::PADDLE),
+                'description' => esc_html__('Accept payments and sell subscriptions via Paddle (Merchant of Record).', 'wp-user-avatar'),
+                'icon'        => '<svg viewBox="0 0 24.6 30.6" xmlns="http://www.w3.org/2000/svg"><path fill="#0E1414" d="M0,11.2v-1.1c1.3,0,2.6-0.5,3.6-1.5C4.5,7.7,5,6.4,5,5.1h1c0,1.3,0.5,2.6,1.5,3.5c0.9,0.9,2.2,1.5,3.6,1.5v1.1c-1.3,0-2.6,0.5-3.6,1.5C6.6,13.6,6,14.8,6,16.2H5c0-1.3-0.5-2.6-1.5-3.5C2.6,11.7,1.3,11.2,0,11.2z M5,3.2h8.7c4.2,0,7.3,3,7.3,7.4c0,4.4-3,7.4-7.3,7.4H5v12.6h3.6v-9.4h5c6.1,0,10.9-4.8,10.9-10.6C24.6,4.8,19.8,0,13.7,0H5V3.2z"/></svg>'
             ],
             self::FIXED_SUBSCRIPTION_EXPIRATION => [
                 'title'       => esc_html__('Fixed Subscription Expiration', 'wp-user-avatar'),
