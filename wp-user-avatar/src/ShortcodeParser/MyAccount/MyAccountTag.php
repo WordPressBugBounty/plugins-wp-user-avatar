@@ -4,6 +4,7 @@ namespace ProfilePress\Core\ShortcodeParser\MyAccount;
 
 use ProfilePress\Core\Classes\PROFILEPRESS_sql;
 use ProfilePress\Core\Classes\UserAvatar;
+use ProfilePress\Core\Membership\Models\Subscription\SubscriptionEntity;
 use ProfilePress\Core\Membership\Models\Subscription\SubscriptionFactory;
 use ProfilePress\Core\Membership\Services\SubscriptionService;
 use ProfilePress\Core\ShortcodeParser\FormProcessor;
@@ -254,18 +255,21 @@ class MyAccountTag extends FormProcessor
 
             check_admin_referer($sub_id . $action . $sub->get_customer()->get_user_id());
 
-            if ($action == 'cancel') {
-                $sub->cancel(true);
-            }
+            if (is_a($sub, SubscriptionEntity::class) && get_current_user_id() === $sub->get_customer()->get_user_id()) {
 
-            if ($action == 'resubscribe') {
-                wp_safe_redirect(ppress_plan_checkout_url($sub->plan_id));
-                exit;
-            }
+                if ($action == 'cancel') {
+                    $sub->cancel(true);
+                }
 
-            if ($action == 'change_plan') {
-                wp_safe_redirect(ppress_plan_checkout_url($sub->id, true));
-                exit;
+                if ($action == 'resubscribe') {
+                    wp_safe_redirect(ppress_plan_checkout_url($sub->plan_id));
+                    exit;
+                }
+
+                if ($action == 'change_plan') {
+                    wp_safe_redirect(ppress_plan_checkout_url($sub->id, true));
+                    exit;
+                }
             }
 
             do_action('ppress_handle_subscription_actions', $action, $sub);
@@ -284,10 +288,8 @@ class MyAccountTag extends FormProcessor
     {
         if ( ! empty($_GET['sub_id'])) {
             add_action('ppress_myaccount_subscription_action_status', function ($sub, $action) {
-                switch ($action) {
-                    case 'cancel':
-                        self::alert_message(esc_html__('Subscription successfully cancelled.', 'wp-user-avatar'));
-                        break;
+                if ($action == 'cancel') {
+                    self::alert_message(esc_html__('Subscription successfully cancelled.', 'wp-user-avatar'));
                 }
             }, 10, 2);
 
