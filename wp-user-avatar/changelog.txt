@@ -1,5 +1,9 @@
 ﻿== Changelog ==
 
+= 4.16.18 =
+* Added compatibility with Yoast URL Cleanup feature.
+* Fix security issue where non-admin user role can be passed as user role.
+
 = 4.16.17 =
 * Fixed security issue a user subscription can be canceled by another user.
 
