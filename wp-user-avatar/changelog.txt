@@ -1,5 +1,12 @@
 ﻿== Changelog ==
 
+= 4.16.19 =
+* Add optional order creation to the Add New Customer screen.
+* Fixed bug where suppressed email still went out.
+* Fixed security issue where other file types (exe, msi) could be uploaded outside ProfilePress upload scope.
+* Improved support for Jetpack/wp.com SSO.
+* Enhancement: Made the Pay button text translatable.
+
 = 4.16.18 =
 * Added compatibility with Yoast URL Cleanup feature.
 * Fix security issue where non-admin user role can be passed as user role.

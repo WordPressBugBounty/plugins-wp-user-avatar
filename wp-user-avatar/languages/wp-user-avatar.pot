@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the ProfilePress plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: ProfilePress 4.16.18\n"
+"Project-Id-Version: ProfilePress 4.16.19\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-user-avatar\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-06-23T17:19:09+00:00\n"
+"POT-Creation-Date: 2026-07-07T12:01:27+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: wp-user-avatar\n"
@@ -692,7 +692,7 @@ msgid "Edit Field"
 msgstr ""
 
 #: src/Admin/SettingsPages/DragDropBuilder/FieldBase.php:210
-#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:375
+#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:505
 #: src/ShortcodeParser/MyAccount/view-subscription.tmpl.php:43
 msgid "Cancel"
 msgstr ""
@@ -914,7 +914,7 @@ msgstr ""
 #: src/Admin/SettingsPages/DragDropBuilder/Fields/CFPassword.php:22
 #: src/Admin/SettingsPages/DragDropBuilder/Fields/Login/Password.php:22
 #: src/Admin/SettingsPages/DragDropBuilder/Fields/Password.php:22
-#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:324
+#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:388
 #: src/Membership/CheckoutFields.php:86
 #: src/ShortcodeParser/Builder/FieldsShortcodeCallback.php:209
 #: src/ShortcodeParser/MyAccount/delete-account.tmpl.php:23
@@ -1037,7 +1037,7 @@ msgstr ""
 
 #: src/Admin/SettingsPages/DragDropBuilder/Fields/Email.php:22
 #: src/Admin/SettingsPages/DragDropBuilder/Fields/UserProfile/Email.php:22
-#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:316
+#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:380
 #: src/Functions/GlobalFunctions.php:1498
 #: src/Membership/CheckoutFields.php:51
 #: src/ShortcodeParser/Builder/FieldsShortcodeCallback.php:257
@@ -1050,7 +1050,7 @@ msgstr ""
 
 #: src/Admin/SettingsPages/DragDropBuilder/Fields/FirstName.php:22
 #: src/Admin/SettingsPages/DragDropBuilder/Fields/UserProfile/FirstName.php:22
-#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:308
+#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:372
 #: src/Functions/GlobalFunctions.php:1494
 #: src/Membership/CheckoutFields.php:65
 #: src/ShortcodeParser/Builder/FieldsShortcodeCallback.php:397
@@ -1072,7 +1072,7 @@ msgstr ""
 
 #: src/Admin/SettingsPages/DragDropBuilder/Fields/LastName.php:22
 #: src/Admin/SettingsPages/DragDropBuilder/Fields/UserProfile/LastName.php:22
-#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:312
+#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:376
 #: src/Functions/GlobalFunctions.php:1495
 #: src/Membership/CheckoutFields.php:72
 #: src/ShortcodeParser/Builder/FieldsShortcodeCallback.php:430
@@ -1215,7 +1215,7 @@ msgstr ""
 
 #: src/Admin/SettingsPages/DragDropBuilder/Fields/Username.php:22
 #: src/Admin/SettingsPages/DragDropBuilder/Fields/UserProfile/Username.php:22
-#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:320
+#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:384
 #: src/Functions/GlobalFunctions.php:1493
 #: src/Membership/CheckoutFields.php:79
 #: src/ShortcodeParser/Builder/FieldsShortcodeCallback.php:182
@@ -1607,9 +1607,9 @@ msgstr ""
 #: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:244
 #: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:255
 #: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:266
-#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:51
-#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:224
-#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:245
+#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:56
+#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:289
+#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:310
 msgid "Customers"
 msgstr ""
 
@@ -1920,6 +1920,7 @@ msgid "Builder Type"
 msgstr ""
 
 #: src/Admin/SettingsPages/FormList.php:198
+#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:442
 #: src/Admin/SettingsPages/Membership/DownloadLogsPage/WPListTable.php:36
 #: src/Admin/SettingsPages/Membership/ExportPage/ProductSalesExport.php:23
 #: src/Admin/SettingsPages/Membership/ExportPage/SalesEarningsExport.php:14
@@ -2036,7 +2037,7 @@ msgstr ""
 
 #: src/Admin/SettingsPages/Forms.php:313
 #: src/Admin/SettingsPages/MemberDirectories.php:173
-#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:388
+#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:544
 msgid "Add New"
 msgstr ""
 
@@ -3146,7 +3147,7 @@ msgid "Edit Coupon"
 msgstr ""
 
 #: src/Admin/SettingsPages/Membership/CouponsPage/SettingsPage.php:132
-#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:268
+#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:333
 #: src/Admin/SettingsPages/Membership/DownloadLogsPage/SettingsPage.php:72
 #: src/Admin/SettingsPages/Membership/GroupsPage/SettingsPage.php:125
 #: src/Admin/SettingsPages/Membership/OrdersPage/SettingsPage.php:468
@@ -3237,18 +3238,20 @@ msgstr ""
 msgid "Search Customers"
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:109
+#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:114
 #: src/Admin/SettingsPages/Membership/OrdersPage/SettingsPage.php:369
 msgid "You do not have permission to perform this action."
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:109
-#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:122
-#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:132
-#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:152
-#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:165
-#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:172
-#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:180
+#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:114
+#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:127
+#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:137
+#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:157
+#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:170
+#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:177
+#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:185
+#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:219
+#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:250
 #: src/Admin/SettingsPages/Membership/OrdersPage/SettingsPage.php:369
 #: src/Admin/SettingsPages/Membership/OrdersPage/SettingsPage.php:377
 #: src/Admin/SettingsPages/Membership/OrdersPage/SettingsPage.php:381
@@ -3259,66 +3262,154 @@ msgstr ""
 msgid "Error"
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:122
+#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:127
 msgid "Please enter a valid customer email."
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:132
+#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:137
 #, php-format
 msgid "A user account already exists with the login %s."
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:152
+#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:157
 msgid "Error creating customer account."
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:165
+#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:170
 #, php-format
 msgid "Unable to locate existing account with the email %s."
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:172
+#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:177
 #, php-format
 msgid "A customer with the ID %d already exists with this account."
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:180
+#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:185
 msgid "Error creating customer record."
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:227
+#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:219
+#: src/Admin/SettingsPages/Membership/OrdersPage/SettingsPage.php:377
+msgid "No plan was selected. Please try again."
+msgstr ""
+
+#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:292
 msgid "Add New Customer"
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:231
+#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:296
 msgid "Customer Details"
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:297
+#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:361
 msgid "User Account"
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:302
+#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:366
 msgid "Search User"
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:347
+#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:393
+#: src/Admin/SettingsPages/Membership/ExportPage/OrdersExport.php:21
+#: src/Admin/SettingsPages/Membership/views/checkout-fields.php:32
+#: src/Admin/SettingsPages/Membership/views/customers/data-metabox.php:85
+#: src/Admin/SettingsPages/Membership/views/orders/order-data-metabox.php:119
+#: src/ShortcodeParser/MyAccount/billing-details.tmpl.php:17
+#: src/ShortcodeParser/MyAccount/MyAccountTag.php:86
+#: src/ShortcodeParser/MyAccount/view-order.tmpl.php:84
+#: src/templates/checkout/form-billing-fields.php:36
+msgid "Billing Address"
+msgstr ""
+
+#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:394
+msgid "Add a billing address for this customer."
+msgstr ""
+
+#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:403
+msgid "Create Order"
+msgstr ""
+
+#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:404
+msgid "Create a membership order for this customer."
+msgstr ""
+
+#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:408
+#: src/Admin/SettingsPages/Membership/DownloadLogsPage/WPListTable.php:31
+#: src/Admin/SettingsPages/Membership/OrdersPage/SettingsPage.php:495
+msgid "Membership Plan"
+msgstr ""
+
+#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:417
+#: src/Admin/SettingsPages/Membership/ExportPage/ProductSalesExport.php:20
+#: src/Admin/SettingsPages/Membership/OrdersPage/SettingsPage.php:512
+msgid "Amount"
+msgstr ""
+
+#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:420
+#: src/Admin/SettingsPages/Membership/OrdersPage/SettingsPage.php:515
+msgid "Enter the total order amount, or leave blank to use the price of the selected plan."
+msgstr ""
+
+#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:423
+#: src/Admin/SettingsPages/Membership/ExportPage/OrdersExport.php:27
+#: src/Admin/SettingsPages/Membership/OrdersPage/SettingsPage.php:518
+#: src/ShortcodeParser/MyAccount/orders.tmpl.php:56
+#: src/ShortcodeParser/MyAccount/view-order.tmpl.php:68
+msgid "Order Status"
+msgstr ""
+
+#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:428
+#: src/Admin/SettingsPages/Membership/ExportPage/OrdersExport.php:37
+#: src/Admin/SettingsPages/Membership/OrdersPage/OrderWPListTable.php:57
+#: src/Admin/SettingsPages/Membership/OrdersPage/SettingsPage.php:523
+#: src/ShortcodeParser/MyAccount/view-order.tmpl.php:80
+msgid "Payment Method"
+msgstr ""
+
+#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:437
+#: src/Admin/SettingsPages/Membership/ExportPage/OrdersExport.php:38
+#: src/Admin/SettingsPages/Membership/OrdersPage/SettingsPage.php:536
+msgid "Transaction ID"
+msgstr ""
+
+#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:439
+#: src/Admin/SettingsPages/Membership/OrdersPage/SettingsPage.php:538
+msgid "Enter the transaction ID, if any."
+msgstr ""
+
+#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:445
+#: src/Admin/SettingsPages/Membership/OrdersPage/SettingsPage.php:544
+msgid "Enter the purchase date, or leave blank for today's date."
+msgstr ""
+
+#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:448
+#: src/Admin/SettingsPages/Membership/OrdersPage/SettingsPage.php:547
+msgid "Send Receipt"
+msgstr ""
+
+#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:449
+#: src/Admin/SettingsPages/Membership/OrdersPage/SettingsPage.php:548
+msgid "Check to send the order receipt to the customer."
+msgstr ""
+
+#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:477
 msgid "New Account"
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:352
+#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:482
 msgid "Existing Account"
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:364
+#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:494
 msgid "Show password"
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:369
+#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:499
 msgid "Hide password"
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:371
+#: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:501
 #: src/Themes/DragDrop/UserProfile/DefaultTemplate.php:104
 msgid "Hide"
 msgstr ""
@@ -3475,11 +3566,6 @@ msgstr ""
 msgid "No download log found."
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/DownloadLogsPage/WPListTable.php:31
-#: src/Admin/SettingsPages/Membership/OrdersPage/SettingsPage.php:495
-msgid "Membership Plan"
-msgstr ""
-
 #: src/Admin/SettingsPages/Membership/DownloadLogsPage/WPListTable.php:32
 #: src/Admin/SettingsPages/Membership/OrdersPage/SettingsPage.php:506
 msgid "Customer"
@@ -3606,26 +3692,8 @@ msgstr ""
 msgid "Subscription ID"
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/ExportPage/OrdersExport.php:21
-#: src/Admin/SettingsPages/Membership/views/checkout-fields.php:32
-#: src/Admin/SettingsPages/Membership/views/customers/data-metabox.php:85
-#: src/Admin/SettingsPages/Membership/views/orders/order-data-metabox.php:119
-#: src/ShortcodeParser/MyAccount/billing-details.tmpl.php:17
-#: src/ShortcodeParser/MyAccount/MyAccountTag.php:86
-#: src/ShortcodeParser/MyAccount/view-order.tmpl.php:84
-#: src/templates/checkout/form-billing-fields.php:36
-msgid "Billing Address"
-msgstr ""
-
 #: src/Admin/SettingsPages/Membership/ExportPage/OrdersExport.php:25
 msgid "Billing Postcode"
-msgstr ""
-
-#: src/Admin/SettingsPages/Membership/ExportPage/OrdersExport.php:27
-#: src/Admin/SettingsPages/Membership/OrdersPage/SettingsPage.php:518
-#: src/ShortcodeParser/MyAccount/orders.tmpl.php:56
-#: src/ShortcodeParser/MyAccount/view-order.tmpl.php:68
-msgid "Order Status"
 msgstr ""
 
 #: src/Admin/SettingsPages/Membership/ExportPage/OrdersExport.php:28
@@ -3666,18 +3734,6 @@ msgstr ""
 
 #: src/Admin/SettingsPages/Membership/ExportPage/OrdersExport.php:36
 msgid "Order Total"
-msgstr ""
-
-#: src/Admin/SettingsPages/Membership/ExportPage/OrdersExport.php:37
-#: src/Admin/SettingsPages/Membership/OrdersPage/OrderWPListTable.php:57
-#: src/Admin/SettingsPages/Membership/OrdersPage/SettingsPage.php:523
-#: src/ShortcodeParser/MyAccount/view-order.tmpl.php:80
-msgid "Payment Method"
-msgstr ""
-
-#: src/Admin/SettingsPages/Membership/ExportPage/OrdersExport.php:38
-#: src/Admin/SettingsPages/Membership/OrdersPage/SettingsPage.php:536
-msgid "Transaction ID"
 msgstr ""
 
 #: src/Admin/SettingsPages/Membership/ExportPage/OrdersExport.php:41
@@ -3739,11 +3795,6 @@ msgstr ""
 #: src/Admin/SettingsPages/Membership/ExportPage/PlansExport.php:23
 #: src/Admin/SettingsPages/Membership/views/add-edit-plan.php:108
 msgid "Free Trial"
-msgstr ""
-
-#: src/Admin/SettingsPages/Membership/ExportPage/ProductSalesExport.php:20
-#: src/Admin/SettingsPages/Membership/OrdersPage/SettingsPage.php:512
-msgid "Amount"
 msgstr ""
 
 #: src/Admin/SettingsPages/Membership/ExportPage/SettingsPage.php:91
@@ -4086,10 +4137,6 @@ msgstr ""
 msgid "Search Orders"
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/OrdersPage/SettingsPage.php:377
-msgid "No plan was selected. Please try again."
-msgstr ""
-
 #: src/Admin/SettingsPages/Membership/OrdersPage/SettingsPage.php:381
 msgid "No customer was selected. Please try again."
 msgstr ""
@@ -4101,26 +4148,6 @@ msgstr ""
 
 #: src/Admin/SettingsPages/Membership/OrdersPage/SettingsPage.php:431
 msgid "Edit Order"
-msgstr ""
-
-#: src/Admin/SettingsPages/Membership/OrdersPage/SettingsPage.php:515
-msgid "Enter the total order amount, or leave blank to use the price of the selected plan."
-msgstr ""
-
-#: src/Admin/SettingsPages/Membership/OrdersPage/SettingsPage.php:538
-msgid "Enter the transaction ID, if any."
-msgstr ""
-
-#: src/Admin/SettingsPages/Membership/OrdersPage/SettingsPage.php:544
-msgid "Enter the purchase date, or leave blank for today's date."
-msgstr ""
-
-#: src/Admin/SettingsPages/Membership/OrdersPage/SettingsPage.php:547
-msgid "Send Receipt"
-msgstr ""
-
-#: src/Admin/SettingsPages/Membership/OrdersPage/SettingsPage.php:548
-msgid "Check to send the order receipt to the customer."
 msgstr ""
 
 #: src/Admin/SettingsPages/Membership/OrdersPage/SettingsPage.php:575
@@ -16338,7 +16365,7 @@ msgid "Sorry but your download link has expired."
 msgstr ""
 
 #. translators: 1: uploads directory URL 2: documentation URL
-#: src/Membership/DigitalProducts/UploadHandler.php:285
+#: src/Membership/DigitalProducts/UploadHandler.php:289
 #, php-format
 msgid "Your store's uploads directory is <a href=\"%1$s\">browsable via the web</a>. We strongly recommend <a href=\"%2$s\">configuring your web server to prevent directory indexing</a>."
 msgstr ""
@@ -17464,6 +17491,11 @@ msgstr ""
 #: src/templates/checkout/form-checkout-sidebar.php:155
 #, php-format
 msgid "After payment, your subscription will expire on %1$s"
+msgstr ""
+
+#: src/templates/checkout/form-checkout-submit-btn.php:8
+#, php-format
+msgid "Pay %s"
 msgstr ""
 
 #: src/templates/checkout/form-checkout-submit-btn.php:10

@@ -5,7 +5,7 @@ Tags: membership, ecommerce, user registration, user profile, memberships
 Requires at least: 6.0
 Requires PHP: 7.4
 Tested up to: 7.0
-Stable tag: 4.16.18
+Stable tag: 4.16.19
 License: GPLv2 or later
 
 Setup paid membership, accept payment, sell subscription & digital product, paywall, create login & registration form, user profile & member directory
@@ -195,43 +195,28 @@ Any file type can be sold using ProfilePress ecommerce and membership plugin, in
 
 == Changelog ==
 
-= Paid Membership, Ecommerce & User Registration 4.16.18 =
+= 4.16.19 =
+* Add optional order creation to the Add New Customer screen.
+* Fixed bug where suppressed email still went out.
+* Fixed security issue where other file types (exe, msi) could be uploaded outside ProfilePress upload scope.
+* Improved support for Jetpack/wp.com SSO.
+* Enhancement: Made the Pay button text translatable.
+
+= 4.16.18 =
 * Added compatibility with Yoast URL Cleanup feature.
 * Fix security issue where non-admin user role can be passed as user role.
 
-= Paid Membership, Ecommerce & User Registration 4.16.17 =
+= 4.16.17 =
 * Fixed security issue a user subscription can be canceled by another user.
 
-= Paid Membership, Ecommerce & User Registration 4.16.16 =
+= 4.16.16 =
 * Pro: [Paddle addon](https://profilepress.com/addons/paddle/?ref=changelog).
 * Added password visibility icons to the password reset handler form fields
 
-= Paid Membership, Ecommerce & User Registration 4.16.15 =
+= 4.16.15 =
 * Pro: [Brevo addon](https://profilepress.com/addons/brevo/?ref=changelog).
 * Pro: [Auto-Renewal Checkbox addon](https://profilepress.com/addons/auto-renewal-checkbox/?ref=changelog).
 * Added filters to the test mode notice and checkout username.
 * Added membership conditions to Elementor display rules.
-
-= Paid Membership, Ecommerce & User Registration 4.16.14 =
-* Added filtering by status to plan listing page.
-* Fixed avatar distortion on account page.
-* Fixed bug where plan duplication missed some data.
-* Fixed bug with form preview resulting to FATAL error.
-* Fixed XSS in member and profile listing frontend displays.
-* Improvement: reject Stripe webhooks when Webhook secret is not configured.
-* Made customer meta labels translatable.
-* Add warning to Select Role field in form builder if options are empty.
-
-= Paid Membership, Ecommerce & User Registration 4.16.13 =
-* Improved admin UI for WP7
-* Fixed bug where users can upgrade/downgrade to a plan not authorized for them.
-* Fixed bug where subscription renewal email is sent when autorenewal is disabled.
-* Ensure expiration email is sent when active/trialling subscriptions are not auto-renewable.
-* Added support for specifying subscription status in content protection shortcode
-* Added ppress_restriction_shortcode_rule_latest_only filter.
-* Added filter for overriding Stripe billing intervals.
-* Added a filter to allow per-field filename customization.
-* Added filter for adding custom columns to the subscriptions list table.
-* Added action hook and filter for customer details metaboxes.
 
 See the [changelog file](https://plugins.svn.wordpress.org/wp-user-avatar/trunk/changelog.txt) for full change log information.
