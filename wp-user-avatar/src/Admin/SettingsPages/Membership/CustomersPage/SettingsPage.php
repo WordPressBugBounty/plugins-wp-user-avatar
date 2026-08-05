@@ -227,7 +227,7 @@ class SettingsPage extends AbstractSettingsPage
                                            ->utc()->toDateTimeString();
         }
 
-        $amount = ppress_var($customer_data, 'order_amount', '');
+        $amount = ppress_sanitize_amount(ppress_var($customer_data, 'order_amount', ''));
 
         if (empty($amount) || Calculator::init($amount)->isNegativeOrZero()) {
             $amount = ppress_get_plan($plan_id)->get_price();

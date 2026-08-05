@@ -13,6 +13,7 @@ use ProfilePress\Core\Membership\Emails\SubscriptionCancelledNotification;
 use ProfilePress\Core\Membership\Emails\SubscriptionCompletedNotification;
 use ProfilePress\Core\Membership\Emails\SubscriptionExpirationReminder;
 use ProfilePress\Core\Membership\Emails\SubscriptionExpiredNotification;
+use ProfilePress\Core\Membership\Emails\SubscriptionPaymentFailedNotification;
 use ProfilePress\Core\Membership\Emails\SubscriptionRenewalReminder;
 use ProfilePress\Core\Membership\Models\Customer\CustomerFactory;
 use ProfilePress\Core\Membership\PaymentMethods\PaymentMethods;
@@ -40,6 +41,7 @@ class Init
         SubscriptionRenewalReminder::init();
         SubscriptionExpirationReminder::init();
         SubscriptionAfterExpiredNotification::init();
+        SubscriptionPaymentFailedNotification::init();
 
         StatSync::init();
 

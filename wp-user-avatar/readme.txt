@@ -5,7 +5,7 @@ Tags: membership, ecommerce, user registration, user profile, memberships
 Requires at least: 6.0
 Requires PHP: 7.4
 Tested up to: 7.0
-Stable tag: 4.16.19
+Stable tag: 4.17.0
 License: GPLv2 or later
 
 Setup paid membership, accept payment, sell subscription & digital product, paywall, create login & registration form, user profile & member directory
@@ -110,6 +110,7 @@ Extend the capabilities of ProfilePress with our powerful addons and remove the 
 * [Mollie Checkout](https://profilepress.com/addons/mollie/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) – Accept payments via Credit Card, iDEAL, SEPA Direct Debit, Apple Pay, PayPal, Klarna, Bancontact, Bank transfer & Gift Card with Mollie.
 * [Paystack Checkout](https://profilepress.com/addons/paystack/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) – Accept payments via Credit Card, Bank Transfer, Mobile Money, USSD and more with Paystack.
 * [Paddle Checkout](https://profilepress.com/addons/paddle/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) – Accept payments via Credit Card, PayPal, Bank Transfer, iDEAL, Apple Pay, Google Pay and more with Paddle payment platform.
+* [Pay What You Want](https://profilepress.com/addons/pay-what-you-want/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) – Allow customers to name their price or choose what to pay for your memberships, products, and services. Perfect for receiving donations.
 * [Custom Fields](https://profilepress.com/addons/custom-fields/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) – Collect additional information from users besides the standard profile data during user registration and payment checkout.
 * [Email Confirmation](https://profilepress.com/addons/email-confirmation/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) – Ensure registered users confirm their email addresses before they can sign in via the login form or social login.
 * [User Moderation](https://profilepress.com/addons/user-moderation/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) – Decide whether to approve newly registered users or not. You can also block and unblock users at any time.
@@ -194,6 +195,13 @@ Any file type can be sold using ProfilePress ecommerce and membership plugin, in
 11. Content Protection
 
 == Changelog ==
+
+= 4.17.0 =
+* Premium: Added [Pay What You Want addon](https://profilepress.com/addons/pay-what-you-want/?ref=changelog).
+* Added Subscription Payment Failed email notification.
+* Fixed Stripe bug where email change caused checkout failure.
+* Fixed fatal error when price has a currency symbol or thousands separator on admin order creation.
+* Fixed security issue of shortcode execution on first and last name profile fields.
 
 = 4.16.19 =
 * Add optional order creation to the Add New Customer screen.

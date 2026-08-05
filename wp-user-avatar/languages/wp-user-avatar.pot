@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the ProfilePress plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: ProfilePress 4.16.19\n"
+"Project-Id-Version: ProfilePress 4.17.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-user-avatar\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-07-07T12:01:27+00:00\n"
+"POT-Creation-Date: 2026-08-05T12:44:04+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: wp-user-avatar\n"
@@ -526,7 +526,7 @@ msgstr ""
 #: src/Admin/SettingsPages/DragDropBuilder/DragDropBuilder.php:1250
 #: src/Admin/SettingsPages/LicenseUpgrader.php:176
 #: src/Admin/SettingsPages/Membership/CheckoutFieldsManager.php:101
-#: src/Classes/ExtensionManager.php:148
+#: src/Classes/ExtensionManager.php:156
 #: src/Functions/GlobalFunctions.php:1515
 #: src/Themes/DragDrop/AbstractMemberDirectoryTheme.php:236
 msgid "Custom Fields"
@@ -601,7 +601,7 @@ msgstr ""
 
 #: src/Admin/SettingsPages/DragDropBuilder/DragDropBuilder.php:1465
 #: src/Admin/SettingsPages/LicenseUpgrader.php:200
-#: src/Classes/ExtensionManager.php:183
+#: src/Classes/ExtensionManager.php:191
 msgid "Passwordless Login"
 msgstr ""
 
@@ -1605,8 +1605,9 @@ msgstr ""
 #: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:224
 #: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:234
 #: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:244
-#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:255
-#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:266
+#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:254
+#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:265
+#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:276
 #: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:56
 #: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:289
 #: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:310
@@ -1623,7 +1624,7 @@ msgid "Subscription Renewal Receipt"
 msgstr ""
 
 #: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:193
-msgid "Email sent to customer whenever a renewal order occurs."
+msgid "Email sent to customers whenever a renewal order occurs."
 msgstr ""
 
 #: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:200
@@ -1649,7 +1650,7 @@ msgid "Your subscription has been cancelled."
 msgstr ""
 
 #: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:213
-msgid "Email sent to customer whenever their subscription is cancelled."
+msgid "Email sent to customers whenever their subscription is cancelled."
 msgstr ""
 
 #: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:220
@@ -1657,186 +1658,199 @@ msgid "Subscription Expired Notification"
 msgstr ""
 
 #: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:221
-#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:263
+#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:273
 #: src/Membership/Emails/SubscriptionAfterExpiredNotification.php:49
 #: src/Membership/Emails/SubscriptionExpiredNotification.php:32
 msgid "Your subscription has expired."
 msgstr ""
 
 #: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:223
-msgid "Email sent to customer whenever their subscription expires."
+msgid "Email sent to customers whenever their subscription expires."
 msgstr ""
 
 #: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:230
-msgid "Subscription Completed Notification"
+msgid "Subscription Payment Failed Notification"
 msgstr ""
 
 #: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:231
+#: src/Membership/Emails/SubscriptionPaymentFailedNotification.php:36
+msgid "Your subscription payment failed."
+msgstr ""
+
+#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:233
+msgid "Email sent to customers whenever a recurring payment that should renew their subscription fails or goes unpaid."
+msgstr ""
+
+#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:240
+msgid "Subscription Completed Notification"
+msgstr ""
+
+#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:241
 #: src/Membership/Emails/SubscriptionCompletedNotification.php:29
 msgid "Your subscription is now complete."
 msgstr ""
 
-#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:233
-msgid "Email sent to customer whenever they complete their subscription payments."
+#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:243
+msgid "Email sent to customers whenever they complete their subscription payments."
 msgstr ""
 
-#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:240
+#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:250
 msgid "Upcoming Renewal Reminder"
 msgstr ""
 
-#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:241
+#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:251
 #: src/Membership/Emails/SubscriptionRenewalReminder.php:48
 msgid "Your subscription is renewing soon."
 msgstr ""
 
-#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:243
-msgid "Email sent to customer to remind them that their subscription is approaching its renewal."
+#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:253
+msgid "Email sent to customers to remind them that their subscription is approaching its renewal."
 msgstr ""
 
-#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:251
+#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:261
 msgid "Upcoming Expiration Reminder"
 msgstr ""
 
-#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:252
+#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:262
 #: src/Membership/Emails/SubscriptionExpirationReminder.php:63
 msgid "Your subscription is expiring soon."
 msgstr ""
 
-#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:254
-msgid "Email sent to customer to remind them that their subscription is approaching its expiration."
+#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:264
+msgid "Email sent to customers to remind them that their subscription is approaching its expiration."
 msgstr ""
 
-#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:262
+#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:272
 msgid "After Subscription Expired Notification"
 msgstr ""
 
-#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:265
-msgid "Email sent to customer few days after their subscription expires."
+#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:275
+msgid "Email sent to customers few days after their subscription expires."
 msgstr ""
 
-#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:315
+#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:325
 msgid "Preview Email"
 msgstr ""
 
-#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:336
+#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:346
 msgid "Enable Notification"
 msgstr ""
 
-#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:337
+#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:347
 #: src/Admin/SettingsPages/GeneralSettings.php:531
 #: src/Admin/SettingsPages/Membership/PaymentSettings.php:134
 #: src/Admin/SettingsPages/Membership/PaymentSettings.php:145
 msgid "Enable"
 msgstr ""
 
-#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:340
+#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:350
 msgid "Check to enable this email notification."
 msgstr ""
 
-#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:345
+#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:355
 msgid "Subject Line"
 msgstr ""
 
-#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:346
+#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:356
 msgid "Enter the subject or title of the email."
 msgstr ""
 
-#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:351
+#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:361
 msgid "Message Body"
 msgstr ""
 
-#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:359
+#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:369
 #: src/Admin/SettingsPages/GeneralSettings.php:339
 msgid "Check to Disable"
 msgstr ""
 
-#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:360
+#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:370
 msgid "Disable for Free Orders"
 msgstr ""
 
-#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:361
+#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:371
 msgid "Optionally disable sending email receipts for free orders."
 msgstr ""
 
-#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:369
-#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:378
-#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:387
+#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:379
+#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:388
+#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:397
 msgid "Reminder Days"
 msgstr ""
 
-#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:370
+#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:380
 msgid "The number of days before the upcoming payment due date to notify the customer."
 msgstr ""
 
-#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:379
+#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:389
 msgid "The number of days before the subscription expiration due date to notify the customer."
 msgstr ""
 
-#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:388
+#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:398
 msgid "The number of days after the subscription expired to notify the customer."
 msgstr ""
 
-#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:437
+#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:447
 msgid "Admin Email Address(es)"
 msgstr ""
 
-#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:438
+#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:448
 msgid "The Email address to receive admin notifications. Use comma to separate multiple email addresses."
 msgstr ""
 
-#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:443
+#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:453
 msgid "Sender Name"
 msgstr ""
 
-#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:444
+#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:454
 msgid "The name to use as the sender of all ProfilePress emails. Preferably your website name."
 msgstr ""
 
-#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:450
+#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:460
 msgid "Sender Email Address"
 msgstr ""
 
-#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:451
+#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:461
 msgid "The email address to use as the sender of all ProfilePress emails."
 msgstr ""
 
-#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:457
+#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:467
 msgid "HTML"
 msgstr ""
 
-#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:458
+#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:468
 msgid "Plain Text"
 msgstr ""
 
-#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:461
+#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:471
 msgid "Content Type"
 msgstr ""
 
-#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:462
+#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:472
 msgid "Choose whether to send ProfilePress emails in HTML or plain text. HTML is recommended."
 msgstr ""
 
-#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:467
+#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:477
 msgid "Default Template"
 msgstr ""
 
-#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:468
+#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:478
 msgid "Custom Email Template"
 msgstr ""
 
-#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:471
+#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:481
 msgid "Email Template"
 msgstr ""
 
-#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:472
+#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:482
 msgid "Choose \"Custom Email Template\" if you want to code your own email template from scratch."
 msgstr ""
 
-#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:479
+#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:489
 msgid "Customize Default Template"
 msgstr ""
 
-#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:521
+#: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:531
 msgid "Available placeholders for subject and message body"
 msgstr ""
 
@@ -2730,7 +2744,7 @@ msgid "Ensures users with email addresses in this list are not blocked from regi
 msgstr ""
 
 #: src/Admin/SettingsPages/GeneralSettings.php:576
-#: src/Classes/ExtensionManager.php:360
+#: src/Classes/ExtensionManager.php:368
 msgid "BuddyPress / BuddyBoss"
 msgstr ""
 
@@ -2837,17 +2851,17 @@ msgid "Advanced shortcode builder"
 msgstr ""
 
 #: src/Admin/SettingsPages/LicenseUpgrader.php:182
-#: src/Classes/ExtensionManager.php:176
+#: src/Classes/ExtensionManager.php:184
 msgid "Social Login"
 msgstr ""
 
 #: src/Admin/SettingsPages/LicenseUpgrader.php:188
-#: src/Classes/ExtensionManager.php:204
+#: src/Classes/ExtensionManager.php:212
 msgid "Metered Paywall"
 msgstr ""
 
 #: src/Admin/SettingsPages/LicenseUpgrader.php:194
-#: src/Classes/ExtensionManager.php:169
+#: src/Classes/ExtensionManager.php:177
 msgid "User Moderation"
 msgstr ""
 
@@ -5513,231 +5527,239 @@ msgstr ""
 msgid "Something unexpected happened. Please try again"
 msgstr ""
 
-#: src/Classes/ExtensionManager.php:103
+#: src/Classes/ExtensionManager.php:105
 msgid "Accept payments and sell subscriptions via PayPal."
 msgstr ""
 
-#: src/Classes/ExtensionManager.php:110
+#: src/Classes/ExtensionManager.php:112
 msgid "Accept payments and sell subscriptions via Mollie."
 msgstr ""
 
-#: src/Classes/ExtensionManager.php:117
+#: src/Classes/ExtensionManager.php:119
 msgid "Accept payments and sell subscriptions via Razorpay."
 msgstr ""
 
-#: src/Classes/ExtensionManager.php:124
+#: src/Classes/ExtensionManager.php:126
 msgid "Accept payments and sell subscriptions via Paystack."
 msgstr ""
 
-#: src/Classes/ExtensionManager.php:131
+#: src/Classes/ExtensionManager.php:133
 msgid "Accept payments and sell subscriptions via Paddle (Merchant of Record)."
 msgstr ""
 
-#: src/Classes/ExtensionManager.php:135
+#: src/Classes/ExtensionManager.php:137
 msgid "Fixed Subscription Expiration"
 msgstr ""
 
-#: src/Classes/ExtensionManager.php:137
+#: src/Classes/ExtensionManager.php:139
 msgid "Set specific expiration dates for non-recurring membership plans."
 msgstr ""
 
-#: src/Classes/ExtensionManager.php:141
+#: src/Classes/ExtensionManager.php:143
+msgid "Pay What You Want"
+msgstr ""
+
+#: src/Classes/ExtensionManager.php:145
+msgid "Let customers pay what they want for your products and memberships by offering a variable pricing option during checkout."
+msgstr ""
+
+#: src/Classes/ExtensionManager.php:149
 msgid "Receipt"
 msgstr ""
 
-#: src/Classes/ExtensionManager.php:144
+#: src/Classes/ExtensionManager.php:152
 msgid "Allow customers to view, print and download as PDF, the receipt of their orders."
 msgstr ""
 
-#: src/Classes/ExtensionManager.php:151
+#: src/Classes/ExtensionManager.php:159
 msgid "Collect unlimited additional information from users besides the standard profile data."
 msgstr ""
 
-#: src/Classes/ExtensionManager.php:155
+#: src/Classes/ExtensionManager.php:163
 msgid "Email Confirmation"
 msgstr ""
 
-#: src/Classes/ExtensionManager.php:158
+#: src/Classes/ExtensionManager.php:166
 msgid "Ensure newly registered users confirm their email addresses before they can log in."
 msgstr ""
 
-#: src/Classes/ExtensionManager.php:162
+#: src/Classes/ExtensionManager.php:170
 msgid "Two-Factor Authentication (2FA)"
 msgstr ""
 
-#: src/Classes/ExtensionManager.php:165
+#: src/Classes/ExtensionManager.php:173
 msgid "Adds an additional layer of security to users accounts by requiring more than just a password to log in."
 msgstr ""
 
-#: src/Classes/ExtensionManager.php:172
+#: src/Classes/ExtensionManager.php:180
 msgid "Decide whether to approve newly registered users or not. You can also block and unblock users at any time."
 msgstr ""
 
-#: src/Classes/ExtensionManager.php:179
+#: src/Classes/ExtensionManager.php:187
 msgid "Let users easily register/login to your site using their social network accounts (Facebook, Twitter, Google, LinkedIn, Yahoo, Microsoft, Amazon, GitHub, WordPress.com, VK)."
 msgstr ""
 
-#: src/Classes/ExtensionManager.php:186
+#: src/Classes/ExtensionManager.php:194
 msgid "Let users log in to your website via a one-time URL sent to their email addresses."
 msgstr ""
 
-#: src/Classes/ExtensionManager.php:190
+#: src/Classes/ExtensionManager.php:198
 msgid "Google reCAPTCHA"
 msgstr ""
 
-#: src/Classes/ExtensionManager.php:193
+#: src/Classes/ExtensionManager.php:201
 msgid "Protect your forms against spam and bot attacks."
 msgstr ""
 
-#: src/Classes/ExtensionManager.php:200
+#: src/Classes/ExtensionManager.php:208
 msgid "Protect forms from bot submissions and automated attacks by verifying that form submissions come from real human users rather than malicious scripts or bots."
 msgstr ""
 
-#: src/Classes/ExtensionManager.php:207
+#: src/Classes/ExtensionManager.php:215
 msgid "Let guest and visitors view limited number of restricted content."
 msgstr ""
 
-#: src/Classes/ExtensionManager.php:211
+#: src/Classes/ExtensionManager.php:219
 msgid "Site Creation"
 msgstr ""
 
-#: src/Classes/ExtensionManager.php:213
+#: src/Classes/ExtensionManager.php:221
 msgid "Allow users to create new sites on a multisite network via a registration form powered by ProfilePress."
 msgstr ""
 
-#: src/Classes/ExtensionManager.php:216
+#: src/Classes/ExtensionManager.php:224
 msgid "This is not a multisite installation"
 msgstr ""
 
-#: src/Classes/ExtensionManager.php:220
+#: src/Classes/ExtensionManager.php:228
 msgid "Invite Codes"
 msgstr ""
 
-#: src/Classes/ExtensionManager.php:222
+#: src/Classes/ExtensionManager.php:230
 msgid "Restrict WordPress registration to only users with invite codes."
 msgstr ""
 
-#: src/Classes/ExtensionManager.php:227
+#: src/Classes/ExtensionManager.php:235
 msgid "Auto-Renewal Checkbox"
 msgstr ""
 
-#: src/Classes/ExtensionManager.php:229
+#: src/Classes/ExtensionManager.php:237
 msgid "Allow members to decide whether to enable automatic recurring payments at specified intervals for their plan subscription during checkout."
 msgstr ""
 
-#: src/Classes/ExtensionManager.php:237
+#: src/Classes/ExtensionManager.php:245
 msgid "Subscribe members to your Mailchimp audiences when they register or subscribe to a membership plan. It can also automatically sync membership and profile changes with Mailchimp."
 msgstr ""
 
-#: src/Classes/ExtensionManager.php:244
+#: src/Classes/ExtensionManager.php:252
 msgid "Subscribe members to your Campaign Monitor lists when they register or subscribe to a membership plan. It can also automatically sync membership and profile changes with Campaign Monitor."
 msgstr ""
 
-#: src/Classes/ExtensionManager.php:251
+#: src/Classes/ExtensionManager.php:259
 msgid "Subscribe members to your MailerLite groups when they register or subscribe to a membership plan. It can also automatically sync membership and profile changes with MailerLite."
 msgstr ""
 
-#: src/Classes/ExtensionManager.php:258
+#: src/Classes/ExtensionManager.php:266
 msgid "Subscribe members to your Brevo lists when they register or subscribe to a membership plan. It can also automatically sync membership and profile changes with Brevo."
 msgstr ""
 
-#: src/Classes/ExtensionManager.php:265
+#: src/Classes/ExtensionManager.php:273
 msgid "Create WooCommerce membership sites, members-only discounts and stores, manage WooCommerce billing and shipping fields, replaces WooCommerce login and edit account forms in checkout and \"My Account\" pages with that of ProfilePress."
 msgstr ""
 
-#: src/Classes/ExtensionManager.php:268
+#: src/Classes/ExtensionManager.php:276
 msgid "WooCommerce is not active"
 msgstr ""
 
-#: src/Classes/ExtensionManager.php:275
+#: src/Classes/ExtensionManager.php:283
 msgid "Sell access to Tutor LMS courses, and enroll users after registration to specific courses."
 msgstr ""
 
-#: src/Classes/ExtensionManager.php:278
+#: src/Classes/ExtensionManager.php:286
 msgid "Tutor LMS is not active"
 msgstr ""
 
-#: src/Classes/ExtensionManager.php:285
+#: src/Classes/ExtensionManager.php:293
 msgid "Sell access to Academy LMS courses, and enroll users after registration to specific courses."
 msgstr ""
 
-#: src/Classes/ExtensionManager.php:288
+#: src/Classes/ExtensionManager.php:296
 msgid "Academy LMS is not active"
 msgstr ""
 
-#: src/Classes/ExtensionManager.php:295
+#: src/Classes/ExtensionManager.php:303
 msgid "Sell access to LearnDash courses and groups, enroll users after registration to specific courses and groups, and let users view their enrolled courses from the My Account page."
 msgstr ""
 
-#: src/Classes/ExtensionManager.php:298
+#: src/Classes/ExtensionManager.php:306
 msgid "LearnDash is not active"
 msgstr ""
 
-#: src/Classes/ExtensionManager.php:305
+#: src/Classes/ExtensionManager.php:313
 msgid "Sell access to LifterLMS courses and memberships, enroll users after registration to specific courses and memberships, and let users view their enrolled courses from the My Account page."
 msgstr ""
 
-#: src/Classes/ExtensionManager.php:308
+#: src/Classes/ExtensionManager.php:316
 msgid "LifterLMS is not active"
 msgstr ""
 
-#: src/Classes/ExtensionManager.php:315
+#: src/Classes/ExtensionManager.php:323
 msgid "Sell access to Sensei courses and groups, and enroll users after registration to specific courses."
 msgstr ""
 
-#: src/Classes/ExtensionManager.php:318
+#: src/Classes/ExtensionManager.php:326
 msgid "Sensei LMS is not active"
 msgstr ""
 
-#: src/Classes/ExtensionManager.php:325
+#: src/Classes/ExtensionManager.php:333
 msgid "Sell access to MasterStudy LMS courses, and enroll users after registration to specific courses."
 msgstr ""
 
-#: src/Classes/ExtensionManager.php:328
+#: src/Classes/ExtensionManager.php:336
 msgid "MasterStudy LMS is not active"
 msgstr ""
 
-#: src/Classes/ExtensionManager.php:335
+#: src/Classes/ExtensionManager.php:343
 msgid "Sell access to FluentCommunity spaces and courses, and enroll users in specific courses and spaces after registration."
 msgstr ""
 
-#: src/Classes/ExtensionManager.php:338
+#: src/Classes/ExtensionManager.php:346
 msgid "FluentCommunity is not active"
 msgstr ""
 
-#: src/Classes/ExtensionManager.php:344
+#: src/Classes/ExtensionManager.php:352
 msgid "Integrate ProfilePress with AffiliateWP plugin so you to create an affiliate program for your membership website."
 msgstr ""
 
-#: src/Classes/ExtensionManager.php:347
+#: src/Classes/ExtensionManager.php:355
 msgid "AffiliateWP is not active"
 msgstr ""
 
-#: src/Classes/ExtensionManager.php:353
+#: src/Classes/ExtensionManager.php:361
 msgid "Integrate ProfilePress with SliceWP affiliate plugin so you to start an affiliate program for your membership website."
 msgstr ""
 
-#: src/Classes/ExtensionManager.php:356
+#: src/Classes/ExtensionManager.php:364
 msgid "SliceWP is not active"
 msgstr ""
 
-#: src/Classes/ExtensionManager.php:362
+#: src/Classes/ExtensionManager.php:370
 msgid "Sell access to groups, let users select groups to join during registration and sync WordPress profile fields with BuddyPress/BuddyBoss extended profile."
 msgstr ""
 
-#: src/Classes/ExtensionManager.php:365
+#: src/Classes/ExtensionManager.php:373
 msgid "BuddyPress/BuddyBoss plugin is not active"
 msgstr ""
 
-#: src/Classes/ExtensionManager.php:372
+#: src/Classes/ExtensionManager.php:380
 msgid "Block spam and bot user registrations with Akismet and keep your membership site safe and secured."
 msgstr ""
 
-#: src/Classes/ExtensionManager.php:378
+#: src/Classes/ExtensionManager.php:386
 msgid "It allows you to build multilingual login, registration, password reset and edit profile forms."
 msgstr ""
 
-#: src/Classes/ExtensionManager.php:381
+#: src/Classes/ExtensionManager.php:389
 msgid "Polylang plugin is not active"
 msgstr ""
 
@@ -16073,20 +16095,20 @@ msgstr ""
 msgid "Zambian kwacha"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:887
+#: src/Functions/MSFunctions.php:888
 msgid "Unable to create customer. Please try again"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:914
+#: src/Functions/MSFunctions.php:915
 #, php-format
 msgid "Customer already has an active subscription for %s."
 msgstr ""
 
-#: src/Functions/MSFunctions.php:941
+#: src/Functions/MSFunctions.php:942
 msgid "Unable to add new order. Please try again"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:969
+#: src/Functions/MSFunctions.php:970
 msgid "Unable to add new subscription. Please try again"
 msgstr ""
 
@@ -16248,7 +16270,7 @@ msgstr ""
 
 #: src/Membership/Controllers/CheckoutController.php:150
 #: src/Membership/Controllers/CheckoutController.php:201
-#: src/Membership/Controllers/CheckoutController.php:480
+#: src/Membership/Controllers/CheckoutController.php:478
 msgid "Please enter a plan ID."
 msgstr ""
 
@@ -16894,11 +16916,11 @@ msgstr ""
 msgid "Subscription is scheduled for cancellation on %s"
 msgstr ""
 
-#: src/Membership/PaymentMethods/Stripe/WebhookHandlers/CustomerSubscriptionUpdated.php:71
+#: src/Membership/PaymentMethods/Stripe/WebhookHandlers/CustomerSubscriptionUpdated.php:70
 msgid "Stripe payment failed (payment is past due)"
 msgstr ""
 
-#: src/Membership/PaymentMethods/Stripe/WebhookHandlers/CustomerSubscriptionUpdated.php:94
+#: src/Membership/PaymentMethods/Stripe/WebhookHandlers/CustomerSubscriptionUpdated.php:92
 #, php-format
 msgid "Recurring amount changed from %s to %s in Stripe."
 msgstr ""

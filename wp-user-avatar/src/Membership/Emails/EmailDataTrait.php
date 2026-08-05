@@ -182,6 +182,19 @@ trait EmailDataTrait
         return ob_get_clean();
     }
 
+    public function get_subscription_payment_failed_content()
+    {
+        ob_start();
+        ?>
+        <p>Hi {{first_name}},</p>
+        <p>The payment to renew the subscription for {{plan_name}} failed or is unpaid. Please update your payment method or subscribe again to keep your membership active.</p>
+        <div style="margin:30px 0 0;padding: 10px 0 50px 0; text-align: center;">
+            <a style="background: #555555; color: #fff; padding: 12px 30px; text-decoration: none; border-radius: 3px; letter-spacing: 0.3px;" href="{{subscription_url}}">Manage Subscription</a>
+        </div>
+        <?php
+        return ob_get_clean();
+    }
+
     public function get_subscription_renewal_reminder_content($expiration = false)
     {
         ob_start();

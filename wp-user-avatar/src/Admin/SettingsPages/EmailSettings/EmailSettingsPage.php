@@ -190,7 +190,7 @@ class EmailSettingsPage
                 'title'        => esc_html__('Renewal Order Receipt', 'wp-user-avatar'),
                 'subject'      => sprintf(esc_html__('Subscription Renewal Receipt', 'wp-user-avatar'), $site_title),
                 'message'      => $this->get_order_receipt_content(true),
-                'description'  => esc_html__('Email sent to customer whenever a renewal order occurs.', 'wp-user-avatar'),
+                'description'  => esc_html__('Email sent to customers whenever a renewal order occurs.', 'wp-user-avatar'),
                 'recipient'    => esc_html__('Customers', 'wp-user-avatar'),
                 'placeholders' => $this->get_order_placeholders()
             ],
@@ -210,7 +210,7 @@ class EmailSettingsPage
                 'title'        => esc_html__('Subscription Cancelled Notification', 'wp-user-avatar'),
                 'subject'      => sprintf(esc_html__('Your subscription has been cancelled.', 'wp-user-avatar'), $site_title),
                 'message'      => $this->get_subscription_cancelled_content(),
-                'description'  => esc_html__('Email sent to customer whenever their subscription is cancelled.', 'wp-user-avatar'),
+                'description'  => esc_html__('Email sent to customers whenever their subscription is cancelled.', 'wp-user-avatar'),
                 'recipient'    => esc_html__('Customers', 'wp-user-avatar'),
                 'placeholders' => $this->get_subscription_placeholders()
             ],
@@ -220,7 +220,17 @@ class EmailSettingsPage
                 'title'        => esc_html__('Subscription Expired Notification', 'wp-user-avatar'),
                 'subject'      => sprintf(esc_html__('Your subscription has expired.', 'wp-user-avatar'), $site_title),
                 'message'      => $this->get_subscription_expired_content(),
-                'description'  => esc_html__('Email sent to customer whenever their subscription expires.', 'wp-user-avatar'),
+                'description'  => esc_html__('Email sent to customers whenever their subscription expires.', 'wp-user-avatar'),
+                'recipient'    => esc_html__('Customers', 'wp-user-avatar'),
+                'placeholders' => $this->get_subscription_placeholders()
+            ],
+            [
+                'type'         => self::SUBSCRIPTION_EMAIL_TYPE,
+                'key'          => 'subscription_payment_failed_notification',
+                'title'        => esc_html__('Subscription Payment Failed Notification', 'wp-user-avatar'),
+                'subject'      => sprintf(esc_html__('Your subscription payment failed.', 'wp-user-avatar'), $site_title),
+                'message'      => $this->get_subscription_payment_failed_content(),
+                'description'  => esc_html__('Email sent to customers whenever a recurring payment that should renew their subscription fails or goes unpaid.', 'wp-user-avatar'),
                 'recipient'    => esc_html__('Customers', 'wp-user-avatar'),
                 'placeholders' => $this->get_subscription_placeholders()
             ],
@@ -230,7 +240,7 @@ class EmailSettingsPage
                 'title'        => esc_html__('Subscription Completed Notification', 'wp-user-avatar'),
                 'subject'      => sprintf(esc_html__('Your subscription is now complete.', 'wp-user-avatar'), $site_title),
                 'message'      => $this->get_subscription_completed_content(),
-                'description'  => esc_html__('Email sent to customer whenever they complete their subscription payments.', 'wp-user-avatar'),
+                'description'  => esc_html__('Email sent to customers whenever they complete their subscription payments.', 'wp-user-avatar'),
                 'recipient'    => esc_html__('Customers', 'wp-user-avatar'),
                 'placeholders' => $this->get_subscription_placeholders()
             ],
@@ -240,7 +250,7 @@ class EmailSettingsPage
                 'title'         => esc_html__('Upcoming Renewal Reminder', 'wp-user-avatar'),
                 'subject'       => sprintf(esc_html__('Your subscription is renewing soon.', 'wp-user-avatar'), $site_title),
                 'message'       => $this->get_subscription_renewal_reminder_content(),
-                'description'   => esc_html__('Email sent to customer to remind them that their subscription is approaching its renewal.', 'wp-user-avatar'),
+                'description'   => esc_html__('Email sent to customers to remind them that their subscription is approaching its renewal.', 'wp-user-avatar'),
                 'recipient'     => esc_html__('Customers', 'wp-user-avatar'),
                 'placeholders'  => $this->get_subscription_placeholders(),
                 'reminder_days' => '1'
@@ -251,7 +261,7 @@ class EmailSettingsPage
                 'title'         => esc_html__('Upcoming Expiration Reminder', 'wp-user-avatar'),
                 'subject'       => sprintf(esc_html__('Your subscription is expiring soon.', 'wp-user-avatar'), $site_title),
                 'message'       => $this->get_subscription_renewal_reminder_content(true),
-                'description'   => esc_html__('Email sent to customer to remind them that their subscription is approaching its expiration.', 'wp-user-avatar'),
+                'description'   => esc_html__('Email sent to customers to remind them that their subscription is approaching its expiration.', 'wp-user-avatar'),
                 'recipient'     => esc_html__('Customers', 'wp-user-avatar'),
                 'placeholders'  => $this->get_subscription_placeholders(),
                 'reminder_days' => '1'
@@ -262,7 +272,7 @@ class EmailSettingsPage
                 'title'         => esc_html__('After Subscription Expired Notification', 'wp-user-avatar'),
                 'subject'       => sprintf(esc_html__('Your subscription has expired.', 'wp-user-avatar'), $site_title),
                 'message'       => $this->get_subscription_expired_content(),
-                'description'   => esc_html__('Email sent to customer few days after their subscription expires.', 'wp-user-avatar'),
+                'description'   => esc_html__('Email sent to customers few days after their subscription expires.', 'wp-user-avatar'),
                 'recipient'     => esc_html__('Customers', 'wp-user-avatar'),
                 'placeholders'  => $this->get_subscription_placeholders(),
                 'reminder_days' => '2'

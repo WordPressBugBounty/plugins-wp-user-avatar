@@ -45,6 +45,11 @@ export default function () {
             $(document.body).trigger('ppress_update_checkout');
         });
 
+        // Update on pay what you want price change
+        $(document.body).on('change', '#ppress_mb_checkout_form #pwyw_price', function () {
+            $(document.body).trigger('ppress_update_checkout');
+        });
+
         // Update group selection change
         $(document.body).on('change', '#ppress_mb_checkout_form [name=group_selector]', function () {
             _this.update_checkout();

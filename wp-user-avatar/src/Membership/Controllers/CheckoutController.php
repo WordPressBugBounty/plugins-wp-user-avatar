@@ -475,10 +475,7 @@ class CheckoutController extends BaseController
         try {
 
             if (empty($_POST['plan_id'])) {
-
-                throw new \Exception(
-                    esc_html__('Please enter a plan ID.', 'wp-user-avatar')
-                );
+                throw new \Exception(esc_html__('Please enter a plan ID.', 'wp-user-avatar'));
             }
 
             global $cart_vars;
@@ -568,6 +565,8 @@ class CheckoutController extends BaseController
                     '.ppress-checkout-submit'               => $checkout_submit_btn
                 ];
             }
+
+            do_action('ppress_update_order_review_actions', $post_data, $planObj, $cart_vars);
 
             wp_send_json_success(
                 apply_filters('ppress_update_order_review_response', [

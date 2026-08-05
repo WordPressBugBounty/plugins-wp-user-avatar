@@ -681,6 +681,14 @@ class SubscriptionEntity extends AbstractModel implements ModelInterface
     }
 
     /**
+     * @return void
+     */
+    public function payment_failed()
+    {
+        do_action('ppress_subscription_payment_failed', $this);
+    }
+
+    /**
      * @param $change_expiry_date
      * @param int $expiration_date timestamp in UTC
      *

@@ -44,6 +44,7 @@ class ExtensionManager
     const SLICEWP = 'slicewp';
     const AFFILIATEWP = 'affiliatewp';
     const AUTORENEWAL_CHECKBOX = 'autorenewal_checkbox';
+    const PAY_WHAT_YOU_WANT = 'pay_what_you_want';
 
     public static function is_premium()
     {
@@ -87,6 +88,7 @@ class ExtensionManager
             self::LIFTERLMS                     => 'ProfilePress\Libsodium\LifterLMS',
             self::INVITATION_CODES              => 'ProfilePress\Libsodium\InvitationCodes\Init',
             self::FIXED_SUBSCRIPTION_EXPIRATION => 'ProfilePress\Libsodium\FixedSubscriptionExpiration',
+            self::PAY_WHAT_YOU_WANT             => 'ProfilePress\Libsodium\PayWhatYouWant',
             self::SLICEWP                       => 'ProfilePress\Libsodium\SliceWP\Init',
             self::AFFILIATEWP                   => 'ProfilePress\Libsodium\AffiliateWP\Init',
             self::AUTORENEWAL_CHECKBOX          => 'ProfilePress\Libsodium\AutoRenewalCheckbox\Init',
@@ -136,6 +138,12 @@ class ExtensionManager
                 'url'         => 'https://profilepress.com/addons/fixed-subscription-expiration/?utm_source=liteplugin&utm_medium=extension-page&utm_campaign=learn-more',
                 'description' => esc_html__('Set specific expiration dates for non-recurring membership plans.', 'wp-user-avatar'),
                 'icon'        => '<span class="dashicons dashicons-clock"></span>'
+            ],
+            self::PAY_WHAT_YOU_WANT => [
+                'title'       => esc_html__('Pay What You Want', 'wp-user-avatar'),
+                'url'         => 'https://profilepress.com/addons/pay-what-you-want/?utm_source=liteplugin&utm_medium=extension-page&utm_campaign=learn-more',
+                'description' => esc_html__('Let customers pay what they want for your products and memberships by offering a variable pricing option during checkout.', 'wp-user-avatar'),
+                'icon'        => '<svg viewBox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><path d="m0 8c0-13.3 10.7-24 24-24h45.3c27.1 0 50.3 19.4 55.1 46l.4 2h187.2v102.1l-31-31c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l72 72c9.4 9.4 24.6 9.4 33.9 0l72-72c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-31 31v-102.1h177.4c20 0 35.1 18.2 31.4 37.9l-31.1 165.9c-5.7 30.3-32.1 52.2-62.9 52.2h-303.6l5.1 28.3c2.1 11.4 12 19.7 23.6 19.7h256c13.3 0 24 10.7 24 24s-10.7 24-24 24h-255.9c-34.8 0-64.6-24.9-70.8-59.1l-52.1-286.3c-.7-3.8-4-6.6-7.9-6.6h-45.3c-13.3 0-24-10.7-24-24zm160 456a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm224 0a48 48 0 1 1 96 0 48 48 0 1 1 -96 0z"/></svg>'
             ],
             self::RECEIPT                       => [
                 'title'       => esc_html__('Receipt', 'wp-user-avatar'),

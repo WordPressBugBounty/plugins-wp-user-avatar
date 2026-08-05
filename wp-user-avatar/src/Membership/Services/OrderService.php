@@ -249,11 +249,13 @@ class OrderService
 
         $args = wp_parse_args($args, $defaults);
 
+        $planObj = ppress_get_plan(absint($args['plan_id']));
+
+        do_action('ppress_before_checkout_order_calculation', $args, $planObj);
+
         $tax_rate = $args['tax_rate'];
 
         $coupon_code = ! empty($args['coupon_code']) ? $args['coupon_code'] : '';
-
-        $planObj = ppress_get_plan(absint($args['plan_id']));
 
         $change_plan_sub_id = intval($args['change_plan_sub_id']);
 
@@ -375,7 +377,7 @@ class OrderService
         $cart->recurring_tax      = $recurring_tax_amount;
         $cart->expiration_date    = SubscriptionService::init()->get_plan_expiration_datetime($planObj->id);
 
-        return $cart;
+        return apply_filters('ppress_checkout_cart_entity_vars', $cart, $args);
     }
 
     public function get_customer_orders_url($customer_id, $order_status = false)

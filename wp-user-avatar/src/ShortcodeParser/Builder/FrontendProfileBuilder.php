@@ -291,16 +291,16 @@ class FrontendProfileBuilder
 
             switch ($atts['format']) {
                 case 'first_last_names':
-                    $display_name = self::$user_data->first_name . ' ' . self::$user_data->last_name;
+                    $display_name = strip_shortcodes(self::$user_data->first_name) . ' ' . strip_shortcodes(self::$user_data->last_name);
                     break;
                 case 'last_first_names':
-                    $display_name = self::$user_data->last_name . ' ' . self::$user_data->first_name;
+                    $display_name = strip_shortcodes(self::$user_data->last_name) . ' ' . strip_shortcodes(self::$user_data->first_name);
                     break;
                 case 'first_name_initial_l':
-                    $display_name = self::$user_data->first_name . ' ' . self::$user_data->last_name[0];
+                    $display_name = strip_shortcodes(self::$user_data->first_name) . ' ' . strip_shortcodes(self::$user_data->last_name[0]);
                     break;
                 case 'f_initial_last_name':
-                    $display_name = self::$user_data->first_name[0] . ' ' . self::$user_data->last_name;
+                    $display_name = strip_shortcodes(self::$user_data->first_name[0]) . ' ' . strip_shortcodes(self::$user_data->last_name);
                     break;
             }
         }

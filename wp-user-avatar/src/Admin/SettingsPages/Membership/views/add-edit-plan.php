@@ -32,7 +32,7 @@ $user_roles = $append + (function () {
         return $core_roles;
     })();
 
-$plan_details = [
+$plan_details = apply_filters('ppress_admin_membership_plan_details', [
     [
         'id'    => 'name',
         'type'  => 'text',
@@ -63,7 +63,7 @@ $plan_details = [
         'label'       => esc_html__('Price', 'wp-user-avatar') . sprintf(' (%s)', ppress_get_currency_symbol()),
         'description' => esc_html__('The price of this membership plan. Enter 0.00 to make this plan free.', 'wp-user-avatar')
     ]
-];
+]);
 
 $subscription_settings = apply_filters('ppress_admin_membership_plan_subscription_settings', [
     [

@@ -1,5 +1,12 @@
 ﻿== Changelog ==
 
+= 4.17.0 =
+* Premium: Added [Pay What You Want addon](https://profilepress.com/addons/pay-what-you-want/?ref=changelog).
+* Added Subscription Payment Failed email notification.
+* Fixed Stripe bug where email change caused checkout failure.
+* Fixed fatal error when price has a currency symbol or thousands separator on admin order creation.
+* Fixed security issue of shortcode execution on first and last name profile fields.
+
 = 4.16.19 =
 * Add optional order creation to the Add New Customer screen.
 * Fixed bug where suppressed email still went out.
