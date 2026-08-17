@@ -2,6 +2,8 @@
 
 namespace ProfilePress\Core\Themes\DragDrop;
 
+use ProfilePress\Core\Classes\PROFILEPRESS_sql;
+use ProfilePress\Core\Membership\CheckoutFields;
 use WP_User;
 use WP_User_Query;
 
@@ -362,11 +364,19 @@ trait MemberDirectoryTrait
 
                 foreach ($parsed_args['search_meta_fields'] as $search_meta_field) {
 
-                    $args['meta_query'][0][] = [
-                        'key'     => $search_meta_field,
-                        'value'   => $search_term,
-                        'compare' => 'LIKE'
-                    ];
+                    $clause = ['key' => $search_meta_field, 'value' => $search_term, 'compare' => 'LIKE'];
+
+                    // country fields store the country code, so match the searched name against the codes it resolves to.
+                    if ($search_meta_field == CheckoutFields::BILLING_COUNTRY || PROFILEPRESS_sql::get_field_type($search_meta_field) == 'country') {
+
+                        $codes = array_keys(array_filter(ppress_array_of_world_countries(), function ($title) use ($search_term) {
+                            return stripos($title, $search_term) !== false;
+                        }));
+
+                        if ( ! empty($codes)) $clause = ['key' => $search_meta_field, 'value' => $codes, 'compare' => 'IN'];
+                    }
+
+                    $args['meta_query'][0][] = $clause;
                 }
             }
         }

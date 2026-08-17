@@ -337,6 +337,11 @@ class PaymentHelpers
         return in_array($currency, $currencies, true);
     }
 
+    /**
+     * @param $price
+     * @param $currency
+     * @return string
+     */
     public static function process_amount($price, $currency = '')
     {
         if ( ! self::is_zero_decimal_currency($currency)) {

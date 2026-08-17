@@ -338,7 +338,7 @@ class EditUserProfile
             } elseif (is_array($value)) {
                 $escaped_post_data[$key] = array_map('sanitize_text_field', $value);
             } else {
-                $escaped_post_data[$key] = sanitize_textarea_field($value);
+                $escaped_post_data[$key] = ppress_strip_shortcodes_clean($value);
             }
         }
 

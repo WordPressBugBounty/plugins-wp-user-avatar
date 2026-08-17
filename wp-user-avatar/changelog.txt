@@ -1,5 +1,11 @@
 ﻿== Changelog ==
 
+= 4.17.1 =
+* Fixed security issue with shortcode execution on frontend profile data.
+* Fixed bug with searching users by country name on member directory.
+* Fixed bug where expiry emails were sent to customers who have resubscribed.
+* Fix invisible checked state on form builder field settings checkboxes.
+
 = 4.17.0 =
 * Premium: Added [Pay What You Want addon](https://profilepress.com/addons/pay-what-you-want/?ref=changelog).
 * Added Subscription Payment Failed email notification.

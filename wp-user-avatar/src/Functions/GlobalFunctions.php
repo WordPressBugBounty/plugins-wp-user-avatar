@@ -1703,16 +1703,36 @@ function ppress_clean($var, $callback = 'sanitize_textarea_field')
 }
 
 /**
- * Stripe shortcode tag and sanitize data
+ * Strip shortcode tags until the value stops changing.
+ *
+ * strip_shortcodes() makes a single non-recursive pass, so a nested tag such as
+ * "[profile-[profile-email]email]" comes out of it as a working shortcode.
  *
  * @param $var
- * @param $callback
  *
- * @return void
+ * @return mixed
+ */
+function ppress_strip_shortcodes($var)
+{
+    return ppress_clean($var, function ($value) {
+        while ($value !== ($stripped = strip_shortcodes($value))) {
+            $value = $stripped;
+        }
+
+        return $value;
+    });
+}
+
+/**
+ * Strip shortcode tag and sanitize data
+ *
+ * @param $var
+ *
+ * @return mixed
  */
 function ppress_strip_shortcodes_clean($var)
 {
-    return ppress_clean(ppress_clean($var), 'strip_shortcodes');
+    return ppress_strip_shortcodes(ppress_clean($var));
 }
 
 /**

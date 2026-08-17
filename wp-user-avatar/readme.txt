@@ -4,8 +4,8 @@ Donate link: https://profilepress.com/pricing/
 Tags: membership, ecommerce, user registration, user profile, memberships
 Requires at least: 6.0
 Requires PHP: 7.4
-Tested up to: 7.0
-Stable tag: 4.17.0
+Tested up to: 7.1
+Stable tag: 4.17.1
 License: GPLv2 or later
 
 Setup paid membership, accept payment, sell subscription & digital product, paywall, create login & registration form, user profile & member directory
@@ -195,6 +195,12 @@ Any file type can be sold using ProfilePress ecommerce and membership plugin, in
 11. Content Protection
 
 == Changelog ==
+
+= 4.17.1 =
+* Fixed security issue with shortcode execution on frontend profile data.
+* Fixed bug with searching users by country name on member directory.
+* Fixed bug where expiry emails were sent to customers who have resubscribed.
+* Fix invisible checked state on form builder field settings checkboxes.
 
 = 4.17.0 =
 * Premium: Added [Pay What You Want addon](https://profilepress.com/addons/pay-what-you-want/?ref=changelog).

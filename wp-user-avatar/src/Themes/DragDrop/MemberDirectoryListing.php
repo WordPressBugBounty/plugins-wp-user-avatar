@@ -122,7 +122,7 @@ class MemberDirectoryListing
                 if ($raw_field_type == 'profile-bio') {
                     $bio = get_user_meta($this->user_id, 'description', true);
 
-                    $parsed_shortcode = apply_filters('ppress_md_profile_bio', strip_shortcodes($bio), $this->user_id);
+                    $parsed_shortcode = apply_filters('ppress_md_profile_bio', ppress_strip_shortcodes($bio), $this->user_id);
                 }
 
                 if ($raw_field_type == 'profile-website') {

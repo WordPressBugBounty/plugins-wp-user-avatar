@@ -85,6 +85,9 @@ function ppress_is_any_active_coupon()
     return absint($wpdb->get_var("SELECT COUNT(id) FROM $table WHERE status = 'true'")) > 0;
 }
 
+/**
+ * @return string
+ */
 function ppress_get_currency()
 {
     return apply_filters('ppress_currency', ppress_settings_by_key('payment_currency', 'USD', true));
