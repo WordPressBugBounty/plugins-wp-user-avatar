@@ -12,6 +12,7 @@ return array(
     'ProfilePressVendor\\Symfony\\Component\\Translation\\' => array($vendorDir . '/symfony/translation'),
     'ProfilePressVendor\\Symfony\\Component\\CssSelector\\' => array($vendorDir . '/symfony/css-selector'),
     'ProfilePressVendor\\Stripe\\' => array($vendorDir . '/stripe/stripe-php/lib'),
+    'ProfilePressVendor\\Safe\\' => array($vendorDir . '/thecodingmachine/safe/lib', $vendorDir . '/thecodingmachine/safe/deprecated', $vendorDir . '/thecodingmachine/safe/generated'),
     'ProfilePressVendor\\Sabberworm\\CSS\\' => array($vendorDir . '/sabberworm/php-css-parser/src'),
     'ProfilePressVendor\\Psr\\Clock\\' => array($vendorDir . '/psr/clock/src'),
     'ProfilePressVendor\\ProfilePress\\Core\\' => array($baseDir . '/src'),

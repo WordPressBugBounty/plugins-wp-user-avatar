@@ -5,7 +5,7 @@ Tags: membership, ecommerce, user registration, user profile, memberships
 Requires at least: 6.0
 Requires PHP: 7.4
 Tested up to: 7.1
-Stable tag: 4.17.1
+Stable tag: 4.17.2
 License: GPLv2 or later
 
 Setup paid membership, accept payment, sell subscription & digital product, paywall, create login & registration form, user profile & member directory
@@ -195,6 +195,10 @@ Any file type can be sold using ProfilePress ecommerce and membership plugin, in
 11. Content Protection
 
 == Changelog ==
+
+= 4.17.2 =
+* Improved security of license upgrader.
+* Upgraded internal PHP dependencies.
 
 = 4.17.1 =
 * Fixed security issue with shortcode execution on frontend profile data.

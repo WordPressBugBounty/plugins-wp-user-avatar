@@ -8,50 +8,55 @@ namespace ProfilePressVendor\Pelago\Emogrifier\Utilities;
  * selectors, or declarations block are the same as those from the preceding block and combining blocks in such cases.
  *
  * Example:
- *  $concatenator = new CssConcatenator();
- *  $concatenator->append(['body'], 'color: blue;');
- *  $concatenator->append(['body'], 'font-size: 16px;');
- *  $concatenator->append(['p'], 'margin: 1em 0;');
- *  $concatenator->append(['ul', 'ol'], 'margin: 1em 0;');
- *  $concatenator->append(['body'], 'font-size: 14px;', '@media screen and (max-width: 400px)');
- *  $concatenator->append(['ul', 'ol'], 'margin: 0.75em 0;', '@media screen and (max-width: 400px)');
- *  $css = $concatenator->getCss();
+ *
+ * ```php
+ * $concatenator = new CssConcatenator();
+ * $concatenator->append(['body'], 'color: blue;');
+ * $concatenator->append(['body'], 'font-size: 16px;');
+ * $concatenator->append(['p'], 'margin: 1em 0;');
+ * $concatenator->append(['ul', 'ol'], 'margin: 1em 0;');
+ * $concatenator->append(['body'], 'font-size: 14px;', '@media screen and (max-width: 400px)');
+ * $concatenator->append(['ul', 'ol'], 'margin: 0.75em 0;', '@media screen and (max-width: 400px)');
+ * $css = $concatenator->getCss();
+ * ```
  *
  * `$css` (if unminified) would contain the following CSS:
- * ` body {
- * `   color: blue;
- * `   font-size: 16px;
- * ` }
- * ` p, ul, ol {
- * `   margin: 1em 0;
- * ` }
- * ` @media screen and (max-width: 400px) {
- * `   body {
- * `     font-size: 14px;
- * `   }
- * `   ul, ol {
- * `     margin: 0.75em 0;
- * `   }
- * ` }
+ *
+ * ```css
+ * body {
+ *   color: blue;
+ *   font-size: 16px;
+ * }
+ * p, ul, ol {
+ *   margin: 1em 0;
+ * }
+ *
+ * @media screen and (max-width: 400px) {
+ *   body {
+ *     font-size: 14px;
+ *   }
+ *   ul, ol {
+ *     margin: 0.75em 0;
+ *   }
+ * }
+ * ```
  *
  * @internal
  */
-class CssConcatenator
+final class CssConcatenator
 {
     /**
      * Array of media rules in order.  Each element is an object with the following properties:
-     * - string `media` - The media query string, e.g. "@media screen and (max-width:639px)", or an empty string for
+     * - `media` - The media query string, e.g. `@media screen and (max-width:639px)`, or an empty string for
      *   rules not within a media query block;
-     * - object[] `ruleBlocks` - Array of rule blocks in order, where each element is an object with the following
-     *   properties:
-     *   - mixed[] `selectorsAsKeys` - Array whose keys are selectors for the rule block (values are of no
-     *     significance);
-     *   - string `declarationsBlock` - The property declarations, e.g. "margin-top: 0.5em; padding: 0".
+     * - `ruleBlocks` - Array of rule blocks in order, where each element is an object with the following properties:
+     *   - `selectorsAsKeys` - Array whose keys are selectors for the rule block (values are of no significance);
+     *   - `declarationsBlock` - The property declarations, e.g. `margin-top: 0.5em; padding: 0`.
      *
-     * @var array<int, object{
+     * @var list<object{
      *   media: string,
-     *   ruleBlocks: array<int, object{
-     *     selectorsAsKeys: array<string, array-key>,
+     *   ruleBlocks: list<object{
+     *     selectorsAsKeys: array<non-empty-string, array-key>,
      *     declarationsBlock: string
      *   }>
      * }>
@@ -61,11 +66,11 @@ class CssConcatenator
      * Appends a declaration block to the CSS.
      *
      * @param array<array-key, string> $selectors
-     *        array of selectors for the rule, e.g. ["ul", "ol", "p:first-child"]
+     *        array of selectors for the rule, e.g. `["ul", "ol", "p:first-child"]`
      * @param string $declarationsBlock
-     *        the property declarations, e.g. "margin-top: 0.5em; padding: 0"
+     *        the property declarations, e.g. `margin-top: 0.5em; padding: 0`
      * @param string $media
-     *        the media query for the rule, e.g. "@media screen and (max-width:639px)", or an empty string if none
+     *        the media query for the rule, e.g. `@media screen and (max-width:639px)`, or an empty string if none
      */
     public function append(array $selectors, string $declarationsBlock, string $media = ''): void
     {
@@ -87,21 +92,18 @@ class CssConcatenator
             }
         }
     }
-    /**
-     * @return string
-     */
     public function getCss(): string
     {
         return \implode('', \array_map([self::class, 'getMediaRuleCss'], $this->mediaRules));
     }
     /**
-     * @param string $media The media query for rules to be appended, e.g. "@media screen and (max-width:639px)",
+     * @param string $media The media query for rules to be appended, e.g. `@media screen and (max-width:639px)`,
      *        or an empty string if none.
      *
      * @return object{
      *           media: string,
-     *           ruleBlocks: array<int, object{
-     *             selectorsAsKeys: array<string, array-key>,
+     *           ruleBlocks: list<object{
+     *             selectorsAsKeys: array<non-empty-string, array-key>,
      *             declarationsBlock: string
      *           }>
      *         }
@@ -122,8 +124,6 @@ class CssConcatenator
      * @param array<string, array-key> $selectorsAsKeys1
      *        array in which the selectors are the keys, and the values are of no significance
      * @param array<string, array-key> $selectorsAsKeys2 another such array
-     *
-     * @return bool
      */
     private static function hasEquivalentSelectors(array $selectorsAsKeys1, array $selectorsAsKeys2): bool
     {
@@ -137,8 +137,6 @@ class CssConcatenator
      *            declarationsBlock: string
      *          }>
      *        } $mediaRule
-     *
-     * @return string CSS for the media rule.
      */
     private static function getMediaRuleCss(object $mediaRule): string
     {
@@ -152,8 +150,6 @@ class CssConcatenator
     }
     /**
      * @param object{selectorsAsKeys: array<string, array-key>, declarationsBlock: string} $ruleBlock
-     *
-     * @return string CSS for the rule block.
      */
     private static function getRuleBlockCss(object $ruleBlock): string
     {

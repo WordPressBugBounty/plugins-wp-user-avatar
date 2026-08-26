@@ -1,8 +1,10 @@
 <?php
 
+declare (strict_types=1);
 namespace ProfilePressVendor\Sabberworm\CSS\Value;
 
 use ProfilePressVendor\Sabberworm\CSS\OutputFormat;
+use ProfilePressVendor\Sabberworm\CSS\ShortClassNameProvider;
 /**
  * A `ValueList` represents a lists of `Value`s, separated by some separation character
  * (mostly `,`, whitespace, or `/`).
@@ -11,90 +13,91 @@ use ProfilePressVendor\Sabberworm\CSS\OutputFormat;
  */
 abstract class ValueList extends Value
 {
+    use ShortClassNameProvider;
     /**
-     * @var array<int, RuleValueList|CSSFunction|CSSString|LineName|Size|URL|string>
+     * @var array<Value|string>
      *
      * @internal since 8.8.0
      */
-    protected $aComponents;
+    protected $components;
     /**
-     * @var string
+     * @var non-empty-string
      *
      * @internal since 8.8.0
      */
-    protected $sSeparator;
+    protected $separator;
     /**
-     * phpcs:ignore Generic.Files.LineLength
-     * @param array<int, RuleValueList|CSSFunction|CSSString|LineName|Size|URL|string>|RuleValueList|CSSFunction|CSSString|LineName|Size|URL|string $aComponents
-     * @param string $sSeparator
-     * @param int $iLineNo
+     * @param array<Value|string>|Value|string $components
+     * @param non-empty-string $separator
+     * @param int<1, max>|null $lineNumber
      */
-    public function __construct($aComponents = [], $sSeparator = ',', $iLineNo = 0)
+    public function __construct($components = [], $separator = ',', ?int $lineNumber = null)
     {
-        parent::__construct($iLineNo);
-        if (!is_array($aComponents)) {
-            $aComponents = [$aComponents];
+        parent::__construct($lineNumber);
+        if (!\is_array($components)) {
+            $components = [$components];
         }
-        $this->aComponents = $aComponents;
-        $this->sSeparator = $sSeparator;
+        $this->components = $components;
+        $this->separator = $separator;
     }
     /**
-     * @param RuleValueList|CSSFunction|CSSString|LineName|Size|URL|string $mComponent
+     * @param Value|string $component
+     */
+    public function addListComponent($component): void
+    {
+        $this->components[] = $component;
+    }
+    /**
+     * @return array<Value|string>
+     */
+    public function getListComponents(): array
+    {
+        return $this->components;
+    }
+    /**
+     * @param array<Value|string> $components
+     */
+    public function setListComponents(array $components): void
+    {
+        $this->components = $components;
+    }
+    /**
+     * @return non-empty-string
+     */
+    public function getListSeparator(): string
+    {
+        return $this->separator;
+    }
+    /**
+     * @param non-empty-string $separator
+     */
+    public function setListSeparator(string $separator): void
+    {
+        $this->separator = $separator;
+    }
+    public function render(OutputFormat $outputFormat): string
+    {
+        $formatter = $outputFormat->getFormatter();
+        return $formatter->implode($formatter->spaceBeforeListArgumentSeparator($this->separator) . $this->separator . $formatter->spaceAfterListArgumentSeparator($this->separator), $this->components);
+    }
+    /**
+     * @return array<string, bool|int|float|string|array<mixed>|null>
      *
-     * @return void
+     * @internal
      */
-    public function addListComponent($mComponent)
+    public function getArrayRepresentation(): array
     {
-        $this->aComponents[] = $mComponent;
-    }
-    /**
-     * @return array<int, RuleValueList|CSSFunction|CSSString|LineName|Size|URL|string>
-     */
-    public function getListComponents()
-    {
-        return $this->aComponents;
-    }
-    /**
-     * @param array<int, RuleValueList|CSSFunction|CSSString|LineName|Size|URL|string> $aComponents
-     *
-     * @return void
-     */
-    public function setListComponents(array $aComponents)
-    {
-        $this->aComponents = $aComponents;
-    }
-    /**
-     * @return string
-     */
-    public function getListSeparator()
-    {
-        return $this->sSeparator;
-    }
-    /**
-     * @param string $sSeparator
-     *
-     * @return void
-     */
-    public function setListSeparator($sSeparator)
-    {
-        $this->sSeparator = $sSeparator;
-    }
-    /**
-     * @return string
-     *
-     * @deprecated in V8.8.0, will be removed in V9.0.0. Use `render` instead.
-     */
-    public function __toString()
-    {
-        return $this->render(new OutputFormat());
-    }
-    /**
-     * @param OutputFormat|null $oOutputFormat
-     *
-     * @return string
-     */
-    public function render($oOutputFormat)
-    {
-        return $oOutputFormat->implode($oOutputFormat->spaceBeforeListArgumentSeparator($this->sSeparator) . $this->sSeparator . $oOutputFormat->spaceAfterListArgumentSeparator($this->sSeparator), $this->aComponents);
+        return ['class' => $this->getShortClassName(), 'components' => \array_map(
+            /**
+             * @parm Value|string $component
+             */
+            function ($component): array {
+                if (\is_string($component)) {
+                    return ['class' => 'string', 'value' => $component];
+                }
+                return $component->getArrayRepresentation();
+            },
+            $this->components
+        ), 'separator' => $this->separator];
     }
 }

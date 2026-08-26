@@ -1,23 +1,15 @@
 <?php
 
+declare (strict_types=1);
 namespace ProfilePressVendor\Sabberworm\CSS;
 
 interface Renderable
 {
+    public function render(OutputFormat $outputFormat): string;
     /**
-     * @return string
+     * @return array<string, bool|int|float|string|array<mixed>|null>
      *
-     * @deprecated in V8.8.0, will be removed in V9.0.0. Use `render` instead.
+     * @internal
      */
-    public function __toString();
-    /**
-     * @param OutputFormat|null $oOutputFormat
-     *
-     * @return string
-     */
-    public function render($oOutputFormat);
-    /**
-     * @return int
-     */
-    public function getLineNo();
+    public function getArrayRepresentation(): array;
 }

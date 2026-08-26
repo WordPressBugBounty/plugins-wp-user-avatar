@@ -3,39 +3,46 @@
 declare (strict_types=1);
 namespace ProfilePressVendor\Pelago\Emogrifier\HtmlProcessor;
 
+use ProfilePressVendor\Pelago\Emogrifier\Utilities\DeclarationBlockParser;
+use function ProfilePressVendor\Safe\preg_match;
+use function ProfilePressVendor\Safe\preg_replace;
+use function ProfilePressVendor\Safe\preg_split;
 /**
  * This HtmlProcessor can convert style HTML attributes to the corresponding other visual HTML attributes,
  * e.g. it converts style="width: 100px" to width="100".
  *
  * It will only add attributes, but leaves the style attribute untouched.
  *
- * To trigger the conversion, call the convertCssToVisualAttributes method.
+ * To trigger the conversion, call the `convertCssToVisualAttributes` method.
  */
-class CssToAttributeConverter extends AbstractHtmlProcessor
+final class CssToAttributeConverter extends AbstractHtmlProcessor
 {
     /**
      * This multi-level array contains simple mappings of CSS properties to
      * HTML attributes. If a mapping only applies to certain HTML nodes or
-     * only for certain values, the mapping is an object with a whitelist
+     * only for certain values, the mapping is an object with an allowlist
      * of nodes and values.
      *
-     * @var array<string, array{attribute: string, nodes?: array<int, string>, values?: array<int, string>}>
+     * @var array<
+     *        non-empty-string,
+     *        array{
+     *          attribute: non-empty-string,
+     *          nodes?: list<non-empty-string>,
+     *          values?: list<non-empty-string>
+     *        }
+     *      >
      */
     private $cssToHtmlMap = ['background-color' => ['attribute' => 'bgcolor'], 'text-align' => ['attribute' => 'align', 'nodes' => ['p', 'div', 'td', 'th'], 'values' => ['left', 'right', 'center', 'justify']], 'float' => ['attribute' => 'align', 'nodes' => ['table', 'img'], 'values' => ['left', 'right']], 'border-spacing' => ['attribute' => 'cellspacing', 'nodes' => ['table']]];
     /**
-     * @var array<string, array<string, string>>
-     */
-    private static $parsedCssCache = [];
-    /**
      * Maps the CSS from the style nodes to visual HTML attributes.
      *
-     * @return self fluent interface
+     * @return $this
      */
     public function convertCssToVisualAttributes(): self
     {
-        /** @var \DOMElement $node */
+        $declarationBlockParser = new DeclarationBlockParser();
         foreach ($this->getAllNodesWithStyleAttribute() as $node) {
-            $inlineStyleDeclarations = $this->parseCssDeclarationsBlock($node->getAttribute('style'));
+            $inlineStyleDeclarations = $declarationBlockParser->parse($node->getAttribute('style'));
             $this->mapCssToHtmlAttributes($inlineStyleDeclarations, $node);
         }
         return $this;
@@ -43,58 +50,22 @@ class CssToAttributeConverter extends AbstractHtmlProcessor
     /**
      * Returns a list with all DOM nodes that have a style attribute.
      *
-     * @return \DOMNodeList
+     * @return \DOMNodeList<\DOMElement>
      */
     private function getAllNodesWithStyleAttribute(): \DOMNodeList
     {
-        return $this->getXPath()->query('//*[@style]');
+        $result = $this->getXPath()->query('//*[@style]');
+        \assert($result instanceof \DOMNodeList);
+        /** @var \DOMNodeList<\DOMElement> $result */
+        return $result;
     }
     /**
-     * Parses a CSS declaration block into property name/value pairs.
+     * Applies `$styles` to `$node`.
      *
-     * Example:
+     * This method maps CSS styles to HTML attributes and adds those to the node.
      *
-     * The declaration block
-     *
-     *   "color: #000; font-weight: bold;"
-     *
-     * will be parsed into the following array:
-     *
-     *   "color" => "#000"
-     *   "font-weight" => "bold"
-     *
-     * @param string $cssDeclarationsBlock the CSS declarations block without the curly braces, may be empty
-     *
-     * @return array<string, string>
-     *         the CSS declarations with the property names as array keys and the property values as array values
-     */
-    private function parseCssDeclarationsBlock(string $cssDeclarationsBlock): array
-    {
-        if (isset(self::$parsedCssCache[$cssDeclarationsBlock])) {
-            return self::$parsedCssCache[$cssDeclarationsBlock];
-        }
-        $properties = [];
-        foreach (\preg_split('/;(?!base64|charset)/', $cssDeclarationsBlock) as $declaration) {
-            /** @var array<int, string> $matches */
-            $matches = [];
-            if (!\preg_match('/^([A-Za-z\-]+)\s*:\s*(.+)$/s', \trim($declaration), $matches)) {
-                continue;
-            }
-            $propertyName = \strtolower($matches[1]);
-            $propertyValue = $matches[2];
-            $properties[$propertyName] = $propertyValue;
-        }
-        self::$parsedCssCache[$cssDeclarationsBlock] = $properties;
-        return $properties;
-    }
-    /**
-     * Applies $styles to $node.
-     *
-     * This method maps CSS styles to HTML attributes and adds those to the
-     * node.
-     *
-     * @param array<string, string> $styles the new CSS styles taken from the global styles to be applied to this node
-     * @param \DOMElement $node node to apply styles to
+     * @param array<non-empty-string, string> $styles
+     *        the new CSS styles taken from the global styles to be applied to this node
      */
     private function mapCssToHtmlAttributes(array $styles, \DOMElement $node): void
     {
@@ -105,13 +76,11 @@ class CssToAttributeConverter extends AbstractHtmlProcessor
         }
     }
     /**
-     * Tries to apply the CSS style to $node as an attribute.
+     * Tries to apply the CSS style to `$node` as an attribute.
      *
      * This method maps a CSS rule to HTML attributes and adds those to the node.
      *
-     * @param string $property the name of the CSS property to map
-     * @param string $value the value of the style rule to map
-     * @param \DOMElement $node node to apply styles to
+     * @param non-empty-string $property
      */
     private function mapCssToHtmlAttribute(string $property, string $value, \DOMElement $node): void
     {
@@ -122,11 +91,9 @@ class CssToAttributeConverter extends AbstractHtmlProcessor
     /**
      * Looks up the CSS property in the mapping table and maps it if it matches the conditions.
      *
-     * @param string $property the name of the CSS property to map
-     * @param string $value the value of the style rule to map
-     * @param \DOMElement $node node to apply styles to
+     * @param non-empty-string $property
      *
-     * @return bool true if the property can be mapped using the simple mapping table
+     * @return bool whether the property can be mapped using the simple mapping table
      */
     private function mapSimpleCssProperty(string $property, string $value, \DOMElement $node): bool
     {
@@ -145,9 +112,7 @@ class CssToAttributeConverter extends AbstractHtmlProcessor
     /**
      * Maps CSS properties that need special transformation to an HTML attribute.
      *
-     * @param string $property the name of the CSS property to map
-     * @param string $value the value of the style rule to map
-     * @param \DOMElement $node node to apply styles to
+     * @param non-empty-string $property
      */
     private function mapComplexCssProperty(string $property, string $value, \DOMElement $node): void
     {
@@ -188,15 +153,15 @@ class CssToAttributeConverter extends AbstractHtmlProcessor
     /**
      * @param \DOMElement $node node to apply styles to
      * @param string $value the value of the style rule to map
-     * @param string $property the name of the CSS property to map
+     * @param non-empty-string $property the name of the CSS property to map
      */
     private function mapWidthOrHeightProperty(\DOMElement $node, string $value, string $property): void
     {
         // only parse values in px and %, but not values like "auto"
-        if (!\preg_match('/^(\d+)(\.(\d+))?(px|%)$/', $value)) {
+        if (preg_match('/^(\d+)(\.(\d+))?(px|%)$/', $value) === 0) {
             return;
         }
-        $number = \preg_replace('/[^0-9.%]/', '', $value);
+        $number = preg_replace('/[^0-9.%]/', '', $value);
         $node->setAttribute($property, $number);
     }
     /**
@@ -226,11 +191,6 @@ class CssToAttributeConverter extends AbstractHtmlProcessor
             $node->setAttribute('border', '0');
         }
     }
-    /**
-     * @param \DOMElement $node
-     *
-     * @return bool
-     */
     private function isTableOrImageNode(\DOMElement $node): bool
     {
         return $node->nodeName === 'table' || $node->nodeName === 'img';
@@ -241,13 +201,12 @@ class CssToAttributeConverter extends AbstractHtmlProcessor
      *
      * @param string $value a CSS property value with 1, 2, 3 or 4 sizes
      *
-     * @return array<string, string>
-     *         an array of values for top, right, bottom and left (using these as associative array keys)
+     * @return array{top: string, right: string, bottom: string, left: string}
      */
     private function parseCssShorthandValue(string $value): array
     {
-        /** @var array<int, string> $values */
-        $values = \preg_split('/\s+/', $value);
+        $values = preg_split('/\s+/', $value);
+        /** @var list<string> $values */
         $css = [];
         $css['top'] = $values[0];
         $css['right'] = \count($values) > 1 ? $values[1] : $css['top'];

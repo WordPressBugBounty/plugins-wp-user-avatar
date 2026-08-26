@@ -1,5 +1,9 @@
 ﻿== Changelog ==
 
+= 4.17.2 =
+* Improved security of license upgrader.
+* Upgraded internal PHP dependencies.
+
 = 4.17.1 =
 * Fixed security issue with shortcode execution on frontend profile data.
 * Fixed bug with searching users by country name on member directory.

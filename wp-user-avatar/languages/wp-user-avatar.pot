@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the ProfilePress plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: ProfilePress 4.17.1\n"
+"Project-Id-Version: ProfilePress 4.17.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-user-avatar\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-08-17T19:01:06+00:00\n"
+"POT-Creation-Date: 2026-08-26T10:03:21+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: wp-user-avatar\n"
@@ -524,7 +524,7 @@ msgid "Extra Fields"
 msgstr ""
 
 #: src/Admin/SettingsPages/DragDropBuilder/DragDropBuilder.php:1250
-#: src/Admin/SettingsPages/LicenseUpgrader.php:176
+#: src/Admin/SettingsPages/LicenseUpgrader.php:182
 #: src/Admin/SettingsPages/Membership/CheckoutFieldsManager.php:101
 #: src/Classes/ExtensionManager.php:156
 #: src/Functions/GlobalFunctions.php:1515
@@ -600,7 +600,7 @@ msgid "Edit Profile Settings"
 msgstr ""
 
 #: src/Admin/SettingsPages/DragDropBuilder/DragDropBuilder.php:1465
-#: src/Admin/SettingsPages/LicenseUpgrader.php:200
+#: src/Admin/SettingsPages/LicenseUpgrader.php:206
 #: src/Classes/ExtensionManager.php:191
 msgid "Passwordless Login"
 msgstr ""
@@ -2080,9 +2080,9 @@ msgid "Addon installed."
 msgstr ""
 
 #: src/Admin/SettingsPages/FuseWP.php:137
-#: src/Admin/SettingsPages/LicenseUpgrader.php:366
-#: src/Admin/SettingsPages/LicenseUpgrader.php:375
-#: src/Admin/SettingsPages/LicenseUpgrader.php:422
+#: src/Admin/SettingsPages/LicenseUpgrader.php:405
+#: src/Admin/SettingsPages/LicenseUpgrader.php:414
+#: src/Admin/SettingsPages/LicenseUpgrader.php:461
 #: src/Admin/SettingsPages/MailOptin.php:141
 msgid "Plugin installed & activated."
 msgstr ""
@@ -2797,110 +2797,118 @@ msgstr ""
 msgid "ID"
 msgstr ""
 
-#: src/Admin/SettingsPages/LicenseUpgrader.php:22
-#: src/Admin/SettingsPages/LicenseUpgrader.php:36
-#: src/Admin/SettingsPages/LicenseUpgrader.php:54
+#: src/Admin/SettingsPages/LicenseUpgrader.php:28
+#: src/Admin/SettingsPages/LicenseUpgrader.php:42
+#: src/Admin/SettingsPages/LicenseUpgrader.php:60
 msgid "License"
 msgstr ""
 
-#: src/Admin/SettingsPages/LicenseUpgrader.php:84
+#: src/Admin/SettingsPages/LicenseUpgrader.php:90
 msgid "You're using ProfilePress Lite - no license needed. Enjoy! 😊"
 msgstr ""
 
 #. translators: %1$s Opening anchor tag, do not translate. %2$s Closing anchor tag, do not translate.
-#: src/Admin/SettingsPages/LicenseUpgrader.php:96
+#: src/Admin/SettingsPages/LicenseUpgrader.php:102
 #, php-format
 msgid "Already purchased? Simply %1$sretrieve your license key%2$s and enter it below to connect with ProfilePress Pro."
 msgstr ""
 
-#: src/Admin/SettingsPages/LicenseUpgrader.php:123
+#: src/Admin/SettingsPages/LicenseUpgrader.php:129
 msgid "Connecting..."
 msgstr ""
 
-#: src/Admin/SettingsPages/LicenseUpgrader.php:124
-#: src/Admin/SettingsPages/LicenseUpgrader.php:126
+#: src/Admin/SettingsPages/LicenseUpgrader.php:130
+#: src/Admin/SettingsPages/LicenseUpgrader.php:132
 msgid "Unlock Pro Features Now"
 msgstr ""
 
-#: src/Admin/SettingsPages/LicenseUpgrader.php:139
+#: src/Admin/SettingsPages/LicenseUpgrader.php:145
 msgid "Unlock Powerful Pro Features"
 msgstr ""
 
-#: src/Admin/SettingsPages/LicenseUpgrader.php:145
+#: src/Admin/SettingsPages/LicenseUpgrader.php:151
 msgid "No extra 2% Stripe fee"
 msgstr ""
 
-#: src/Admin/SettingsPages/LicenseUpgrader.php:150
+#: src/Admin/SettingsPages/LicenseUpgrader.php:156
 msgid "Collect PayPal payments"
 msgstr ""
 
-#: src/Admin/SettingsPages/LicenseUpgrader.php:156
+#: src/Admin/SettingsPages/LicenseUpgrader.php:162
 msgid "Mollie & Razorpay gateways"
 msgstr ""
 
-#: src/Admin/SettingsPages/LicenseUpgrader.php:161
+#: src/Admin/SettingsPages/LicenseUpgrader.php:167
 msgid "Premium form & profile themes"
 msgstr ""
 
-#: src/Admin/SettingsPages/LicenseUpgrader.php:165
+#: src/Admin/SettingsPages/LicenseUpgrader.php:171
 msgid "Premium directory themes"
 msgstr ""
 
-#: src/Admin/SettingsPages/LicenseUpgrader.php:170
+#: src/Admin/SettingsPages/LicenseUpgrader.php:176
 msgid "Advanced shortcode builder"
 msgstr ""
 
-#: src/Admin/SettingsPages/LicenseUpgrader.php:182
+#: src/Admin/SettingsPages/LicenseUpgrader.php:188
 #: src/Classes/ExtensionManager.php:184
 msgid "Social Login"
 msgstr ""
 
-#: src/Admin/SettingsPages/LicenseUpgrader.php:188
+#: src/Admin/SettingsPages/LicenseUpgrader.php:194
 #: src/Classes/ExtensionManager.php:212
 msgid "Metered Paywall"
 msgstr ""
 
-#: src/Admin/SettingsPages/LicenseUpgrader.php:194
+#: src/Admin/SettingsPages/LicenseUpgrader.php:200
 #: src/Classes/ExtensionManager.php:177
 msgid "User Moderation"
 msgstr ""
 
-#: src/Admin/SettingsPages/LicenseUpgrader.php:206
+#: src/Admin/SettingsPages/LicenseUpgrader.php:212
 msgid "And more addons"
 msgstr ""
 
-#: src/Admin/SettingsPages/LicenseUpgrader.php:212
+#: src/Admin/SettingsPages/LicenseUpgrader.php:218
 msgid "Upgrade to ProfilePress Pro"
 msgstr ""
 
 #. translators: %1$s Opening anchor tag, do not translate. %2$s Closing anchor tag, do not translate.
-#: src/Admin/SettingsPages/LicenseUpgrader.php:225
+#: src/Admin/SettingsPages/LicenseUpgrader.php:231
 #, php-format
 msgid "<strong>Bonus</strong>: Loyal ProfilePress Lite users get <u>10%% off</u> regular price, automatically applied at checkout. %1$sUpgrade to Pro →%2$s"
 msgstr ""
 
-#: src/Admin/SettingsPages/LicenseUpgrader.php:270
+#: src/Admin/SettingsPages/LicenseUpgrader.php:276
 msgid "You are not allowed to install plugins."
 msgstr ""
 
-#: src/Admin/SettingsPages/LicenseUpgrader.php:276
+#: src/Admin/SettingsPages/LicenseUpgrader.php:282
 msgid "Please enter your license key to connect."
 msgstr ""
 
-#: src/Admin/SettingsPages/LicenseUpgrader.php:280
+#: src/Admin/SettingsPages/LicenseUpgrader.php:286
 msgid "Only the Lite version can be upgraded."
 msgstr ""
 
-#: src/Admin/SettingsPages/LicenseUpgrader.php:290
+#: src/Admin/SettingsPages/LicenseUpgrader.php:296
 msgid "You already have ProfilePress Pro installed! Activating it now"
 msgstr ""
 
+#: src/Admin/SettingsPages/LicenseUpgrader.php:305
+msgid "No sources of randomness found on the server."
+msgstr ""
+
 #. translators: %1$s Opening anchor tag, do not translate. %2$s Closing anchor tag, do not translate.
-#: src/Admin/SettingsPages/LicenseUpgrader.php:325
+#: src/Admin/SettingsPages/LicenseUpgrader.php:340
 msgid "Oops! We could not automatically install an upgrade. Please download the plugin from profilepress.com and install it manually."
 msgstr ""
 
-#: src/Admin/SettingsPages/LicenseUpgrader.php:404
+#: src/Admin/SettingsPages/LicenseUpgrader.php:391
+msgid "The connection token has expired. Please try again."
+msgstr ""
+
+#: src/Admin/SettingsPages/LicenseUpgrader.php:443
 msgid "You are not licensed."
 msgstr ""
 
