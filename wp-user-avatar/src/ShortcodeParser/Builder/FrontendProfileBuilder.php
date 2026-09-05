@@ -265,7 +265,7 @@ class FrontendProfileBuilder
      */
     public function profile_website()
     {
-        return apply_filters('ppress_profile_website', self::$user_data->user_url, self::$user_data);
+        return apply_filters('ppress_profile_website', esc_url(self::$user_data->user_url), self::$user_data);
     }
 
     /**
@@ -336,7 +336,11 @@ class FrontendProfileBuilder
      */
     public function profile_bio()
     {
-        return apply_filters('ppress_profile_bio', make_clickable(wpautop(wp_kses_post(html_entity_decode(ppress_strip_shortcodes(self::$user_data->description))))), self::$user_data);
+        return apply_filters(
+                'ppress_profile_bio',
+                make_clickable(wpautop(wp_kses_post(ppress_strip_shortcodes(html_entity_decode(self::$user_data->description))))),
+                self::$user_data
+        );
     }
 
     /**
@@ -382,7 +386,13 @@ class FrontendProfileBuilder
             $data = esc_attr($atts['default']);
         }
 
-        return apply_filters('ppress_profile_cpf', ppress_strip_shortcodes($data), self::$user_data);
+        $data = ppress_strip_shortcodes($data);
+
+        if (is_string($data)) {
+            $data = in_array($key, array_keys(ppress_social_network_fields()), true) ? esc_url($data) : esc_html($data);
+        }
+
+        return apply_filters('ppress_profile_cpf', $data, self::$user_data);
     }
 
     public static function get_user_uploaded_file($user_id, $field_key, $is_raw = false)
@@ -473,12 +483,14 @@ class FrontendProfileBuilder
     public function get_comment_count()
     {
         global $wpdb;
-        $userId = self::$user_data->ID;
+        $userId = absint(self::$user_data->ID);
 
-        $count = $wpdb->get_var('
-             SELECT COUNT(comment_ID)
-             FROM ' . $wpdb->comments . '
-             WHERE user_id = "' . $userId . '" AND comment_type = "" AND comment_approved = 1');
+        $count = $wpdb->get_var(
+            $wpdb->prepare(
+                "SELECT COUNT(comment_ID) FROM {$wpdb->comments} WHERE user_id = %d AND comment_type = '' AND comment_approved = '1'",
+                $userId
+            )
+        );
 
         return apply_filters('ppress_profile_comment_count', $count, self::$user_data);
     }

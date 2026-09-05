@@ -39,6 +39,6 @@
         ]
     },
     "require-dev": {
-        "sniccowp\/php-scoper-wordpress-excludes": "^6.0"
+        "sniccowp\/php-scoper-wordpress-excludes": "^7.0"
     }
 }

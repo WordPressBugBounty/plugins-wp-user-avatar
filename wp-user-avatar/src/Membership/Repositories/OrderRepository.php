@@ -268,7 +268,13 @@ class OrderRepository extends BaseRepository
         $user_table     = $this->wpdb()->users;
         $customer_table = Base::customers_db_table();
 
-        $date_compare = ! empty($args['date_compare']) ? esc_sql($args['date_compare']) : '=';
+        $allowed_columns = [
+            'id', 'order_key', 'plan_id', 'customer_id', 'subscription_id', 'order_type', 'transaction_id',
+            'payment_method', 'status', 'coupon_code', 'subtotal', 'tax', 'discount', 'total', 'mode',
+            'currency', 'ip_address', 'date_created', 'date_completed'
+        ];
+
+        $date_compare = in_array($args['date_compare'], ['=', '!=', '<', '<=', '>', '>='], true) ? $args['date_compare'] : '=';
 
         $replacement = [1];
         $sql         .= " WHERE 1=%d"; // fixes Notice: wpdb::prepare was called incorrectly. The query argument of wpdb::prepare() must have a placeholder
@@ -346,7 +352,7 @@ class OrderRepository extends BaseRepository
 
         $start_date  = $args['start_date'];
         $end_date    = $args['end_date'];
-        $date_column = esc_sql($args['date_column']);
+        $date_column = in_array($args['date_column'], ['date_created', 'date_completed'], true) ? $args['date_column'] : 'date_created';
 
         if ( ! empty($start_date)) {
             $sql           .= " AND $date_column >= %s";
@@ -393,7 +399,10 @@ class OrderRepository extends BaseRepository
             }
         }
 
-        $sql .= sprintf(" ORDER BY %s %s", esc_sql($args['orderby']), esc_sql($args['order']));
+        $orderby = in_array($args['orderby'], $allowed_columns, true) ? $args['orderby'] : 'id';
+        $order   = strtoupper((string)$args['order']) === 'ASC' ? 'ASC' : 'DESC';
+
+        $sql .= sprintf(" ORDER BY %s %s", $orderby, $order);
 
         if ($count === false) {
             if ($limit > 0) {

@@ -311,6 +311,8 @@ class AjaxHandler
 
     function profile_fields_sortable_func()
     {
+        check_ajax_referer('ppress-admin-nonce', 'csrf');
+
         if (current_user_can('manage_options')) {
             global $wpdb;
 
@@ -382,6 +384,8 @@ class AjaxHandler
 
     function pp_contact_info_sortable_func()
     {
+        check_ajax_referer('ppress-admin-nonce', 'csrf');
+
         if (current_user_can('manage_options')) {
 
             $posted_data = array_map('sanitize_text_field', $_POST['data']);

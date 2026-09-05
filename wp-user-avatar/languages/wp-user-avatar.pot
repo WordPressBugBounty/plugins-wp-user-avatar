@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-08-26T10:03:21+00:00\n"
+"POT-Creation-Date: 2026-09-05T15:50:10+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: wp-user-avatar\n"
@@ -426,7 +426,7 @@ msgstr ""
 #: src/Admin/SettingsPages/DragDropBuilder/Metabox.php:165
 #: src/Admin/SettingsPages/DragDropBuilder/Metabox.php:232
 #: src/Admin/SettingsPages/GeneralSettings.php:450
-#: src/Admin/SettingsPages/Membership/CheckoutFieldsManager.php:90
+#: src/Admin/SettingsPages/Membership/CheckoutFieldsManager.php:92
 #: src/Admin/SettingsPages/Membership/PlanIntegrationsMetabox.php:178
 #: src/Functions/GlobalFunctions.php:1455
 #: src/Functions/GlobalFunctions.php:1487
@@ -513,7 +513,7 @@ msgid "Copy Shortcode"
 msgstr ""
 
 #: src/Admin/SettingsPages/DragDropBuilder/DragDropBuilder.php:1247
-#: src/Admin/SettingsPages/Membership/CheckoutFieldsManager.php:93
+#: src/Admin/SettingsPages/Membership/CheckoutFieldsManager.php:95
 #: src/Functions/GlobalFunctions.php:1512
 #: src/Themes/DragDrop/AbstractMemberDirectoryTheme.php:222
 msgid "Standard Fields"
@@ -525,7 +525,7 @@ msgstr ""
 
 #: src/Admin/SettingsPages/DragDropBuilder/DragDropBuilder.php:1250
 #: src/Admin/SettingsPages/LicenseUpgrader.php:182
-#: src/Admin/SettingsPages/Membership/CheckoutFieldsManager.php:101
+#: src/Admin/SettingsPages/Membership/CheckoutFieldsManager.php:103
 #: src/Classes/ExtensionManager.php:156
 #: src/Functions/GlobalFunctions.php:1515
 #: src/Themes/DragDrop/AbstractMemberDirectoryTheme.php:236
@@ -547,7 +547,7 @@ msgstr ""
 #: src/Admin/SettingsPages/DragDropBuilder/DragDropBuilder.php:1313
 #: src/Admin/SettingsPages/DragDropBuilder/DragDropBuilder.php:1341
 #: src/Admin/SettingsPages/EmailSettings/CustomizerTrait.php:11
-#: src/Admin/SettingsPages/Membership/CheckoutFieldsManager.php:68
+#: src/Admin/SettingsPages/Membership/CheckoutFieldsManager.php:70
 #: src/AdminBarDashboardAccess/include.settings-page.php:54
 #: src/AdminBarDashboardAccess/include.settings-page.php:109
 #: src/Functions/custom-settings-api.php:1123
@@ -3041,7 +3041,7 @@ msgid "Checkout Fields &lsaquo; Payments"
 msgstr ""
 
 #: src/Admin/SettingsPages/Membership/CheckoutFieldsManager.php:32
-#: src/Admin/SettingsPages/Membership/CheckoutFieldsManager.php:74
+#: src/Admin/SettingsPages/Membership/CheckoutFieldsManager.php:76
 msgid "Checkout Fields"
 msgstr ""
 
@@ -5497,7 +5497,7 @@ msgstr ""
 msgid "Form with similar name exist already."
 msgstr ""
 
-#: src/Classes/AjaxHandler.php:558
+#: src/Classes/AjaxHandler.php:562
 msgid "Security validation failed. Try again"
 msgstr ""
 
@@ -5522,16 +5522,16 @@ msgstr ""
 msgid "Email addresses do not match. Please try again"
 msgstr ""
 
-#: src/Classes/EditUserProfile.php:136
-#: src/Classes/EditUserProfile.php:145
+#: src/Classes/EditUserProfile.php:137
+#: src/Classes/EditUserProfile.php:146
 msgid "Password do not match. Please try again."
 msgstr ""
 
-#: src/Classes/EditUserProfile.php:141
+#: src/Classes/EditUserProfile.php:142
 msgid "Password is empty or do not match. Please try again."
 msgstr ""
 
-#: src/Classes/EditUserProfile.php:317
+#: src/Classes/EditUserProfile.php:318
 msgid "Something unexpected happened. Please try again"
 msgstr ""
 
@@ -17129,7 +17129,7 @@ msgstr ""
 #: src/ShortcodeParser/Builder/FieldsShortcodeCallback.php:904
 #: src/ShortcodeParser/Builder/FieldsShortcodeCallback.php:967
 #: src/ShortcodeParser/Builder/FieldsShortcodeCallback.php:1019
-#: src/ShortcodeParser/Builder/FrontendProfileBuilder.php:363
+#: src/ShortcodeParser/Builder/FrontendProfileBuilder.php:367
 msgid "Field key is missing"
 msgstr ""
 
@@ -17177,7 +17177,7 @@ msgstr ""
 msgid "You have not made any comment."
 msgstr ""
 
-#: src/ShortcodeParser/Builder/FrontendProfileBuilder.php:670
+#: src/ShortcodeParser/Builder/FrontendProfileBuilder.php:682
 msgid "No post written yet."
 msgstr ""
 
@@ -17213,15 +17213,15 @@ msgstr ""
 msgid "This content is available to members only. Please <a href=\"%1$s\">login</a> or <a href=\"%2$s\">register</a> to view this area."
 msgstr ""
 
-#: src/ShortcodeParser/FrontendProfileTag.php:87
+#: src/ShortcodeParser/FrontendProfileTag.php:94
 msgid "You are not authorized to access this area."
 msgstr ""
 
-#: src/ShortcodeParser/FrontendProfileTag.php:127
+#: src/ShortcodeParser/FrontendProfileTag.php:134
 msgid "Form class not found. Please check if this user profile actually exist in ProfilePress."
 msgstr ""
 
-#: src/ShortcodeParser/FrontendProfileTag.php:192
+#: src/ShortcodeParser/FrontendProfileTag.php:199
 #: src/Themes/DragDrop/UserProfile/Dixon.php:121
 msgid "Profile"
 msgstr ""

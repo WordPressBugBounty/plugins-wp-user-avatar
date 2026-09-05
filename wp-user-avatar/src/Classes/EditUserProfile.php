@@ -129,8 +129,9 @@ class EditUserProfile
 
         if (isset($post['eup_password2'])) {
 
-            // if set to true, empty password and empty confirm password field will cause password not to be changed.
-            if (apply_filters('ppress_allow_empty_password_unchanged', false)) {
+            // if set to false, empty password or empty confirm password field will cause the form not to update the user profile.
+            // (users have to change their password for the form to update their profile)
+            if (apply_filters('ppress_allow_empty_password_unchanged', true)) {
                 if ( ! empty($post['eup_password']) && ! empty($post['eup_password2'])) {
                     if (($post['eup_password'] != $post['eup_password2'])) {
                         return esc_html__('Password do not match. Please try again.', 'wp-user-avatar');

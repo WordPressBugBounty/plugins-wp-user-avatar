@@ -338,9 +338,9 @@ trait CheckoutTrait
             'user_url'     => ppressPOST_var(CF::ACCOUNT_WEBSITE, ''),
             'nickname'     => ppress_strip_shortcodes_clean(ppressPOST_var(CF::ACCOUNT_NICKNAME, '')),
             'display_name' => ppress_strip_shortcodes_clean(ppressPOST_var(CF::ACCOUNT_DISPLAY_NAME, '')),
-            'first_name'   => ppressPOST_var(CF::ACCOUNT_FIRST_NAME, ''),
-            'last_name'    => ppressPOST_var(CF::ACCOUNT_LAST_NAME, ''),
-            'description'  => ppressPOST_var(CF::ACCOUNT_BIO, ''),
+            'first_name'   => ppress_strip_shortcodes_clean(ppressPOST_var(CF::ACCOUNT_FIRST_NAME, '')),
+            'last_name'    => ppress_strip_shortcodes_clean(ppressPOST_var(CF::ACCOUNT_LAST_NAME, '')),
+            'description'  => ppress_strip_shortcodes_clean(ppressPOST_var(CF::ACCOUNT_BIO, '')),
         ]));
 
         // get the data for use by update_meta

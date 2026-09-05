@@ -279,7 +279,7 @@ class FormProcessor
             $this->password_reset_form_error = $parsed_error;
         }
 
-        if ( ! isset($_POST['password_reset_submit']) || empty($_POST['password_reset_submit'])) return;
+        if (empty($_POST['password_reset_submit'])) return;
 
         $state_key = 'password_reset_form_error';
 

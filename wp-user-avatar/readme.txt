@@ -5,7 +5,7 @@ Tags: membership, ecommerce, user registration, user profile, memberships
 Requires at least: 6.0
 Requires PHP: 7.4
 Tested up to: 7.1
-Stable tag: 4.17.2
+Stable tag: 4.17.3
 License: GPLv2 or later
 
 Setup paid membership, accept payment, sell subscription & digital product, paywall, create login & registration form, user profile & member directory
@@ -196,6 +196,12 @@ Any file type can be sold using ProfilePress ecommerce and membership plugin, in
 
 == Changelog ==
 
+= 4.17.3 =
+* Fixed the security issue in the bio frontend user profile.
+* Scanned and fixed Fable reported security issues.
+* Fixed fatal error with emogrify.
+* Improvement: ppress_allow_empty_password_unchanged filter is true by default
+
 = 4.17.2 =
 * Improved security of license upgrader.
 * Upgraded internal PHP dependencies.
@@ -212,29 +218,5 @@ Any file type can be sold using ProfilePress ecommerce and membership plugin, in
 * Fixed Stripe bug where email change caused checkout failure.
 * Fixed fatal error when price has a currency symbol or thousands separator on admin order creation.
 * Fixed security issue of shortcode execution on first and last name profile fields.
-
-= 4.16.19 =
-* Add optional order creation to the Add New Customer screen.
-* Fixed bug where suppressed email still went out.
-* Fixed security issue where other file types (exe, msi) could be uploaded outside ProfilePress upload scope.
-* Improved support for Jetpack/wp.com SSO.
-* Enhancement: Made the Pay button text translatable.
-
-= 4.16.18 =
-* Added compatibility with Yoast URL Cleanup feature.
-* Fix security issue where non-admin user role can be passed as user role.
-
-= 4.16.17 =
-* Fixed security issue a user subscription can be canceled by another user.
-
-= 4.16.16 =
-* Pro: [Paddle addon](https://profilepress.com/addons/paddle/?ref=changelog).
-* Added password visibility icons to the password reset handler form fields
-
-= 4.16.15 =
-* Pro: [Brevo addon](https://profilepress.com/addons/brevo/?ref=changelog).
-* Pro: [Auto-Renewal Checkbox addon](https://profilepress.com/addons/auto-renewal-checkbox/?ref=changelog).
-* Added filters to the test mode notice and checkout username.
-* Added membership conditions to Elementor display rules.
 
 See the [changelog file](https://plugins.svn.wordpress.org/wp-user-avatar/trunk/changelog.txt) for full change log information.

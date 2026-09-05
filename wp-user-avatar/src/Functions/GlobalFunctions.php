@@ -1565,7 +1565,7 @@ function ppress_social_network_fields()
 {
     return apply_filters('ppress_core_contact_info_fields', [
             Base::cif_facebook  => 'Facebook',
-            Base::cif_twitter   => 'Twitter',
+            Base::cif_twitter   => 'X/Twitter',
             Base::cif_linkedin  => 'LinkedIn',
             Base::cif_vk        => 'VK',
             Base::cif_youtube   => 'YouTube',

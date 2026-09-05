@@ -1,5 +1,11 @@
 ﻿== Changelog ==
 
+= 4.17.3 =
+* Fixed the security issue in the bio frontend user profile.
+* Scanned and fixed Fable reported security issues.
+* Fixed fatal error with emogrify.
+* Improvement: ppress_allow_empty_password_unchanged filter is true by default.
+
 = 4.17.2 =
 * Improved security of license upgrader.
 * Upgraded internal PHP dependencies.
