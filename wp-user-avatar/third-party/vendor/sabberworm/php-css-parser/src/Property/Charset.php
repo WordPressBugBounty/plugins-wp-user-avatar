@@ -7,7 +7,6 @@ use ProfilePressVendor\Sabberworm\CSS\Comment\CommentContainer;
 use ProfilePressVendor\Sabberworm\CSS\OutputFormat;
 use ProfilePressVendor\Sabberworm\CSS\Position\Position;
 use ProfilePressVendor\Sabberworm\CSS\Position\Positionable;
-use ProfilePressVendor\Sabberworm\CSS\ShortClassNameProvider;
 use ProfilePressVendor\Sabberworm\CSS\Value\CSSString;
 /**
  * Class representing an `@charset` rule.
@@ -21,7 +20,6 @@ class Charset implements AtRule, Positionable
 {
     use CommentContainer;
     use Position;
-    use ShortClassNameProvider;
     /**
      * @var CSSString
      */
@@ -63,14 +61,5 @@ class Charset implements AtRule, Positionable
     public function atRuleArgs(): CSSString
     {
         return $this->charset;
-    }
-    /**
-     * @return array<string, bool|int|float|string|array<mixed>|null>
-     *
-     * @internal
-     */
-    public function getArrayRepresentation(): array
-    {
-        return ['class' => $this->getShortClassName(), 'charset' => $this->charset->getArrayRepresentation()];
     }
 }

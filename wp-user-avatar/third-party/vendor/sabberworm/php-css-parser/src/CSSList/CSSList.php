@@ -23,7 +23,6 @@ use ProfilePressVendor\Sabberworm\CSS\RuleSet\RuleSet;
 use ProfilePressVendor\Sabberworm\CSS\Value\CSSString;
 use ProfilePressVendor\Sabberworm\CSS\Value\URL;
 use ProfilePressVendor\Sabberworm\CSS\Value\Value;
-use function ProfilePressVendor\Safe\preg_match;
 /**
  * This is the most generic container available. It can contain `DeclarationBlock`s (rule sets with a selector),
  * `RuleSet`s as well as other `CSSList` objects.
@@ -61,20 +60,14 @@ abstract class CSSList implements CSSElement, CSSListItem, Positionable
         $isRoot = $list instanceof Document;
         $usesLenientParsing = $parserState->getSettings()->usesLenientParsing();
         $comments = [];
-        $parserState->consumeWhiteSpace($comments);
         while (!$parserState->isEnd()) {
+            $comments = \array_merge($comments, $parserState->consumeWhiteSpace());
             $listItem = null;
             if ($usesLenientParsing) {
                 try {
-                    $positionBeforeParse = $parserState->currentColumn();
                     $listItem = self::parseListItem($parserState, $list);
                 } catch (UnexpectedTokenException $e) {
                     $listItem = \false;
-                    // If the failed parsing did not consume anything that was to come ...
-                    if ($parserState->currentColumn() === $positionBeforeParse) {
-                        // ... the unexpected token needs to be skipped, otherwise there'll be an infinite loop.
-                        $parserState->consume(1);
-                    }
                 }
             } else {
                 $listItem = self::parseListItem($parserState, $list);
@@ -87,8 +80,7 @@ abstract class CSSList implements CSSElement, CSSListItem, Positionable
                 $listItem->addComments($comments);
                 $list->append($listItem);
             }
-            $comments = [];
-            $parserState->consumeWhiteSpace($comments);
+            $comments = $parserState->consumeWhiteSpace();
         }
         $list->addComments($comments);
         if (!$isRoot && !$usesLenientParsing) {
@@ -123,8 +115,7 @@ abstract class CSSList implements CSSElement, CSSListItem, Positionable
         } elseif ($parserState->comes('}')) {
             if ($isRoot) {
                 if ($parserState->getSettings()->usesLenientParsing()) {
-                    $parserState->consume(1);
-                    return self::parseListItem($parserState, $list);
+                    return DeclarationBlock::parse($parserState) ?? \false;
                 } else {
                     throw new SourceException('Unopened {', $parserState->currentLine());
                 }
@@ -199,7 +190,7 @@ abstract class CSSList implements CSSElement, CSSListItem, Positionable
                 }
             }
             $useRuleSet = \true;
-            foreach (AtRule::BLOCK_RULES as $blockRuleName) {
+            foreach (\explode('/', AtRule::BLOCK_RULES) as $blockRuleName) {
                 if (self::identifierIs($identifier, $blockRuleName)) {
                     $useRuleSet = \false;
                     break;
@@ -227,7 +218,7 @@ abstract class CSSList implements CSSElement, CSSListItem, Positionable
         if (\strcasecmp($identifier, $match) === 0) {
             return \true;
         }
-        return preg_match("/^(-\\w+-)?{$match}\$/i", $identifier) === 1;
+        return \preg_match("/^(-\\w+-)?{$match}\$/i", $identifier) === 1;
     }
     /**
      * Prepends an item to the list of contents.
@@ -327,7 +318,7 @@ abstract class CSSList implements CSSElement, CSSListItem, Positionable
         if (!\is_array($selectors)) {
             $selectors = \explode(',', $selectors);
         }
-        foreach ($selectors as &$selector) {
+        foreach ($selectors as $key => &$selector) {
             if (!$selector instanceof Selector) {
                 if (!Selector::isValid($selector)) {
                     throw new UnexpectedTokenException("Selector did not match '" . Selector::SELECTOR_VALIDATION_RX . "'.", $selector, 'custom');
@@ -339,7 +330,7 @@ abstract class CSSList implements CSSElement, CSSListItem, Positionable
             if (!$item instanceof DeclarationBlock) {
                 continue;
             }
-            if (self::selectorsMatch($item->getSelectors(), $selectors)) {
+            if ($item->getSelectors() == $selectors) {
                 unset($this->contents[$key]);
                 if (!$removeAll) {
                     return;
@@ -390,37 +381,5 @@ abstract class CSSList implements CSSElement, CSSListItem, Positionable
     public function getContents(): array
     {
         return $this->contents;
-    }
-    /**
-     * @return array<string, bool|int|float|string|array<mixed>|null>
-     *
-     * @internal
-     */
-    public function getArrayRepresentation(): array
-    {
-        throw new \BadMethodCallException('`getArrayRepresentation` is not yet implemented for `' . self::class . '`');
-    }
-    /**
-     * @param list<Selector> $selectors1
-     * @param list<Selector> $selectors2
-     */
-    private static function selectorsMatch(array $selectors1, array $selectors2): bool
-    {
-        $selectorStrings1 = self::getSelectorStrings($selectors1);
-        $selectorStrings2 = self::getSelectorStrings($selectors2);
-        \sort($selectorStrings1);
-        \sort($selectorStrings2);
-        return $selectorStrings1 === $selectorStrings2;
-    }
-    /**
-     * @param list<Selector> $selectors
-     *
-     * @return list<string>
-     */
-    private static function getSelectorStrings(array $selectors): array
-    {
-        return \array_map(static function (Selector $selector): string {
-            return $selector->getSelector();
-        }, $selectors);
     }
 }

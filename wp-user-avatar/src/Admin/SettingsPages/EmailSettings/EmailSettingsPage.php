@@ -503,7 +503,7 @@ class EmailSettingsPage
 
     public function handle_email_preview()
     {
-        if ( ! isset($_GET['pp_email_preview']) || empty($_GET['pp_email_preview'])) return;
+        if (empty($_GET['pp_email_preview'])) return;
 
         if ( ! current_user_can('manage_options')) return;
 

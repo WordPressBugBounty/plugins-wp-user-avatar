@@ -47,9 +47,15 @@ class FrontendController extends BaseController
                 }
             }
 
-            if (isset($_GET['change_plan'])) {
-                $sub = SubscriptionFactory::fromId(intval($_GET['change_plan']));
-                if ($sub->exists()) {
+            if (isset($_GET['change_plan']) && is_user_logged_in()) {
+                $sub      = SubscriptionFactory::fromId(intval($_GET['change_plan']));
+                $customer = CustomerFactory::fromUserId(get_current_user_id());
+                if (
+                    $sub->exists() &&
+                    $customer->exists() &&
+                    (int)$customer->id === $sub->get_customer_id() &&
+                    $sub->can_change_plan()
+                ) {
                     $_GET['plan'] = $sub->get_plan_id();
                 }
             }

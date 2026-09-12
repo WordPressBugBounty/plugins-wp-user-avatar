@@ -4,10 +4,10 @@ declare (strict_types=1);
 namespace ProfilePressVendor\Sabberworm\CSS\CSSList;
 
 use ProfilePressVendor\Sabberworm\CSS\CSSElement;
-use ProfilePressVendor\Sabberworm\CSS\Property\Declaration;
 use ProfilePressVendor\Sabberworm\CSS\Property\Selector;
+use ProfilePressVendor\Sabberworm\CSS\Rule\Rule;
 use ProfilePressVendor\Sabberworm\CSS\RuleSet\DeclarationBlock;
-use ProfilePressVendor\Sabberworm\CSS\RuleSet\DeclarationList;
+use ProfilePressVendor\Sabberworm\CSS\RuleSet\RuleContainer;
 use ProfilePressVendor\Sabberworm\CSS\RuleSet\RuleSet;
 use ProfilePressVendor\Sabberworm\CSS\Value\CSSFunction;
 use ProfilePressVendor\Sabberworm\CSS\Value\Value;
@@ -57,7 +57,7 @@ abstract class CSSBlockList extends CSSList
         return $result;
     }
     /**
-     * Returns all `Value` objects found recursively in `Declaration`s in the tree.
+     * Returns all `Value` objects found recursively in `Rule`s in the tree.
      *
      * @param CSSElement|null $element
      *        This is the `CSSList` or `RuleSet` to start the search from (defaults to the whole document).
@@ -83,11 +83,11 @@ abstract class CSSBlockList extends CSSList
                     $result = \array_merge($result, $this->getAllValues($contentItem, $ruleSearchPattern, $searchInFunctionArguments));
                 }
             }
-        } elseif ($element instanceof DeclarationList) {
+        } elseif ($element instanceof RuleContainer) {
             foreach ($element->getRules($ruleSearchPattern) as $rule) {
                 $result = \array_merge($result, $this->getAllValues($rule, $ruleSearchPattern, $searchInFunctionArguments));
             }
-        } elseif ($element instanceof Declaration) {
+        } elseif ($element instanceof Rule) {
             $value = $element->getValue();
             // `string` values are discarded.
             if ($value instanceof CSSElement) {
@@ -127,6 +127,7 @@ abstract class CSSBlockList extends CSSList
                     }
                     $targetSpecificity = (int) $targetSpecificity;
                     $selectorSpecificity = $selector->getSpecificity();
+                    $comparatorMatched = \false;
                     switch ($comparator) {
                         case '<=':
                             $comparatorMatched = $selectorSpecificity <= $targetSpecificity;

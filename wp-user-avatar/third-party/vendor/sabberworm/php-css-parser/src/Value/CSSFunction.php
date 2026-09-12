@@ -102,13 +102,4 @@ class CSSFunction extends ValueList
         $arguments = parent::render($outputFormat);
         return "{$this->name}({$arguments})";
     }
-    /**
-     * @return array<string, bool|int|float|string|array<mixed>|null>
-     *
-     * @internal
-     */
-    public function getArrayRepresentation(): array
-    {
-        return \array_merge(['class' => 'placeholder', 'name' => $this->name], parent::getArrayRepresentation());
-    }
 }

@@ -1,5 +1,12 @@
 ﻿== Changelog ==
 
+= 4.17.4 =
+* Added inline validation of email address during checkout.
+* Added LoginGuard to checkout and registration autologin.
+* Fixed security issue where subscribers could obtain a paid plan without payment via plan change.
+* Improvement: Revalidate coupons at calculation time and fixed race condition bug.
+* Fixed bug with upgrade/downgrade not working after old sub got expired.
+
 = 4.17.3 =
 * Fixed the security issue in the bio frontend user profile.
 * Scanned and fixed Fable reported security issues.

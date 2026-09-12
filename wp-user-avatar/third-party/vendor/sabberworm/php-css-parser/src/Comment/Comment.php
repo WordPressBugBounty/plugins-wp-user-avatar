@@ -4,14 +4,12 @@ declare (strict_types=1);
 namespace ProfilePressVendor\Sabberworm\CSS\Comment;
 
 use ProfilePressVendor\Sabberworm\CSS\OutputFormat;
+use ProfilePressVendor\Sabberworm\CSS\Renderable;
 use ProfilePressVendor\Sabberworm\CSS\Position\Position;
 use ProfilePressVendor\Sabberworm\CSS\Position\Positionable;
-use ProfilePressVendor\Sabberworm\CSS\Renderable;
-use ProfilePressVendor\Sabberworm\CSS\ShortClassNameProvider;
 class Comment implements Positionable, Renderable
 {
     use Position;
-    use ShortClassNameProvider;
     /**
      * @var string
      *
@@ -40,19 +38,5 @@ class Comment implements Positionable, Renderable
     public function render(OutputFormat $outputFormat): string
     {
         return '/*' . $this->commentText . '*/';
-    }
-    /**
-     * @return array<string, bool|int|float|string|array<mixed>|null>
-     *
-     * @internal
-     */
-    public function getArrayRepresentation(): array
-    {
-        return [
-            'class' => $this->getShortClassName(),
-            // "contents" is the term used in the W3C specs:
-            // https://www.w3.org/TR/CSS22/syndata.html#comments
-            'contents' => $this->commentText,
-        ];
     }
 }

@@ -3,7 +3,6 @@
 declare (strict_types=1);
 namespace ProfilePressVendor\Sabberworm\CSS\Property\Selector;
 
-use function ProfilePressVendor\Safe\preg_match_all;
 /**
  * Utility class to calculate the specificity of a CSS selector.
  *
@@ -13,6 +12,8 @@ final class SpecificityCalculator
 {
     /**
      * regexp for specificity calculations
+     *
+     * @var non-empty-string
      */
     private const NON_ID_ATTRIBUTES_AND_PSEUDO_CLASSES_RX = '/
         (\.[\w]+)                   # classes
@@ -34,6 +35,8 @@ final class SpecificityCalculator
         /ix';
     /**
      * regexp for specificity calculations
+     *
+     * @var non-empty-string
      */
     private const ELEMENTS_AND_PSEUDO_ELEMENTS_RX = '/
         ((^|[\s\+\>\~]+)[\w]+   # elements
@@ -60,8 +63,8 @@ final class SpecificityCalculator
             /// @todo should exclude \# as well as "#"
             $matches = null;
             $b = \substr_count($selector, '#');
-            $c = preg_match_all(self::NON_ID_ATTRIBUTES_AND_PSEUDO_CLASSES_RX, $selector, $matches);
-            $d = preg_match_all(self::ELEMENTS_AND_PSEUDO_ELEMENTS_RX, $selector, $matches);
+            $c = \preg_match_all(self::NON_ID_ATTRIBUTES_AND_PSEUDO_CLASSES_RX, $selector, $matches);
+            $d = \preg_match_all(self::ELEMENTS_AND_PSEUDO_ELEMENTS_RX, $selector, $matches);
             self::$cache[$selector] = $a * 1000 + $b * 100 + $c * 10 + $d;
         }
         return self::$cache[$selector];

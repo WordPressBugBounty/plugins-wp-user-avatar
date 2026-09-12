@@ -214,6 +214,10 @@ class OrderService
         $fromSub = SubscriptionFactory::fromId($from_sub_id);
         $toPlan  = ppress_get_plan($to_plan_id);
 
+        if ( ! $fromSub->exists() || ! $fromSub->is_active() || $fromSub->get_completed_order_count() < 1) {
+            return Calculator::init($toPlan->get_price())->isNegativeOrZero() ? '0' : $toPlan->get_price();
+        }
+
         $old_price = Calculator::init($fromSub->get_initial_amount())->minus($fromSub->get_initial_tax())->val();
         $new_price = $toPlan->get_price();
 
@@ -262,9 +266,15 @@ class OrderService
         $prorated_price_flag = false;
         $prorated_price      = '0';
 
+        $fromSub          = SubscriptionFactory::fromId($change_plan_sub_id);
+        $current_customer = CustomerFactory::fromUserId(get_current_user_id());
+
         if (
             $change_plan_sub_id > 0 &&
-            SubscriptionFactory::fromId($change_plan_sub_id)->exists()
+            $fromSub->exists() &&
+            $current_customer->exists() &&
+            $fromSub->get_customer_id() === (int)$current_customer->id &&
+            $fromSub->can_switch_to_plan(absint($args['plan_id']))
         ) {
             $prorated_price_flag = true;
             $prorated_price      = $this->get_pro_rated_upgrade_cost($change_plan_sub_id, absint($args['plan_id']));
@@ -286,7 +296,15 @@ class OrderService
 
         $couponObj = CouponFactory::fromCode($coupon_code);
 
-        if ($couponObj->exists()) {
+        $order_type = CheckoutSessionData::get_order_type(absint($args['plan_id']));
+        if ( ! $order_type) {
+            $order_type = OrderType::NEW_ORDER;
+        }
+
+        // Re-validate at calculation time. apply_discount() already ran is_valid(),
+        // but final checkout and order review previously trusted the staged session
+        // code whenever the coupon row still existed.
+        if ($couponObj->exists() && $couponObj->is_valid(absint($args['plan_id']), $order_type)) {
 
             $discount_amount = $couponObj->amount;
 
@@ -310,6 +328,9 @@ class OrderService
             if ($planObj->is_recurring() && $couponObj->is_recurring()) {
                 $recurring_amount = Calculator::init($recurring_amount)->minus($recurring_discount_amount)->val();
             }
+        } elseif ( ! empty($coupon_code)) {
+            ppress_session()->set(CheckoutSessionData::COUPON_CODE, null);
+            $coupon_code = '';
         }
 
         if (

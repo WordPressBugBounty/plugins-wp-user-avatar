@@ -10,8 +10,6 @@ use ProfilePressVendor\Sabberworm\CSS\Parsing\UnexpectedEOFException;
 use ProfilePressVendor\Sabberworm\CSS\Parsing\UnexpectedTokenException;
 use ProfilePressVendor\Sabberworm\CSS\Position\Position;
 use ProfilePressVendor\Sabberworm\CSS\Position\Positionable;
-use ProfilePressVendor\Sabberworm\CSS\ShortClassNameProvider;
-use function ProfilePressVendor\Safe\preg_match;
 /**
  * Abstract base class for specific classes of CSS values: `Size`, `Color`, `CSSString` and `URL`, and another
  * abstract subclass `ValueList`.
@@ -19,7 +17,6 @@ use function ProfilePressVendor\Safe\preg_match;
 abstract class Value implements CSSElement, Positionable
 {
     use Position;
-    use ShortClassNameProvider;
     /**
      * @param int<1, max>|null $lineNumber
      */
@@ -130,6 +127,7 @@ abstract class Value implements CSSElement, Positionable
      */
     public static function parsePrimitiveValue(ParserState $parserState)
     {
+        $value = null;
         $parserState->consumeWhiteSpace();
         if (\is_numeric($parserState->peek()) || $parserState->comes('-.') && \is_numeric($parserState->peek(1, 2)) || ($parserState->comes('-') || $parserState->comes('.')) && \is_numeric($parserState->peek(1, 1))) {
             $value = Size::parse($parserState);
@@ -159,15 +157,6 @@ abstract class Value implements CSSElement, Positionable
         return $value;
     }
     /**
-     * @return array<string, bool|int|float|string|array<mixed>|null>
-     *
-     * @internal
-     */
-    public function getArrayRepresentation(): array
-    {
-        return ['class' => $this->getShortClassName()];
-    }
-    /**
      * @throws UnexpectedEOFException
      * @throws UnexpectedTokenException
      */
@@ -193,7 +182,7 @@ abstract class Value implements CSSElement, Positionable
                 // Max length is 2 six-digit code points + the dash(-) between them
             }
             $range .= $parserState->consume(1);
-        } while (\strlen($range) < $codepointMaxLength && preg_match('/[A-Fa-f0-9\?-]/', $parserState->peek()) === 1);
+        } while (\strlen($range) < $codepointMaxLength && \preg_match('/[A-Fa-f0-9\?-]/', $parserState->peek()));
         return "U+{$range}";
     }
 }

@@ -7,20 +7,24 @@ use ProfilePressVendor\Sabberworm\CSS\OutputFormat;
 use ProfilePressVendor\Sabberworm\CSS\Parsing\ParserState;
 use ProfilePressVendor\Sabberworm\CSS\Parsing\UnexpectedEOFException;
 use ProfilePressVendor\Sabberworm\CSS\Parsing\UnexpectedTokenException;
-use ProfilePressVendor\Sabberworm\CSS\ShortClassNameProvider;
-use function ProfilePressVendor\Safe\preg_match;
-use function ProfilePressVendor\Safe\preg_replace;
 /**
  * A `Size` consists of a numeric `size` value and a unit.
  */
 class Size extends PrimitiveValue
 {
-    use ShortClassNameProvider;
     /**
      * vh/vw/vm(ax)/vmin/rem are absolute insofar as they don’t scale to the immediate parent (only the viewport)
+     *
+     * @var list<non-empty-string>
      */
     private const ABSOLUTE_SIZE_UNITS = ['px', 'pt', 'pc', 'cm', 'mm', 'mozmm', 'in', 'vh', 'dvh', 'svh', 'lvh', 'vw', 'vmin', 'vmax', 'rem'];
+    /**
+     * @var list<non-empty-string>
+     */
     private const RELATIVE_SIZE_UNITS = ['%', 'em', 'ex', 'ch', 'fr'];
+    /**
+     * @var list<non-empty-string>
+     */
     private const NON_SIZE_UNITS = ['deg', 'grad', 'rad', 's', 'ms', 'turn', 'Hz', 'kHz'];
     /**
      * @var array<int<1, max>, array<lowercase-string, non-empty-string>>|null
@@ -161,21 +165,7 @@ class Size extends PrimitiveValue
     {
         $locale = \localeconv();
         $decimalPoint = \preg_quote($locale['decimal_point'], '/');
-        $size = preg_match('/[\d\.]+e[+-]?\d+/i', (string) $this->size) === 1 ? preg_replace("/{$decimalPoint}?0+\$/", '', \sprintf('%f', $this->size)) : (string) $this->size;
-        return preg_replace(["/{$decimalPoint}/", '/^(-?)0\./'], ['.', '$1.'], $size) . ($this->unit ?? '');
-    }
-    /**
-     * @return array<string, bool|int|float|string|array<mixed>|null>
-     *
-     * @internal
-     */
-    public function getArrayRepresentation(): array
-    {
-        return [
-            'class' => $this->getShortClassName(),
-            // 'number' is the official W3C terminology (not 'size')
-            'number' => $this->size,
-            'unit' => $this->unit,
-        ];
+        $size = \preg_match('/[\d\.]+e[+-]?\d+/i', (string) $this->size) ? \preg_replace("/{$decimalPoint}?0+\$/", '', \sprintf('%f', $this->size)) : (string) $this->size;
+        return \preg_replace(["/{$decimalPoint}/", '/^(-?)0\./'], ['.', '$1.'], $size) . ($this->unit ?? '');
     }
 }

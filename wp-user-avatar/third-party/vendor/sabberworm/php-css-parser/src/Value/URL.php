@@ -8,13 +8,11 @@ use ProfilePressVendor\Sabberworm\CSS\Parsing\ParserState;
 use ProfilePressVendor\Sabberworm\CSS\Parsing\SourceException;
 use ProfilePressVendor\Sabberworm\CSS\Parsing\UnexpectedEOFException;
 use ProfilePressVendor\Sabberworm\CSS\Parsing\UnexpectedTokenException;
-use ProfilePressVendor\Sabberworm\CSS\ShortClassNameProvider;
 /**
  * This class represents URLs in CSS. `URL`s always output in `URL("")` notation.
  */
 class URL extends PrimitiveValue
 {
-    use ShortClassNameProvider;
     /**
      * @var CSSString
      */
@@ -74,19 +72,5 @@ class URL extends PrimitiveValue
     public function render(OutputFormat $outputFormat): string
     {
         return "url({$this->url->render($outputFormat)})";
-    }
-    /**
-     * @return array<string, bool|int|float|string|array<mixed>|null>
-     *
-     * @internal
-     */
-    public function getArrayRepresentation(): array
-    {
-        return [
-            'class' => $this->getShortClassName(),
-            // We're using the term "uri" here to match the wording used in the specs:
-            // https://www.w3.org/TR/CSS22/syndata.html#uri
-            'uri' => $this->url->getArrayRepresentation(),
-        ];
     }
 }

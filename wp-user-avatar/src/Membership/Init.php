@@ -19,6 +19,7 @@ use ProfilePress\Core\Membership\Models\Customer\CustomerFactory;
 use ProfilePress\Core\Membership\PaymentMethods\PaymentMethods;
 use ProfilePress\Core\Membership\Repositories\CustomerRepository;
 use ProfilePress\Core\Membership\Repositories\SubscriptionRepository;
+use ProfilePress\Core\Membership\Services\SubscriptionService;
 
 class Init
 {
@@ -29,6 +30,7 @@ class Init
 
         FrontendController::get_instance();
         CheckoutController::get_instance();
+        SubscriptionService::init();
 
         DigitalProducts\Init::get_instance();
 

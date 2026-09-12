@@ -4,7 +4,6 @@ declare (strict_types=1);
 namespace ProfilePressVendor\Sabberworm\CSS\Value;
 
 use ProfilePressVendor\Sabberworm\CSS\OutputFormat;
-use ProfilePressVendor\Sabberworm\CSS\ShortClassNameProvider;
 /**
  * A `ValueList` represents a lists of `Value`s, separated by some separation character
  * (mostly `,`, whitespace, or `/`).
@@ -13,7 +12,6 @@ use ProfilePressVendor\Sabberworm\CSS\ShortClassNameProvider;
  */
 abstract class ValueList extends Value
 {
-    use ShortClassNameProvider;
     /**
      * @var array<Value|string>
      *
@@ -79,25 +77,5 @@ abstract class ValueList extends Value
     {
         $formatter = $outputFormat->getFormatter();
         return $formatter->implode($formatter->spaceBeforeListArgumentSeparator($this->separator) . $this->separator . $formatter->spaceAfterListArgumentSeparator($this->separator), $this->components);
-    }
-    /**
-     * @return array<string, bool|int|float|string|array<mixed>|null>
-     *
-     * @internal
-     */
-    public function getArrayRepresentation(): array
-    {
-        return ['class' => $this->getShortClassName(), 'components' => \array_map(
-            /**
-             * @parm Value|string $component
-             */
-            function ($component): array {
-                if (\is_string($component)) {
-                    return ['class' => 'string', 'value' => $component];
-                }
-                return $component->getArrayRepresentation();
-            },
-            $this->components
-        ), 'separator' => $this->separator];
     }
 }

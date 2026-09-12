@@ -8,8 +8,6 @@ use ProfilePressVendor\Sabberworm\CSS\Parsing\ParserState;
 use ProfilePressVendor\Sabberworm\CSS\Parsing\SourceException;
 use ProfilePressVendor\Sabberworm\CSS\Parsing\UnexpectedEOFException;
 use ProfilePressVendor\Sabberworm\CSS\Parsing\UnexpectedTokenException;
-use ProfilePressVendor\Sabberworm\CSS\ShortClassNameProvider;
-use function ProfilePressVendor\Safe\preg_match;
 /**
  * This class is a wrapper for quoted strings to distinguish them from keywords.
  *
@@ -17,7 +15,6 @@ use function ProfilePressVendor\Safe\preg_match;
  */
 class CSSString extends PrimitiveValue
 {
-    use ShortClassNameProvider;
     /**
      * @var string
      */
@@ -50,9 +47,10 @@ class CSSString extends PrimitiveValue
             $parserState->consume($quote);
         }
         $result = '';
+        $content = null;
         if ($quote === null) {
             // Unquoted strings end in whitespace or with braces, brackets, parentheses
-            while (preg_match('/[\s{}()<>\[\]]/isu', $parserState->peek()) === 0) {
+            while (\preg_match('/[\s{}()<>\[\]]/isu', $parserState->peek()) !== 1) {
                 $result .= $parserState->parseCharacter(\false);
             }
         } else {
@@ -80,27 +78,8 @@ class CSSString extends PrimitiveValue
      */
     public function render(OutputFormat $outputFormat): string
     {
-        return $outputFormat->getStringQuotingType() . $this->escape($this->string, $outputFormat) . $outputFormat->getStringQuotingType();
-    }
-    /**
-     * @return array<string, bool|int|float|string|array<mixed>|null>
-     *
-     * @internal
-     */
-    public function getArrayRepresentation(): array
-    {
-        return [
-            'class' => $this->getShortClassName(),
-            // We're using the term "contents" here to make the difference to the class more clear.
-            'contents' => $this->string,
-        ];
-    }
-    private function escape(string $string, OutputFormat $outputFormat): string
-    {
-        $charactersToEscape = '\\';
-        $charactersToEscape .= $outputFormat->getStringQuotingType() === '"' ? '"' : "'";
-        $withEscapedQuotes = \addcslashes($string, $charactersToEscape);
-        $withNewlineEncoded = \str_replace("\n", '\A', $withEscapedQuotes);
-        return $withNewlineEncoded;
+        $string = \addslashes($this->string);
+        $string = \str_replace("\n", '\A', $string);
+        return $outputFormat->getStringQuotingType() . $string . $outputFormat->getStringQuotingType();
     }
 }

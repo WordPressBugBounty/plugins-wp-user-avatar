@@ -6,10 +6,15 @@ namespace ProfilePressVendor\Sabberworm\CSS\Value;
 use ProfilePressVendor\Sabberworm\CSS\Parsing\ParserState;
 use ProfilePressVendor\Sabberworm\CSS\Parsing\UnexpectedEOFException;
 use ProfilePressVendor\Sabberworm\CSS\Parsing\UnexpectedTokenException;
-use function ProfilePressVendor\Safe\preg_match;
 class CalcFunction extends CSSFunction
 {
+    /**
+     * @var int
+     */
     private const T_OPERAND = 1;
+    /**
+     * @var int
+     */
     private const T_OPERATOR = 2;
     /**
      * @throws UnexpectedTokenException
@@ -55,7 +60,7 @@ class CalcFunction extends CSSFunction
                 $lastComponentType = CalcFunction::T_OPERAND;
             } else if (\in_array($parserState->peek(), $operators, \true)) {
                 if ($parserState->comes('-') || $parserState->comes('+')) {
-                    if (preg_match('/\s/', $parserState->peek(1, -1)) !== 1 || preg_match('/\s/', $parserState->peek(1, 1)) !== 1) {
+                    if ($parserState->peek(1, -1) !== ' ' || !($parserState->comes('- ') || $parserState->comes('+ '))) {
                         throw new UnexpectedTokenException(" {$parserState->peek()} ", $parserState->peek(1, -1) . $parserState->peek(2), 'literal', $parserState->currentLine());
                     }
                 }
@@ -71,14 +76,5 @@ class CalcFunction extends CSSFunction
             $parserState->consume(')');
         }
         return new CalcFunction($function, $list, ',', $parserState->currentLine());
-    }
-    /**
-     * @return array<string, bool|int|float|string|array<mixed>|null>
-     *
-     * @internal
-     */
-    public function getArrayRepresentation(): array
-    {
-        throw new \BadMethodCallException('`getArrayRepresentation` is not yet implemented for `' . self::class . '`');
     }
 }

@@ -5,14 +5,14 @@ namespace ProfilePressVendor\Sabberworm\CSS\Parsing;
 
 use ProfilePressVendor\Sabberworm\CSS\Comment\Comment;
 use ProfilePressVendor\Sabberworm\CSS\Settings;
-use function ProfilePressVendor\Safe\iconv;
-use function ProfilePressVendor\Safe\preg_match;
-use function ProfilePressVendor\Safe\preg_split;
 /**
  * @internal since 8.7.0
  */
 class ParserState
 {
+    /**
+     * @var null
+     */
     public const EOF = null;
     /**
      * @var Settings
@@ -53,6 +53,8 @@ class ParserState
     }
     /**
      * Sets the charset to be used if the CSS does not contain an `@charset` declaration.
+     *
+     * @throws SourceException if the charset is UTF-8 and the content has invalid byte sequences
      */
     public function setCharset(string $charset): void
     {
@@ -102,8 +104,9 @@ class ParserState
         if ($result === null) {
             throw new UnexpectedTokenException('', $this->peek(5), 'identifier', $this->lineNumber);
         }
+        $character = null;
         while (!$this->isEnd() && ($character = $this->parseCharacter(\true)) !== null) {
-            if (preg_match('/[a-zA-Z0-9\x{00A0}-\x{FFFF}_-]/Sux', $character) !== 0) {
+            if (\preg_match('/[a-zA-Z0-9\x{00A0}-\x{FFFF}_-]/Sux', $character)) {
                 $result .= $character;
             } else {
                 $result .= '\\' . $character;
@@ -125,13 +128,13 @@ class ParserState
             if ($this->comes('\n') || $this->comes('\r')) {
                 return '';
             }
-            if (preg_match('/[0-9a-fA-F]/Su', $this->peek()) === 0) {
+            if (\preg_match('/[0-9a-fA-F]/Su', $this->peek()) === 0) {
                 return $this->consume(1);
             }
             $hexCodePoint = $this->consumeExpression('/^[0-9a-fA-F]{1,6}/u', 6);
             if ($this->strlen($hexCodePoint) < 6) {
                 // Consume whitespace after incomplete unicode escape
-                if (preg_match('/\s/isSu', $this->peek()) !== 0) {
+                if (\preg_match('/\s/isSu', $this->peek())) {
                     if ($this->comes('ProfilePressVendor\r\n')) {
                         $this->consume(2);
                     } else {
@@ -145,7 +148,7 @@ class ParserState
                 $utf32EncodedCharacter .= \chr($codePoint & 0xff);
                 $codePoint = $codePoint >> 8;
             }
-            return iconv('utf-32le', $this->charset, $utf32EncodedCharacter);
+            return \iconv('utf-32le', $this->charset, $utf32EncodedCharacter);
         }
         if ($isForIdentifier) {
             $peek = \ord($this->peek());
@@ -159,25 +162,17 @@ class ParserState
         return null;
     }
     /**
-     * Consumes whitespace and/or comments until the next non-whitespace character that isn't a slash opening a comment.
-     *
-     * @param list<Comment> $comments Any comments consumed will be appended to this array.
-     *
-     * @return string the whitespace consumed, without the comments
+     * @return list<Comment>
      *
      * @throws UnexpectedEOFException
      * @throws UnexpectedTokenException
-     *
-     * @phpstan-impure
-     * This method may change the state of the object by advancing the internal position;
-     * it does not simply 'get' a value.
      */
-    public function consumeWhiteSpace(array &$comments = []): string
+    public function consumeWhiteSpace(): array
     {
-        $consumed = '';
+        $comments = [];
         do {
-            while (preg_match('/\s/isSu', $this->peek()) === 1) {
-                $consumed .= $this->consume(1);
+            while (\preg_match('/\s/isSu', $this->peek()) === 1) {
+                $this->consume(1);
             }
             if ($this->parserSettings->usesLenientParsing()) {
                 try {
@@ -193,7 +188,7 @@ class ParserState
                 $comments[] = $comment;
             }
         } while ($comment instanceof Comment);
-        return $consumed;
+        return $comments;
     }
     /**
      * @param non-empty-string $string
@@ -244,24 +239,6 @@ class ParserState
         return $result;
     }
     /**
-     * If the possibly-expected next content is next, consume it.
-     *
-     * @param non-empty-string $nextContent
-     *
-     * @return bool whether the possibly-expected content was found and consumed
-     */
-    public function consumeIfComes(string $nextContent): bool
-    {
-        $length = $this->strlen($nextContent);
-        if (!$this->streql($this->substr($this->currentPosition, $length), $nextContent)) {
-            return \false;
-        }
-        $numberOfLines = \substr_count($nextContent, "\n");
-        $this->lineNumber += $numberOfLines;
-        $this->currentPosition += $this->strlen($nextContent);
-        return \true;
-    }
-    /**
      * @param string $expression
      * @param int<1, max>|null $maximumLength
      *
@@ -272,7 +249,7 @@ class ParserState
     {
         $matches = null;
         $input = $maximumLength !== null ? $this->peek($maximumLength) : $this->inputLeft();
-        if (preg_match($expression, $input, $matches, \PREG_OFFSET_CAPTURE) !== 1) {
+        if (\preg_match($expression, $input, $matches, \PREG_OFFSET_CAPTURE) !== 1) {
             throw new UnexpectedTokenException($expression, $this->peek(5), 'expression', $this->lineNumber);
         }
         return $this->consume($matches[0][0]);
@@ -304,7 +281,7 @@ class ParserState
     }
     /**
      * @param list<string|self::EOF>|string|self::EOF $stopCharacters
-     * @param list<Comment> $comments
+     * @param array<int, Comment> $comments
      *
      * @throws UnexpectedEOFException
      * @throws UnexpectedTokenException
@@ -314,7 +291,6 @@ class ParserState
         $stopCharacters = \is_array($stopCharacters) ? $stopCharacters : [$stopCharacters];
         $consumedCharacters = '';
         $start = $this->currentPosition;
-        $comments = \array_merge($comments, $this->consumeComments());
         while (!$this->isEnd()) {
             $character = $this->consume(1);
             if (\in_array($character, $stopCharacters, \true)) {
@@ -326,7 +302,10 @@ class ParserState
                 return $consumedCharacters;
             }
             $consumedCharacters .= $character;
-            $comments = \array_merge($comments, $this->consumeComments());
+            $comment = $this->consumeComment();
+            if ($comment instanceof Comment) {
+                $comments[] = $comment;
+            }
         }
         if (\in_array(self::EOF, $stopCharacters, \true)) {
             return $consumedCharacters;
@@ -384,12 +363,17 @@ class ParserState
     }
     /**
      * @return list<string>
+     *
+     * @throws SourceException if the charset is UTF-8 and the string contains invalid byte sequences
      */
     private function strsplit(string $string): array
     {
         if ($this->parserSettings->hasMultibyteSupport()) {
             if ($this->streql($this->charset, 'utf-8')) {
-                $result = preg_split('//u', $string, -1, \PREG_SPLIT_NO_EMPTY);
+                $result = \preg_split('//u', $string, -1, \PREG_SPLIT_NO_EMPTY);
+                if (!\is_array($result)) {
+                    throw new SourceException('`preg_split` failed with error ' . \preg_last_error());
+                }
             } else {
                 $length = \mb_strlen($string, $this->charset);
                 $result = [];
@@ -401,20 +385,5 @@ class ParserState
             $result = $string !== '' ? \str_split($string) : [];
         }
         return $result;
-    }
-    /**
-     * @return list<Comment>
-     */
-    private function consumeComments(): array
-    {
-        $comments = [];
-        while (\true) {
-            $comment = $this->consumeComment();
-            if ($comment instanceof Comment) {
-                $comments[] = $comment;
-            } else {
-                return $comments;
-            }
-        }
     }
 }

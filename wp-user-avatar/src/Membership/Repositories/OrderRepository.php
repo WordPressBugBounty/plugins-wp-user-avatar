@@ -227,6 +227,8 @@ class OrderRepository extends BaseRepository
      */
     public function retrieveBy($args = array(), $count = false)
     {
+        static $static_cache = [];
+
         $defaults = [
             'search'          => '',
             'number'          => 10,
@@ -253,6 +255,16 @@ class OrderRepository extends BaseRepository
         ];
 
         $args = wp_parse_args($args, $defaults);
+
+        // Normalize status before generating cache key.
+        $args['status'] = ! empty($args['status']) && is_string($args['status']) ? [$args['status']] : $args['status'];
+
+        $cache_key = md5(serialize([
+            'args'  => $args,
+            'count' => (bool)$count
+        ]));
+
+        if (array_key_exists($cache_key, $static_cache)) return $static_cache[$cache_key];
 
         $limit = absint($args['number']);
 
@@ -315,8 +327,6 @@ class OrderRepository extends BaseRepository
             $replacement[] = $args['payment_method'];
         }
 
-        $args['status'] = ! empty($args['status']) && is_string($args['status']) ? [$args['status']] : $args['status'];
-
         if (
             ! empty($args['status']) &&
             count(array_intersect($args['status'], array_keys(OrderStatus::get_all()))) == count($args['status'])
@@ -365,7 +375,6 @@ class OrderRepository extends BaseRepository
         }
 
         if ( ! empty($search)) {
-
             if (is_numeric($search)) {
                 $sql .= " AND (id = %d";
                 $sql .= " OR plan_id = %d";
@@ -416,18 +425,21 @@ class OrderRepository extends BaseRepository
             }
         }
 
-
         if ($count === true) {
-            return (int)$this->wpdb()->get_var($this->wpdb()->prepare($sql, $replacement));
+            $static_cache[$cache_key] = (int)$this->wpdb()->get_var($this->wpdb()->prepare($sql, $replacement));
+            return $static_cache[$cache_key];
         }
 
         $result = $this->wpdb()->get_results($this->wpdb()->prepare($sql, $replacement), 'ARRAY_A');
 
         if (is_array($result) && ! empty($result)) {
-            return array_map([OrderFactory::class, 'make'], $result);
+            $static_cache[$cache_key] = array_map([OrderFactory::class, 'make'], $result);
+            return $static_cache[$cache_key];
         }
 
-        return [];
+        $static_cache[$cache_key] = [];
+
+        return $static_cache[$cache_key];
     }
 
     public function get_customer_total_spend($customer_id)
