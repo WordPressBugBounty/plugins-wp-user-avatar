@@ -214,7 +214,7 @@ class FrontendProfileBuilder
 
         $username = $capitalization ? ucwords($username) : $username;
 
-        return apply_filters('ppress_profile_username', $username, self::$user_data);
+        return apply_filters('ppress_profile_username', ppress_neutralize_shortcodes($username), self::$user_data);
     }
 
 
@@ -225,7 +225,7 @@ class FrontendProfileBuilder
      */
     public function profile_email()
     {
-        return apply_filters('ppress_profile_email', self::$user_data->user_email, self::$user_data);
+        return apply_filters('ppress_profile_email', ppress_neutralize_shortcodes(self::$user_data->user_email), self::$user_data);
     }
 
     /**
@@ -265,7 +265,7 @@ class FrontendProfileBuilder
      */
     public function profile_website()
     {
-        return apply_filters('ppress_profile_website', esc_url(self::$user_data->user_url), self::$user_data);
+        return apply_filters('ppress_profile_website', ppress_neutralize_shortcodes(esc_url(self::$user_data->user_url)), self::$user_data);
     }
 
     /**
@@ -386,11 +386,13 @@ class FrontendProfileBuilder
             $data = esc_attr($atts['default']);
         }
 
-        $data = ppress_strip_shortcodes($data);
+        $data = ppress_strip_shortcodes($data, false);
 
         if (is_string($data)) {
             $data = in_array($key, array_keys(ppress_social_network_fields()), true) ? esc_url($data) : esc_html($data);
         }
+
+        $data = ppress_neutralize_shortcodes($data);
 
         return apply_filters('ppress_profile_cpf', $data, self::$user_data);
     }

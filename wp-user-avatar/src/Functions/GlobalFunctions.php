@@ -1361,6 +1361,11 @@ function ppress_is_boolean($maybe_bool)
     return false;
 }
 
+function ppress_is_valid_data($value)
+{
+    return ppress_is_boolean($value) || is_int($value) || ! empty($value);
+}
+
 function ppress_filter_empty_array($values)
 {
     if ( ! is_array($values)) return $values;
@@ -1696,7 +1701,9 @@ function ppress_is_json($str)
 function ppress_clean($var, $callback = 'sanitize_textarea_field')
 {
     if (is_array($var)) {
-        return array_map('ppress_clean', $var);
+        return array_map(function ($value) use ($callback) {
+            return ppress_clean($value, $callback);
+        }, $var);
     } else {
         return is_scalar($var) ? call_user_func($callback, $var) : $var;
     }
@@ -1708,19 +1715,73 @@ function ppress_clean($var, $callback = 'sanitize_textarea_field')
  * strip_shortcodes() makes a single non-recursive pass, so a nested tag such as
  * "[profile-[profile-email]email]" comes out of it as a working shortcode.
  *
- * @param $var
+ * By default, any bracket left over afterwards is entity-encoded so that partial
+ * fragments (e.g. "[pp-custom-html" in one field and "[pp-custom-html. ...]" in
+ * another) can't be recombined into a live shortcode once separately rendered
+ * values are concatenated and passed through do_shortcode() again.
+ *
+ * @param mixed $var
+ * @param bool $neutralize
  *
  * @return mixed
  */
-function ppress_strip_shortcodes($var)
+function ppress_strip_shortcodes($var, $neutralize = true)
 {
-    return ppress_clean($var, function ($value) {
+    return ppress_clean($var, function ($value) use ($neutralize) {
+        if ( ! is_string($value)) return $value;
+
         while ($value !== ($stripped = strip_shortcodes($value))) {
             $value = $stripped;
         }
 
-        return $value;
+        return $neutralize ? ppress_neutralize_shortcodes($value) : $value;
     });
+}
+
+/**
+ * Entity-encode square brackets so the value can never be parsed as (part of) a shortcode.
+ * Browsers render &#x5B; and &#x5D; as [ and ], so the displayed text is unchanged.
+ * Hex entities are used because do_shortcode() runs unescape_invalid_shortcodes(), which
+ * converts &#91; and &#93; back into real brackets and would undo the neutralization.
+ *
+ * @param mixed $var
+ *
+ * @return mixed
+ */
+function ppress_neutralize_shortcodes($var)
+{
+    if (is_array($var)) return array_map('ppress_neutralize_shortcodes', $var);
+
+    return is_string($var) ? str_replace(['[', ']'], ['&#x5B;', '&#x5D;'], $var) : $var;
+}
+
+/**
+ * Neutralize shortcodes in fully-assembled template buffers before outer do_shortcode() execution.
+ *
+ * Prevents split shortcode fragments from recombining across HTML element boundaries
+ * and disarms builder-only shortcodes like pp-custom-html in assembled buffers.
+ *
+ * @param string $content
+ *
+ * @return string
+ */
+function ppress_neutralize_buffer_shortcodes($content)
+{
+    if (empty($content) || ! is_string($content)) {
+        return $content;
+    }
+
+    // Neutralize any pp-custom-html shortcodes in the assembled buffer (these are only
+    // intended to be parsed individually during listing generation, not in outer buffers).
+    $content = preg_replace('/\[(\/?pp-custom-html\b[^\]]*)\]/i', '&#x5B;$1&#x5D;', $content);
+
+    // Neutralize any '[' that spans across HTML tag delimiters ('<' or '>') before a closing ']'
+    $content = preg_replace('/\[(?=[^\]]*[<>])/', '&#x5B;', $content);
+
+    // Neutralize any unterminated '[' (opening bracket without any matching closing bracket)
+    $content = preg_replace('/\[(?![^\[]*\])/', '&#x5B;', $content);
+
+    return $content;
 }
 
 /**
@@ -1732,7 +1793,8 @@ function ppress_strip_shortcodes($var)
  */
 function ppress_strip_shortcodes_clean($var)
 {
-    return ppress_strip_shortcodes(ppress_clean($var));
+    // stored raw; neutralized on output instead so saved values aren't entity-encoded.
+    return ppress_strip_shortcodes(ppress_clean($var), false);
 }
 
 /**

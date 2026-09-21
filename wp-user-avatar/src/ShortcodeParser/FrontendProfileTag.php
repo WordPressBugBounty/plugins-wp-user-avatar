@@ -137,6 +137,8 @@ class FrontendProfileTag
             $user_profile_structure = FR::get_form_meta($id, FR::USER_PROFILE_TYPE, FR::FORM_STRUCTURE);
         }
 
+        $user_profile_structure = ppress_neutralize_buffer_shortcodes($user_profile_structure);
+
         return do_shortcode($user_profile_structure);
     }
 

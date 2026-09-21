@@ -105,7 +105,7 @@ class TabbedWidget extends \WP_Widget
         if ( ! is_user_logged_in()) {
             echo $args['before_widget'];
 
-            if (isset($this->widget_status)) echo '<div class="pp-tab-status">', $this->widget_status, '</div>';
+            if ( ! empty($this->widget_status) && is_string($this->widget_status)) echo '<div class="pp-tab-status">', wp_kses_post($this->widget_status), '</div>';
             ?>
             <div class="pp-tab-widget-form">
                 <ul class="pp-tab-widget">

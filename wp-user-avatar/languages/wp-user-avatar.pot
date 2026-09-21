@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the ProfilePress plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: ProfilePress 4.17.4\n"
+"Project-Id-Version: ProfilePress 4.17.5\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-user-avatar\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-09-11T17:52:08+00:00\n"
+"POT-Creation-Date: 2026-09-21T10:34:58+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: wp-user-avatar\n"
@@ -428,9 +428,9 @@ msgstr ""
 #: src/Admin/SettingsPages/GeneralSettings.php:450
 #: src/Admin/SettingsPages/Membership/CheckoutFieldsManager.php:92
 #: src/Admin/SettingsPages/Membership/PlanIntegrationsMetabox.php:178
-#: src/Functions/GlobalFunctions.php:1455
-#: src/Functions/GlobalFunctions.php:1487
-#: src/Functions/GlobalFunctions.php:1509
+#: src/Functions/GlobalFunctions.php:1460
+#: src/Functions/GlobalFunctions.php:1492
+#: src/Functions/GlobalFunctions.php:1514
 #: src/LoginRedirect.php:180
 msgid "Select..."
 msgstr ""
@@ -514,7 +514,7 @@ msgstr ""
 
 #: src/Admin/SettingsPages/DragDropBuilder/DragDropBuilder.php:1247
 #: src/Admin/SettingsPages/Membership/CheckoutFieldsManager.php:95
-#: src/Functions/GlobalFunctions.php:1512
+#: src/Functions/GlobalFunctions.php:1517
 #: src/Themes/DragDrop/AbstractMemberDirectoryTheme.php:222
 msgid "Standard Fields"
 msgstr ""
@@ -527,7 +527,7 @@ msgstr ""
 #: src/Admin/SettingsPages/LicenseUpgrader.php:182
 #: src/Admin/SettingsPages/Membership/CheckoutFieldsManager.php:103
 #: src/Classes/ExtensionManager.php:156
-#: src/Functions/GlobalFunctions.php:1515
+#: src/Functions/GlobalFunctions.php:1520
 #: src/Themes/DragDrop/AbstractMemberDirectoryTheme.php:236
 msgid "Custom Fields"
 msgstr ""
@@ -737,7 +737,7 @@ msgstr ""
 
 #: src/Admin/SettingsPages/DragDropBuilder/Fields/Bio.php:22
 #: src/Admin/SettingsPages/DragDropBuilder/Fields/UserProfile/Bio.php:22
-#: src/Functions/GlobalFunctions.php:1499
+#: src/Functions/GlobalFunctions.php:1504
 #: src/Themes/DragDrop/AbstractMemberDirectoryTheme.php:231
 #: src/Themes/DragDrop/AbstractTheme.php:205
 msgid "Biography"
@@ -1012,7 +1012,7 @@ msgstr ""
 
 #: src/Admin/SettingsPages/DragDropBuilder/Fields/DisplayName.php:22
 #: src/Admin/SettingsPages/DragDropBuilder/Fields/UserProfile/DisplayName.php:22
-#: src/Functions/GlobalFunctions.php:1497
+#: src/Functions/GlobalFunctions.php:1502
 #: src/Membership/CheckoutFields.php:114
 #: src/ShortcodeParser/Builder/FieldsShortcodeCallback.php:365
 #: src/Themes/DragDrop/AbstractMemberDirectoryTheme.php:228
@@ -1038,7 +1038,7 @@ msgstr ""
 #: src/Admin/SettingsPages/DragDropBuilder/Fields/Email.php:22
 #: src/Admin/SettingsPages/DragDropBuilder/Fields/UserProfile/Email.php:22
 #: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:380
-#: src/Functions/GlobalFunctions.php:1498
+#: src/Functions/GlobalFunctions.php:1503
 #: src/Membership/CheckoutFields.php:51
 #: src/ShortcodeParser/Builder/FieldsShortcodeCallback.php:257
 #: src/Themes/DragDrop/AbstractMemberDirectoryTheme.php:226
@@ -1051,7 +1051,7 @@ msgstr ""
 #: src/Admin/SettingsPages/DragDropBuilder/Fields/FirstName.php:22
 #: src/Admin/SettingsPages/DragDropBuilder/Fields/UserProfile/FirstName.php:22
 #: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:372
-#: src/Functions/GlobalFunctions.php:1494
+#: src/Functions/GlobalFunctions.php:1499
 #: src/Membership/CheckoutFields.php:65
 #: src/ShortcodeParser/Builder/FieldsShortcodeCallback.php:397
 #: src/Themes/DragDrop/AbstractMemberDirectoryTheme.php:229
@@ -1073,7 +1073,7 @@ msgstr ""
 #: src/Admin/SettingsPages/DragDropBuilder/Fields/LastName.php:22
 #: src/Admin/SettingsPages/DragDropBuilder/Fields/UserProfile/LastName.php:22
 #: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:376
-#: src/Functions/GlobalFunctions.php:1495
+#: src/Functions/GlobalFunctions.php:1500
 #: src/Membership/CheckoutFields.php:72
 #: src/ShortcodeParser/Builder/FieldsShortcodeCallback.php:430
 #: src/Themes/DragDrop/AbstractMemberDirectoryTheme.php:230
@@ -1109,7 +1109,7 @@ msgstr ""
 
 #: src/Admin/SettingsPages/DragDropBuilder/Fields/Nickname.php:22
 #: src/Admin/SettingsPages/DragDropBuilder/Fields/UserProfile/Nickname.php:22
-#: src/Functions/GlobalFunctions.php:1496
+#: src/Functions/GlobalFunctions.php:1501
 #: src/Membership/CheckoutFields.php:107
 #: src/ShortcodeParser/Builder/FieldsShortcodeCallback.php:333
 #: src/ShortcodeParser/Builder/FieldsShortcodeCallback.php:347
@@ -1216,7 +1216,7 @@ msgstr ""
 #: src/Admin/SettingsPages/DragDropBuilder/Fields/Username.php:22
 #: src/Admin/SettingsPages/DragDropBuilder/Fields/UserProfile/Username.php:22
 #: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:384
-#: src/Functions/GlobalFunctions.php:1493
+#: src/Functions/GlobalFunctions.php:1498
 #: src/Membership/CheckoutFields.php:79
 #: src/ShortcodeParser/Builder/FieldsShortcodeCallback.php:182
 #: src/Themes/DragDrop/AbstractMemberDirectoryTheme.php:379
@@ -5780,40 +5780,40 @@ msgstr ""
 msgid "Uploaded file is greater than the allowed sized of %s"
 msgstr ""
 
-#: src/Classes/FileUploader.php:97
+#: src/Classes/FileUploader.php:98
 msgid "appears to be of an invalid file format. Please try again."
 msgstr ""
 
-#: src/Classes/FileUploader.php:128
+#: src/Classes/FileUploader.php:129
 #, php-format
 msgid "Unable to save %s, please try again."
 msgstr ""
 
-#: src/Classes/FileUploader.php:155
+#: src/Classes/FileUploader.php:156
 msgid "The uploaded file exceeds the upload_max_filesize directive in php.ini"
 msgstr ""
 
-#: src/Classes/FileUploader.php:158
+#: src/Classes/FileUploader.php:159
 msgid "The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form"
 msgstr ""
 
-#: src/Classes/FileUploader.php:161
+#: src/Classes/FileUploader.php:162
 msgid "The uploaded file was only partially uploaded"
 msgstr ""
 
-#: src/Classes/FileUploader.php:164
+#: src/Classes/FileUploader.php:165
 msgid "No file was uploaded"
 msgstr ""
 
-#: src/Classes/FileUploader.php:167
+#: src/Classes/FileUploader.php:168
 msgid "Missing a temporary folder"
 msgstr ""
 
-#: src/Classes/FileUploader.php:170
+#: src/Classes/FileUploader.php:171
 msgid "Failed to write file to disk"
 msgstr ""
 
-#: src/Classes/FileUploader.php:173
+#: src/Classes/FileUploader.php:174
 msgid "File upload stopped by extension"
 msgstr ""
 
@@ -15412,42 +15412,42 @@ msgstr ""
 msgid "It must be unique for each field, not a reserve text, in lowercase letters only with an underscore ( _ ) separating words e.g job_title"
 msgstr ""
 
-#: src/Functions/GlobalFunctions.php:1439
+#: src/Functions/GlobalFunctions.php:1444
 #, php-format
 msgid "%s (WooCommerce Billing Address)"
 msgstr ""
 
-#: src/Functions/GlobalFunctions.php:1443
+#: src/Functions/GlobalFunctions.php:1448
 #, php-format
 msgid "%s (WooCommerce Shipping Address)"
 msgstr ""
 
-#: src/Functions/GlobalFunctions.php:1491
+#: src/Functions/GlobalFunctions.php:1496
 msgid "First and Last Names"
 msgstr ""
 
-#: src/Functions/GlobalFunctions.php:1492
+#: src/Functions/GlobalFunctions.php:1497
 msgid "Last and First Names"
 msgstr ""
 
-#: src/Functions/GlobalFunctions.php:1500
+#: src/Functions/GlobalFunctions.php:1505
 msgid "Registration Date"
 msgstr ""
 
-#: src/Functions/GlobalFunctions.php:1639
+#: src/Functions/GlobalFunctions.php:1644
 msgid "There was an problem while verifying your file."
 msgstr ""
 
-#: src/Functions/GlobalFunctions.php:1644
+#: src/Functions/GlobalFunctions.php:1649
 msgid "Sorry, this file extension is not permitted for security reasons."
 msgstr ""
 
-#: src/Functions/GlobalFunctions.php:1648
+#: src/Functions/GlobalFunctions.php:1653
 msgid "Sorry, this file type is not permitted for security reasons."
 msgstr ""
 
-#: src/Functions/GlobalFunctions.php:1652
-#: src/Functions/GlobalFunctions.php:1656
+#: src/Functions/GlobalFunctions.php:1657
+#: src/Functions/GlobalFunctions.php:1661
 msgid "Error: The file you uploaded is not accepted on our website."
 msgstr ""
 
@@ -17205,7 +17205,7 @@ msgstr ""
 msgid "You have not made any comment."
 msgstr ""
 
-#: src/ShortcodeParser/Builder/FrontendProfileBuilder.php:682
+#: src/ShortcodeParser/Builder/FrontendProfileBuilder.php:684
 msgid "No post written yet."
 msgstr ""
 
@@ -17249,7 +17249,7 @@ msgstr ""
 msgid "Form class not found. Please check if this user profile actually exist in ProfilePress."
 msgstr ""
 
-#: src/ShortcodeParser/FrontendProfileTag.php:199
+#: src/ShortcodeParser/FrontendProfileTag.php:201
 #: src/Themes/DragDrop/UserProfile/Dixon.php:121
 msgid "Profile"
 msgstr ""
@@ -17266,19 +17266,19 @@ msgstr ""
 msgid "Member directory class not found. Please check it actually exist in ProfilePress."
 msgstr ""
 
-#: src/ShortcodeParser/MemberDirectoryTag.php:172
-#: src/ShortcodeParser/MemberDirectoryTag.php:173
+#: src/ShortcodeParser/MemberDirectoryTag.php:174
+#: src/ShortcodeParser/MemberDirectoryTag.php:175
 #: src/Themes/DragDrop/AbstractMemberDirectoryTheme.php:264
 #: src/Themes/DragDrop/AbstractMemberDirectoryTheme.php:565
 #: src/Themes/DragDrop/AbstractMemberDirectoryTheme.php:567
 msgid "Search"
 msgstr ""
 
-#: src/ShortcodeParser/MemberDirectoryTag.php:198
+#: src/ShortcodeParser/MemberDirectoryTag.php:200
 msgid "&laquo; Previous"
 msgstr ""
 
-#: src/ShortcodeParser/MemberDirectoryTag.php:199
+#: src/ShortcodeParser/MemberDirectoryTag.php:201
 msgid "Next &raquo;"
 msgstr ""
 

@@ -94,7 +94,8 @@ class FileUploader
 
         if (is_wp_error($mime_check)) {
 
-            return new WP_Error('invalid_file', $filename . ' ' . apply_filters('ppress_invalid_file_error', esc_html__('appears to be of an invalid file format. Please try again.', 'wp-user-avatar'), $field_key));
+            // filename is attacker-controlled and the message is rendered as HTML by every consumer.
+            return new WP_Error('invalid_file', esc_html(wp_basename($filename)) . ' ' . apply_filters('ppress_invalid_file_error', esc_html__('appears to be of an invalid file format. Please try again.', 'wp-user-avatar'), $field_key));
         }
 
         $file_upload_dir = apply_filters('ppress_file_upload_dir', PPRESS_FILE_UPLOAD_DIR, $field_key);
@@ -125,7 +126,7 @@ class FileUploader
 
         if ( ! $success) {
             return new WP_Error ('save_error',
-                sprintf(__("Unable to save %s, please try again.", 'wp-user-avatar'), $file_name));
+                sprintf(esc_html__("Unable to save %s, please try again.", 'wp-user-avatar'), esc_html($file_name)));
         }
 
         // set proper permissions on the new file

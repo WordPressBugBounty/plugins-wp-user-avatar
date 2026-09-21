@@ -142,7 +142,7 @@ class MemberDirectoryListing
                     $output .= sprintf('<span class="ppress-md-profile-item-title">%s:</span> ', wp_kses_post($field_title));
                 }
 
-                $output .= sprintf('%s', wp_kses_post($parsed_shortcode));
+                $output .= ppress_neutralize_shortcodes(wp_kses_post($parsed_shortcode));
 
                 $output .= '</div>';
             }

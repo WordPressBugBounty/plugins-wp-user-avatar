@@ -1,5 +1,11 @@
 ﻿== Changelog ==
 
+= 4.17.5 =
+* Fixed: Sensitive Information Exposure via Shortcode Injection via Nickname and Biographical Info Profile Fields.
+* Fixed PHP Warning: Undefined array key "login_remember".
+* Fixed bug where edit profile form was missing updated user data.
+* Made usermoderation enabled by default via checkout.
+
 = 4.17.4 =
 * Added inline validation of email address during checkout.
 * Added LoginGuard to checkout and registration autologin.

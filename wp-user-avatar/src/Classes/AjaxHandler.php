@@ -421,7 +421,7 @@ class AjaxHandler
 
             $login_username = ! empty($data['tabbed-login-name']) ? $data['tabbed-login-name'] : $data['login_username'];
             $login_password = ! empty($data['tabbed-login-password']) ? $data['tabbed-login-password'] : $data['login_password'];
-            $login_remember = ! empty($data['tabbed-login-remember-me']) ? $data['tabbed-login-remember-me'] : $data['login_remember'];
+            $login_remember = ! empty($data['tabbed-login-remember-me']) ? $data['tabbed-login-remember-me'] : ($data['login_remember'] ?? '');
 
             $login_username = trim($login_username);
             $login_remember = sanitize_text_field($login_remember);

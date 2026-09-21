@@ -5,7 +5,7 @@ Tags: membership, ecommerce, user registration, user profile, memberships
 Requires at least: 6.0
 Requires PHP: 7.4
 Tested up to: 7.1
-Stable tag: 4.17.4
+Stable tag: 4.17.5
 License: GPLv2 or later
 
 Setup paid membership, accept payment, sell subscription & digital product, paywall, create login & registration form, user profile & member directory
@@ -196,17 +196,18 @@ Any file type can be sold using ProfilePress ecommerce and membership plugin, in
 
 == Changelog ==
 
+= 4.17.5 =
+* Fixed: Sensitive Information Exposure via Shortcode Injection via profile fields.
+* Fixed: Reflected XSS via ppress_billing_address and filename param
+* Fixed PHP Warning: Undefined array key "login_remember".
+* Fixed bug where edit profile form was missing updated user data.
+* Made usermoderation enabled by default via checkout.
+
 = 4.17.4 =
 * Added inline validation of email address during checkout.
 * Added LoginGuard to checkout and registration autologin.
 * Fixed security issue where subscribers could obtain a paid plan without payment via plan change.
 * Improvement: Revalidate coupons at calculation time and fixed race condition bug.
 * Fixed bug with upgrade/downgrade not working after old sub got expired.
-
-= 4.17.3 =
-* Fixed the security issue in the bio frontend user profile.
-* Scanned and fixed Fable reported security issues.
-* Fixed fatal error with emogrify.
-* Improvement: ppress_allow_empty_password_unchanged filter is true by default.
 
 See the [changelog file](https://plugins.svn.wordpress.org/wp-user-avatar/trunk/changelog.txt) for full change log information.
