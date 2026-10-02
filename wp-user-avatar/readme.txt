@@ -5,7 +5,7 @@ Tags: membership, ecommerce, user registration, user profile, memberships
 Requires at least: 6.0
 Requires PHP: 7.4
 Tested up to: 7.1
-Stable tag: 4.17.5
+Stable tag: 4.17.6
 License: GPLv2 or later
 
 Setup paid membership, accept payment, sell subscription & digital product, paywall, create login & registration form, user profile & member directory
@@ -49,7 +49,7 @@ Create checkout page, member login form, user registration form, password reset 
 * **Conversion Optimized Checkout Form** – Let users make payments to you and subscribe to your membership plans.
 * **User Registration Forms** – Let users signup via a custom registration form.
 * **Login & Password Reset Forms** – Allow users to log in and reset their passwords via custom frontent forms.
-* **User Dashboard** – My Account page and edit profile forms for users to manage their profile details, account settings, change password and delete their account account.
+* **User Dashboard** – My Account page and edit profile forms for users to manage their profile details, account settings, change password, view recent login activities and delete their account account.
 * **Automatic Registration & Login Redirect** – Auto login users after they register and redirect them after they sign in, log out, and reset their passwords.
 
 = User Profiles & Member Directories =
@@ -75,6 +75,10 @@ You can also control the visibility of [navigation menus](https://profilepress.c
 = Detailed Ecommerce & Membership Reports =
 
 We provide a complete reports section where you can Keep track of your earnings, refunds, sales, download logs, and more. You can view and export reports for any period.
+
+= Login Notifications & Login Activity =
+
+Alert your users by email when someone signs in to their account, for every login or only when it's from a new device, so they can spot a login that wasn't them. Users can also review their recent logins from the Login Activity tab on the My Account page.
 
 = Login Redirect =
 
@@ -195,6 +199,31 @@ Any file type can be sold using ProfilePress ecommerce and membership plugin, in
 11. Content Protection
 
 == Changelog ==
+
+= 4.17.6 =
+* Fixed security issue where with shortcode execution via comment content on user profile.
+* Fixed: remove 10-per-day limit on renewal and expiration emails.
+* Added Free Trial Ending Reminder email.
+* Added Login notification email.
+* Added Login Activity tab to My Account page showing recent logins.
+* Fixed XSS in contextual country state field in checkout.
+* Fixed: Reflected XSS in member directory filters.
+* Fixed: User meta enumeration via member directory filters.
+* Fixed: Member directory role filter could list users outside the directory's configured roles.
+* Fixed: Registration and login form ID could be tampered with to bypass invite codes, CAPTCHA and form-assigned user roles.
+* Fixed: Brute-force protection plugins not recording failed logins made via ProfilePress login forms.
+* Fixed: Unauthenticated file upload via non-file custom fields; files from failed registrations are now deleted.
+* Fixed: CSRF in edit profile avatar and cover photo removal.
+* Fixed: Deactivated membership plans could be purchased at checkout.
+* Fixed: Checkout tax could be bypassed by skipping or altering the order review.
+* Fixed: Retention-only coupons could be applied to new purchases.
+* Fixed: Content protection bypass via REST API and search for "Pages with Template", "Home or Front Page" and "Blog or Posts Page" rules.
+* Fixed: Comments on protected content are now hidden from users without access.
+* Fixed: REST API search bypass of protected content exclusion.
+* Fixed: CSV formula injection in membership exports; exports no longer written to the uploads folder.
+* Fixed: Missing capability checks on admin notice dismissal, login redirect settings and content protection AJAX.
+* Fixed: Email content saved by users without the unfiltered_html capability is now sanitized.
+* Fixed: AcademyLMS fatal error for paid courses not mapped to a plan.
 
 = 4.17.5 =
 * Fixed: Sensitive Information Exposure via Shortcode Injection via profile fields.

@@ -266,6 +266,19 @@ class OrderService
         $prorated_price_flag = false;
         $prorated_price      = '0';
 
+        // Reset the session order type on every calculation. get_pro_rated_upgrade_cost() below sets it again,
+        // but only for a plan change whose subscription passed the ownership and can_switch_to_plan() checks.
+        //
+        // Without this reset, ORDER_TYPE was only ever written, never cleared. A customer could trigger a
+        // change-plan order review (ppress_update_order_review with isChangePlanUpdate=true), which staged
+        // upgrade/downgrade for plan X, then do a normal new checkout for plan X. That checkout read the stale type:
+        // coupons restricted to existing purchases (retention coupons) passed is_valid(), the order was saved as
+        // an upgrade/downgrade, and a free DOWNGRADE pushed Stripe's first bill back to the old expiry date.
+        //
+        // Every reader of CheckoutSessionData::get_order_type() during process_checkout() runs after this
+        // calculation, so they all see the type for the current request.
+        ppress_session()->set(CheckoutSessionData::ORDER_TYPE, null);
+
         $fromSub          = SubscriptionFactory::fromId($change_plan_sub_id);
         $current_customer = CustomerFactory::fromUserId(get_current_user_id());
 

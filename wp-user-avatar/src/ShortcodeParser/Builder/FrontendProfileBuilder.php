@@ -108,7 +108,7 @@ class FrontendProfileBuilder
                 $output .= sprintf(
                     '<li class="pp-user-post-item"><a href="%s"><h3 class="pp-post-item-head">%s</h3></a></li>',
                     get_permalink($post->ID),
-                    $post->post_title,
+                    ppress_neutralize_shortcodes($post->post_title),
                     apply_filters('ppress_author_post_after_title', '', $post, $user_id, $attributes)
                 );
             }
@@ -166,11 +166,12 @@ class FrontendProfileBuilder
                 $output .= sprintf(
                     '<a href="%s">%s</a>',
                     esc_url(get_comment_link($comment->comment_ID)),
-                    get_comment_excerpt($comment->comment_ID)
+                    // neutralized because the drag-drop profile template passes this output through do_shortcode()
+                    ppress_neutralize_shortcodes(get_comment_excerpt($comment->comment_ID))
                 );
                 $output .= '</div>';
                 $output .= '<div class="pp-user-comment-item-meta">';
-                $output .= sprintf('On <a href="%s">%s</a>', get_permalink($comment->comment_post_ID), get_the_title($comment->comment_post_ID));
+                $output .= sprintf('On <a href="%s">%s</a>', get_permalink($comment->comment_post_ID), ppress_neutralize_shortcodes(get_the_title($comment->comment_post_ID)));
                 $output .= '</div>';
                 $output .= '</div>';
             }

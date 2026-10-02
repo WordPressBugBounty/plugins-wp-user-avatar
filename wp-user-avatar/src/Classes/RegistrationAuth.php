@@ -185,15 +185,11 @@ class RegistrationAuth
             'description' => apply_filters('ppress_registration_bio_value', $bio, $form_id),
         );
 
-        if (!empty($role)) {
-            // acceptable defined roles in reg-select-role shortcode.
-            $accepted_role = (array)self::acceptable_defined_roles($form_id);
-
-            if ($role != 'administrator' && in_array($role, $accepted_role)) {
-                $real_userdata['role'] = $role;
-            }
+        // acceptable defined roles in reg-select-role shortcode.
+        if (!empty($role) && is_string($role) && $role != 'administrator' && in_array($role, (array)self::acceptable_defined_roles($form_id), true)) {
+            $real_userdata['role'] = $role;
         } else {
-
+            // a missing or unaccepted selected role falls back to the role the form assigns.
             $builder_role = FormRepository::get_form_meta($form_id, FormRepository::REGISTRATION_TYPE, FormRepository::REGISTRATION_USER_ROLE);
 
             if (!empty($builder_role)) {
@@ -282,6 +278,8 @@ class RegistrationAuth
             }
 
             if (!empty($upload_errors)) {
+                FileUploader::delete_uploaded_files($uploads);
+
                 return "<div class='profilepress-reg-status'>$upload_errors</div>";
             }
         }
@@ -293,6 +291,8 @@ class RegistrationAuth
             $upload_avatar = ImageUploader::process($files['reg_avatar']);
 
             if (is_wp_error($upload_avatar)) {
+                FileUploader::delete_uploaded_files($uploads);
+
                 return "<div class='profilepress-reg-status'>" . $upload_avatar->get_error_message() . "</div>";
             }
         }
@@ -305,6 +305,9 @@ class RegistrationAuth
             $upload_cover_image = ImageUploader::process($files['reg_cover_image'], ImageUploader::COVER_IMAGE, PPRESS_COVER_IMAGE_UPLOAD_DIR);
 
             if (is_wp_error($upload_cover_image)) {
+                FileUploader::delete_uploaded_files($uploads);
+                self::delete_uploaded_image($upload_avatar ?? '', PPRESS_AVATAR_UPLOAD_DIR);
+
                 return "<div class='profilepress-reg-status'>" . $upload_cover_image->get_error_message() . "</div>";
             }
         }
@@ -316,6 +319,11 @@ class RegistrationAuth
         $user_id = wp_insert_user(apply_filters('ppress_registration_real_userdata', $real_userdata, $form_id, $post));
 
         if (is_wp_error($user_id)) {
+            // don't leave files from a failed registration in the public uploads folders.
+            FileUploader::delete_uploaded_files($uploads);
+            self::delete_uploaded_image($upload_avatar ?? '', PPRESS_AVATAR_UPLOAD_DIR);
+            self::delete_uploaded_image($upload_cover_image ?? '', PPRESS_COVER_IMAGE_UPLOAD_DIR);
+
             return '<div class="profilepress-reg-status">' . $user_id->get_error_message() . '</div>';
         }
 
@@ -433,6 +441,19 @@ class RegistrationAuth
      *
      * @return array
      */
+    /**
+     * @param mixed $file_name
+     * @param string $upload_dir
+     */
+    protected static function delete_uploaded_image($file_name, $upload_dir)
+    {
+        if ( ! is_string($file_name) || '' === $file_name) return;
+
+        $file = trailingslashit($upload_dir) . wp_basename($file_name);
+
+        if (file_exists($file)) @unlink($file);
+    }
+
     public static function acceptable_defined_roles($form_id)
     {
         if (FormRepository::is_drag_drop($form_id, FormRepository::REGISTRATION_TYPE)) {

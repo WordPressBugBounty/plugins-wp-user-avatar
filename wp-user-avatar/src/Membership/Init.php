@@ -15,6 +15,7 @@ use ProfilePress\Core\Membership\Emails\SubscriptionExpirationReminder;
 use ProfilePress\Core\Membership\Emails\SubscriptionExpiredNotification;
 use ProfilePress\Core\Membership\Emails\SubscriptionPaymentFailedNotification;
 use ProfilePress\Core\Membership\Emails\SubscriptionRenewalReminder;
+use ProfilePress\Core\Membership\Emails\SubscriptionTrialEndingReminder;
 use ProfilePress\Core\Membership\Models\Customer\CustomerFactory;
 use ProfilePress\Core\Membership\PaymentMethods\PaymentMethods;
 use ProfilePress\Core\Membership\Repositories\CustomerRepository;
@@ -41,6 +42,7 @@ class Init
         SubscriptionExpiredNotification::init();
         SubscriptionCompletedNotification::init();
         SubscriptionRenewalReminder::init();
+        SubscriptionTrialEndingReminder::init();
         SubscriptionExpirationReminder::init();
         SubscriptionAfterExpiredNotification::init();
         SubscriptionPaymentFailedNotification::init();

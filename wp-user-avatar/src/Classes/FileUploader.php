@@ -19,16 +19,40 @@ class FileUploader
         // remove registration and edit profile avatar and cover photo from files uploaded to be processed.
         $skip = ['wpua-file', 'reg_avatar', 'eup_avatar', 'reg_cover_image', 'eup_cover_image'];
 
-        $valid_custom_usermeta = array_keys(ppress_custom_fields_key_value_pair(true));
+        // only custom fields of the file type accept uploads.
+        $file_field_keys = array_map(function ($field) {
+            return $field->field_key;
+        }, (array)PROFILEPRESS_sql::get_profile_custom_fields_by_types(['file']));
 
         foreach ($_FILES as $field_key => $uploaded_file_array) {
 
-            if ( ! in_array($field_key, $skip) && in_array($field_key, $valid_custom_usermeta) && ! empty($uploaded_file_array['name'])) {
+            if ( ! in_array($field_key, $skip, true) && in_array($field_key, $file_field_keys, true) && ! empty($uploaded_file_array['name']) && is_string($uploaded_file_array['name'])) {
                 $result[$field_key] = self::process($uploaded_file_array, $field_key);
             }
         }
 
         return $result;
+    }
+
+    /**
+     * Delete files saved by init() when the submission they belong to fails.
+     *
+     * @param array $uploads field key => saved filename or WP_Error
+     */
+    public static function delete_uploaded_files($uploads)
+    {
+        if ( ! is_array($uploads)) return;
+
+        foreach ($uploads as $field_key => $file_name) {
+
+            if ( ! is_string($file_name) || '' === $file_name) continue;
+
+            $file_upload_dir = apply_filters('ppress_file_upload_dir', PPRESS_FILE_UPLOAD_DIR, $field_key);
+
+            $file = trailingslashit($file_upload_dir) . wp_basename($file_name);
+
+            if (file_exists($file)) @unlink($file);
+        }
     }
 
     /**
@@ -100,8 +124,14 @@ class FileUploader
 
         $file_upload_dir = apply_filters('ppress_file_upload_dir', PPRESS_FILE_UPLOAD_DIR, $field_key);
 
-        // ensure a safe filename
-        $file_name = apply_filters('ppress_file_upload_filename', preg_replace("/[^A-Z0-9._-]/i", "_", $filename), $field_key, $file);
+        // ensure a safe filename. a random suffix keeps uploaded files from being guessed in the public uploads folder.
+        $safe_filename_parts = pathinfo(preg_replace("/[^A-Z0-9._-]/i", "_", $filename));
+        $safe_filename       = $safe_filename_parts['filename'] . '-' . wp_generate_password(12, false);
+        if ( ! empty($safe_filename_parts['extension'])) {
+            $safe_filename .= '.' . $safe_filename_parts['extension'];
+        }
+
+        $file_name = apply_filters('ppress_file_upload_filename', $safe_filename, $field_key, $file);
 
         // don't overwrite an existing file
         $i                = 0;

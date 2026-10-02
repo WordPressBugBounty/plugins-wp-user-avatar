@@ -414,7 +414,23 @@ class AjaxHandler
             // populate global $_POST variable.
             $_POST = $data;
 
-            $login_form_id = absint($data['login_form_id'] ?? '');
+            $is_tab_widget = ! empty($data['is-pp-tab-widget']) && $data['is-pp-tab-widget'] == 'true';
+            $is_melange    = ! empty($data['pp_melange_id']);
+
+            // melange logins post pp_melange_id; this used to read only login_form_id, so they ran with form ID 0.
+            $login_form_id = absint($is_melange ? $data['pp_melange_id'] : ($data['login_form_id'] ?? ''));
+
+            // the form ID decides which login validators (e.g. CAPTCHA) run. See ppress_form_signature().
+
+            if ($is_tab_widget) {
+                $is_valid_form = ppress_verify_form_signature(0, 'tabbed', $data['ppress_form_sig'] ?? '');
+            } else {
+                $is_valid_form = ppress_verify_form_signature(
+                    $login_form_id,
+                    $is_melange ? FormRepository::MELANGE_TYPE : FormRepository::LOGIN_TYPE,
+                    $is_melange ? ($data['pp_melange_sig'] ?? '') : ($data['ppress_form_sig'] ?? '')
+                );
+            }
 
             // $login_username, $login_password, $login_remember, $login_redirect, $ogin_form_id are all populated by parse_str()
             $login_status_css_class = apply_filters('ppress_login_error_css_class', 'profilepress-login-status', $login_form_id);
@@ -432,7 +448,9 @@ class AjaxHandler
             }
 
             /** @var \WP_Error|string $response */
-            $response = LoginAuth::login_auth($login_username, $login_password, $login_remember, $login_form_id, $login_redirect);
+            $response = $is_valid_form ?
+                LoginAuth::login_auth($login_username, $login_password, $login_remember, $login_form_id, $login_redirect) :
+                new \WP_Error('ppress_invalid_form', ppress_invalid_form_submission_message());
 
             $ajax_response = array('success' => true, 'redirect' => $response);
 
@@ -460,9 +478,10 @@ class AjaxHandler
 
         if (isset($_REQUEST)) {
 
-            $is_melange = ( ! empty($_POST['is_melange']) && $_POST['is_melange'] == 'true');
+            // derived server-side; the posted is_melange flag is also output by non-melange forms.
+            $is_melange = ! empty($_POST['melange_id']);
 
-            $form_id = ! empty($_POST['melange_id']) ? $_POST['melange_id'] : ($_POST['signup_form_id'] ?? '');
+            $form_id = $is_melange ? $_POST['melange_id'] : ($_POST['signup_form_id'] ?? '');
             $form_id = absint($form_id);
 
             $redirect = ppressPOST_var('signup_redirect', '', true);
@@ -472,7 +491,8 @@ class AjaxHandler
 
             $no_login_redirect = sanitize_text_field($_POST['signup_no_login_redirect'] ?? '');
 
-            // if this is tab widget.
+            // if this is tab widget. Otherwise the form ID must be signed, as it decides the new user's role and
+            // which validators run. See ppress_form_signature().
             if (isset($_POST['is-pp-tab-widget']) && $_POST['is-pp-tab-widget'] == 'true') {
                 $widget_status = @TabbedWidgetDependency::registration(
                     $_POST['tabbed-reg-username'],
@@ -484,6 +504,12 @@ class AjaxHandler
                     $response = '<div class="pp-tab-status">' . $widget_status . '</div>';
                 }
 
+            } elseif ( ! ppress_verify_form_signature(
+                $form_id,
+                $is_melange ? FormRepository::MELANGE_TYPE : FormRepository::REGISTRATION_TYPE,
+                $is_melange ? ($_POST['pp_melange_sig'] ?? '') : ($_POST['ppress_form_sig'] ?? '')
+            )) {
+                $response = '<div class="profilepress-reg-status">' . ppress_invalid_form_submission_message() . '</div>';
             } else {
                 $response = RegistrationAuth::register_new_user($_POST, $form_id, $redirect, $is_melange, $no_login_redirect);
             }

@@ -103,6 +103,13 @@ class MyAccountTag extends FormProcessor
                     'icon'     => 'vpn_key',
                     'callback' => [$classInstance, 'change_password_callback']
                 ],
+                'login-activity'     => [
+                    'title'    => esc_html__('Login Activity', 'wp-user-avatar'),
+                    'endpoint' => esc_html(ppress_settings_by_key('myac_login_activity_endpoint', 'login-activity', true)),
+                    'priority' => 52,
+                    'icon'     => 'history',
+                    'callback' => [$classInstance, 'login_activity_callback']
+                ],
                 'delete-account'     => [
                     'title'    => esc_html__('Delete Account', 'wp-user-avatar'),
                     'endpoint' => apply_filters('ppress_my_account_dashboard_delete_account_endpoint', 'delete-account'),
@@ -195,6 +202,11 @@ class MyAccountTag extends FormProcessor
         require apply_filters('ppress_my_account_change_password_template', wp_normalize_path(dirname(__FILE__) . '/change-password.tmpl.php'));
     }
 
+    public function login_activity_callback()
+    {
+        require apply_filters('ppress_my_account_login_activity_template', wp_normalize_path(dirname(__FILE__) . '/login-activity.tmpl.php'));
+    }
+
     public function delete_account_callback()
     {
         require apply_filters('ppress_my_account_delete_account_template', wp_normalize_path(dirname(__FILE__) . '/delete-account.tmpl.php'));
@@ -270,9 +282,9 @@ class MyAccountTag extends FormProcessor
                     wp_safe_redirect(ppress_plan_checkout_url($sub->id, true));
                     exit;
                 }
-            }
 
-            do_action('ppress_handle_subscription_actions', $action, $sub);
+                do_action('ppress_handle_subscription_actions', $action, $sub);
+            }
 
             wp_safe_redirect(
                 add_query_arg(

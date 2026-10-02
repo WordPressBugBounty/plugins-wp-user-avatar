@@ -7,13 +7,18 @@ use ProfilePress\Core\Membership\Models\Subscription\SubscriptionStatus;
 use ProfilePress\Core\Membership\Repositories\SubscriptionRepository;
 use ProfilePressVendor\Carbon\CarbonImmutable;
 
-class SubscriptionRenewalReminder extends AbstractMembershipEmail
+class SubscriptionTrialEndingReminder extends AbstractMembershipEmail
 {
-    const ID = 'subscription_renewal_reminder';
+    const ID = 'subscription_trial_ending_reminder';
 
     public function __construct()
     {
         add_action('ppress_daily_recurring_job', [$this, 'dispatch_email']);
+    }
+
+    public static function is_enabled()
+    {
+        return ppress_get_setting(self::ID . '_email_enabled', 'on') === 'on';
     }
 
     /**
@@ -21,28 +26,23 @@ class SubscriptionRenewalReminder extends AbstractMembershipEmail
      */
     public function dispatch_email()
     {
-        if (ppress_get_setting(self::ID . '_email_enabled', 'on') !== 'on') return;
+        if ( ! self::is_enabled()) return;
 
         $reminder_days = (int)apply_filters('ppress_' . self::ID . '_reminder_days',
-            ppress_get_setting(self::ID . '_reminder_days', '1', true)
+            ppress_get_setting(self::ID . '_reminder_days', '3', true)
         );
 
         $subDate = CarbonImmutable::now(wp_timezone())->addDays($reminder_days);
 
-        $statuses = [SubscriptionStatus::ACTIVE, SubscriptionStatus::TRIALLING];
-
-        // trialling customers get the Free Trial Ending Reminder instead when it is enabled.
-        if (SubscriptionTrialEndingReminder::is_enabled()) {
-            $statuses = [SubscriptionStatus::ACTIVE];
-        }
-
+        // a trialling subscription's expiration date is when its trial ends. Subscriptions without a payment profile
+        // won't be charged when the trial ends, so they get the Upcoming Expiration Reminder instead.
         $subscriptions = SubscriptionRepository::init()->retrieveBy([
-            'status'      => $statuses,
+            'status'      => [SubscriptionStatus::TRIALLING],
             'number'      => 0,
             'date_column' => 'expiration_date',
             'start_date'  => $subDate->startOfDay()->utc()->toDateTimeString(),
             'end_date'    => $subDate->endOfDay()->utc()->toDateTimeString(),
-            'profile_id' => 'NOT_EMPTY'
+            'profile_id'  => 'NOT_EMPTY'
         ]);
 
         if ( ! is_array($subscriptions) || empty($subscriptions)) return;
@@ -52,13 +52,13 @@ class SubscriptionRenewalReminder extends AbstractMembershipEmail
             $placeholders_values = $this->get_subscription_placeholders_values($subscription);
 
             $subject = apply_filters('ppress_' . self::ID . '_email_subject', $this->parse_placeholders(
-                ppress_get_setting(self::ID . '_email_subject', esc_html__('Your subscription is renewing soon.', 'wp-user-avatar'), true),
+                ppress_get_setting(self::ID . '_email_subject', esc_html__('Your free trial is ending soon.', 'wp-user-avatar'), true),
                 $placeholders_values,
                 $subscription
             ), $subscription);
 
             $message = apply_filters('ppress_' . self::ID . '_email_content', $this->parse_placeholders(
-                ppress_get_setting(self::ID . '_email_content', $this->get_subscription_renewal_reminder_content(), true),
+                ppress_get_setting(self::ID . '_email_content', $this->get_subscription_trial_ending_reminder_content(), true),
                 $placeholders_values,
                 $subscription
             ), $subscription);

@@ -214,6 +214,21 @@ trait EmailDataTrait
         return ob_get_clean();
     }
 
+    public function get_subscription_trial_ending_reminder_content()
+    {
+        ob_start();
+        ?>
+        <p>Hi {{first_name}},</p>
+        <p>Your free trial of {{plan_name}} ends on {{expiration_date}}.</p>
+        <p>When it ends, your subscription will start automatically and you will be charged {{amount}}. If you don't want to continue, cancel your subscription before then and you won't be charged.</p>
+        <div style="margin:30px 0 0;padding: 10px 0 50px 0; text-align: center;">
+            <a style="background: #555555; color: #fff; padding: 12px 30px; text-decoration: none; border-radius: 3px; letter-spacing: 0.3px;" href="{{subscription_url}}">Manage
+                subscription</a>
+        </div>
+        <?php
+        return ob_get_clean();
+    }
+
     public function get_new_order_admin_notification_content()
     {
         ob_start();

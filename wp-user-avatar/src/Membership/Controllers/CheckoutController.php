@@ -3,6 +3,7 @@
 namespace ProfilePress\Core\Membership\Controllers;
 
 use ProfilePress\Core\Classes\LoginAuth;
+use ProfilePress\Core\Membership\CheckoutFields;
 use ProfilePress\Core\Membership\Models\Coupon\CouponFactory;
 use ProfilePress\Core\Membership\Models\Customer\CustomerFactory;
 use ProfilePress\Core\Membership\Models\Group\GroupFactory;
@@ -65,7 +66,12 @@ class CheckoutController extends BaseController
 
         if ( ! empty($states)) {
 
-            printf('<select name="%s" id="%s" class="%s" autocomplete="address-level1" required="required">', $nameAttr, $idAttr, $classAttr);
+            printf(
+                '<select name="%s" id="%s" class="%s" autocomplete="address-level1" required="required">',
+                esc_attr($nameAttr),
+                esc_attr($idAttr),
+                esc_attr($classAttr)
+            );
             echo '<option value="">&mdash;&mdash;&mdash;</option>';
             foreach ($states as $id => $label) {
                 printf('<option value="%s">%s</option>', $id, $label);
@@ -76,7 +82,9 @@ class CheckoutController extends BaseController
 
             printf(
                 '<input name="%s" type="text" id="%s" class="%s" autocomplete="address-level1" required="required">',
-                $nameAttr, $idAttr, $classAttr
+                esc_attr($nameAttr),
+                esc_attr($idAttr),
+                esc_attr($classAttr)
             );
         }
 
@@ -313,7 +321,14 @@ class CheckoutController extends BaseController
 
             $change_plan_sub_id = (int)$_POST['change_plan_sub_id'];
 
-            if (empty($change_plan_sub_id) && $plan_id > 0 && ! ppress_get_plan($plan_id)->is_active()) {
+            // plan lookups absint() the ID, so a negative ID would otherwise resolve to a plan without passing the active check below.
+            if ($plan_id < 1 || $change_plan_sub_id < 0) {
+                throw new \Exception(
+                    esc_html__('Invalid membership plan.', 'wp-user-avatar')
+                );
+            }
+
+            if (empty($change_plan_sub_id) && ! ppress_get_plan($plan_id)->is_active()) {
                 throw new \Exception(
                     esc_html__('Invalid membership plan.', 'wp-user-avatar')
                 );
@@ -359,7 +374,7 @@ class CheckoutController extends BaseController
             $cart_vars = OrderService::init()->checkout_order_calculation([
                 'plan_id'            => $plan_id,
                 'coupon_code'        => $coupon_code,
-                'tax_rate'           => CheckoutSessionData::get_tax_rate($plan_id),
+                'tax_rate'           => $this->get_submitted_checkout_tax_rate($plan_id),
                 'change_plan_sub_id' => $change_plan_sub_id
             ]);
 
@@ -560,6 +575,12 @@ class CheckoutController extends BaseController
 
             if (empty($vat_number)) return $tax_rate;
 
+            // already validated earlier in this checkout session for the same plan, VAT number and country.
+            $cached_vat_details = CheckoutSessionData::get_eu_vat_number_details($planObj->id, $vat_number);
+            if (is_array($cached_vat_details) && ppress_var($cached_vat_details, 'country_code') == $country_code && ppress_var($cached_vat_details, 'reverse_charged') === true) {
+                return 0;
+            }
+
             $session_data = [
                 'plan_id'      => $planObj->id,
                 'vat_number'   => $vat_number,
@@ -585,6 +606,37 @@ class CheckoutController extends BaseController
 
             $tax_rate = 0;
         }
+
+        return $tax_rate;
+    }
+
+    /**
+     * Tax rate for the order being placed, computed from the submitted billing details rather than
+     * trusting the rate stored in session by update_order_review.
+     *
+     * @param int $plan_id
+     *
+     * @return float|int|string
+     * @throws \Exception
+     */
+    private function get_submitted_checkout_tax_rate($plan_id)
+    {
+        if ( ! TaxService::init()->is_tax_enabled()) return 0;
+
+        $payment_method_id = sanitize_key(ppressPOST_var('ppress_payment_method', ''));
+
+        $country_code       = sanitize_text_field(ppressPOST_var($payment_method_id . '_' . CheckoutFields::BILLING_COUNTRY, '', true));
+        $country_state_code = sanitize_text_field(ppressPOST_var($payment_method_id . '_' . CheckoutFields::BILLING_STATE, '', true));
+        $vat_number         = sanitize_text_field(ppressPOST_var($payment_method_id . '_' . CheckoutFields::VAT_NUMBER, '', true));
+
+        $tax_rate = $this->get_checkout_tax_rate($country_code, $country_state_code, $vat_number, ppress_get_plan($plan_id));
+
+        ppress_session()->set(CheckoutSessionData::TAX_RATE, [
+            'plan_id'  => $plan_id,
+            'tax_rate' => $tax_rate,
+            'country'  => $country_code,
+            'state'    => $country_state_code
+        ]);
 
         return $tax_rate;
     }
